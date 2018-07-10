@@ -7,8 +7,12 @@
 #---    * calls the NCL script to re-grid and create---#
 #---      CAM-chem emissions                        ---#
 #---    * wites over time slice in year files       ---#
-#---    * uplopads new emissions to glade           ---#
+#---    * uploads new emissions to glade            ---#
 #---    * emails errors or completion               ---#
+#---  Requires:                                     ---#
+#---      Empty year files to overwrite             ---#
+#---  Call via:                                     ---#
+#---      ./setup_qfed_nrt.pl                       ---#
 #---                               rrb Apr 03, 2016 ---#
 #======================================================#
 
