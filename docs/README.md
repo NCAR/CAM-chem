@@ -1,4 +1,4 @@
-# CAM-chem
+# Collection of python tools
 <!--
 .. title: Python examples for atmospheric chemistry
 .. date: 2020-03-26
