@@ -7,6 +7,6 @@
 .. author: rrb
 -->
 
-Welcome to Python resources for atmospheric chemistry. Find examples of code to process model output and compare with measurements.
+Python resources for atmospheric chemistry. Find examples of code to process model output and compare with measurements.
 
 [test plot map](/jupyter_notebook_examples/plot_map.ipynb) 
