@@ -13,6 +13,7 @@ Python resources for atmospheric chemistry. Find examples of code to process mod
 
 
 [numpy command index](https://numpy.org/doc/stable/genindex.html)
+
 [scipy command index](https://docs.scipy.org/doc/scipy/reference/genindex.html)
 
 
