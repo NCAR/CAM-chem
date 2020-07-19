@@ -1,4 +1,4 @@
-# Collection of python examples for atmospheric chemistry
+# Collection of python examples
 <!--
 .. title: Python examples for atmospheric chemistry
 .. date: 2020-03-26
@@ -7,7 +7,7 @@
 .. author: rrb
 -->
 
-Find examples of code to process model output and compare with measurements.
+Python examples for atmospheric chemistry applications. Find examples of code to process model output and compare with measurements.
 
 [map plotting](map_plotting.md)
 
