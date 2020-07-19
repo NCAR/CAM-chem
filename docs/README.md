@@ -9,7 +9,11 @@
 
 Python resources for atmospheric chemistry. Find examples of code to process model output and compare with measurements.
 
-[test plot map](https://nbviewer.jupyter.org/github/NCAR/CAM-chem/blob/master/docs/map_plotting.md) 
+[map plotting](https://nbviewer.jupyter.org/github/NCAR/CAM-chem/blob/master/docs/map_plotting.md)
+
+profile plotting
+
+timeseries plotting
 
 ------------------------------
 [numpy command index](https://numpy.org/doc/stable/genindex.html)
