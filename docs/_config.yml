@@ -1,5 +1,5 @@
 theme: jekyll-theme-cayman
-title: Python resources CAM-chem
+title: <a href="https://ncar.github.io/CAM-chem/"> Python resources CAM-chem </a>
 description: <a href="https://ncar.github.io/CAM-chem/" class="btn">Home</a>
 github:
   is_project_page: false
