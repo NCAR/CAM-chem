@@ -9,7 +9,7 @@
 
 Python resources for atmospheric chemistry. Find examples of code to process model output and compare with measurements.
 
-[map plotting](https://ncar.github.io/CAM-chem/subpages/map_plotting.md)
+[map plotting](/subpages/map_plotting.md)
 
 profile plotting
 
