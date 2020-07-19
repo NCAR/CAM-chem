@@ -16,7 +16,7 @@ profile plotting
 timeseries plotting
 
 ------------------------------
-Helpful resources:
+Helpful lists of commands for certain packages:
 
 [numpy command index](https://numpy.org/doc/stable/genindex.html)
 
