@@ -1,6 +1,6 @@
 # Plot Maps
 
-[<img src="/images/map_outline.png"> world map with coastlines](https://nbviewer.jupyter.org/github/NCAR/CAM-chem/blob/master/docs/jupyter_notebook_examples/plot_map_basic.ipynb)
+[<img src="images/map_outline.png"> world map with coastlines](https://nbviewer.jupyter.org/github/NCAR/CAM-chem/blob/master/docs/jupyter_notebook_examples/plot_map_basic.ipynb)
 
 [add model output as contours](https://nbviewer.jupyter.org/github/NCAR/CAM-chem/blob/master/docs/jupyter_notebook_examples/plot_map.ipynb) 
 
