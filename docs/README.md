@@ -12,7 +12,7 @@ Find examples of code to process model output and compare with measurements and 
 
 |[maps](map_plotting.md) | profiles | timeseries | emission analysis |
 |:-------------:|:-------------:|:-------------:|:-------------:|
-|Plot model output on maps| Altitude versus concentration plots | Temporal analysis of model output - time versus concentratio plots | Aggregate emissions and plot in various ways |
+|Plot model output on maps| Altitude versus concentration plots | Temporal analysis of model output - time versus concentration plots | Aggregate emissions and plot in various ways |
 
 ------------------------------
 Helpful lists of commands for certain packages:
