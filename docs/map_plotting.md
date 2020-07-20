@@ -3,8 +3,8 @@
 This section describes some ways to plot model output as map contour plots.
 
 | Tables   |      Are      |  Cool |
-|----------|:-------------:|------:|
-| col 1 is |  left-aligned | $1600 |
+|:----------:|:-------------:|:------:|
+|  [world map with coastlines](jupyter_notebook_examples/plot_map_basic.md) |  left-aligned | $1600 |
 | col 2 is |    centered   |   $12 |
 | col 3 is | right-aligned |    $1 |
 
