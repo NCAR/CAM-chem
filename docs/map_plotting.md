@@ -1,6 +1,6 @@
 # Plot Maps
 
-This secition describes some ways to plot model output as map contour plots.
+This section describes some ways to plot model output as map contour plots.
 
 [world map with coastlines <br/> <img src="jupyter_notebook_examples/plot_map_basic_files/plot_map_basic_5_0.png" width="180px">](jupyter_notebook_examples/plot_map_basic.md)
 
