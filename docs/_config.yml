@@ -1,5 +1,5 @@
 theme: jekyll-theme-cayman
 title: <a href="https://ncar.github.io/CAM-chem/" style="color:#FFFFFF;"> Python resources for CAM-chem </a>
-description: <a href="https://ncar.github.io/CAM-chem/" class="btn">Home</a> <a href="https://wiki.ucar.edu/display/camchem/Home" class="btn">CAM-chem Wiki</a>
+description: <a href="https://ncar.github.io/CAM-chem/" class="btn">Home</a> <a href="https://ncar.github.io/CAM-chem/map_plotting.html" class="btn">Maps</a> <a href="https://wiki.ucar.edu/display/camchem/Home" class="btn">CAM-chem Wiki</a>
 github:
   is_project_page: false
