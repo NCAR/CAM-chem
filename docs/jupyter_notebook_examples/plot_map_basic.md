@@ -28,7 +28,6 @@ plt.figure(figsize=(20,8))
 ax = plt.axes(projection=ccrs.PlateCarree())
 
 # add coastlines
-#ax.coastlines() 
 ax.add_feature(cfeature.COASTLINE)
 
 #add lat lon grids
@@ -38,7 +37,7 @@ gl.ylabels_right = False
 
 # Titles
 # Main
-plt.title("Global map")
+plt.title("Global map",fontsize=18)
 
 # y-axis
 ax.text(-0.04, 0.5, 'Latitude', va='bottom', ha='center',
@@ -56,8 +55,3 @@ plt.show()
 
 ![png](plot_map_basic_files/plot_map_basic_5_0.png)
 
-
-
-```python
-
-```
