@@ -8,15 +8,11 @@
 -->
 
 Python examples for atmospheric chemistry applications.<br>
-Find examples of code to process model output and compare with measurements.
+Find examples of code to process model output and compare with measurements and create plots.
 
-[map plotting](map_plotting.md) - some ways to plot model output on maps.
-
-profile plotting
-
-timeseries plotting
-
-emission analysis
+|[map plotting](map_plotting.md) | profiles | timeseries | emission analysis |
+|:-------------:|:-------------:|:-------------:|:-------------:|
+|Some ways to plot model output on maps| [model output as contours <br> <img src="jupyter_notebook_examples/plot_map_basic_co_files/plot_map_basic_co_9_0.png" width="200px">](jupyter_notebook_examples/plot_map_basic_co.md) | [define contours and colorbar <br> <img src="jupyter_notebook_examples/plot_map_basic_co_cbar_files/plot_map_basic_co_cbar_9_0.png" width="200px">](jupyter_notebook_examples/plot_map_basic_co_cbar.md) | [add cyclic point](jupyter_notebook_examples/plot_map_basic_co.md) |
 
 ------------------------------
 Helpful lists of commands for certain packages:
