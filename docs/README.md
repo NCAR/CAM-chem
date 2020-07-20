@@ -7,7 +7,7 @@
 .. author: rrb
 -->
 
-Python examples for atmospheric chemistry applications.//
+Python examples for atmospheric chemistry applications.<br>
 Find examples of code to process model output and compare with measurements.
 
 [map plotting](map_plotting.md)
