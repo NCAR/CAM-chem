@@ -10,7 +10,7 @@
 Python examples for atmospheric chemistry applications.<br>
 Find examples of code to process model output and compare with measurements.
 
-[map plotting](map_plotting.md)
+[map plotting](map_plotting.md) - some ways to plot model output on maps.
 
 profile plotting
 
