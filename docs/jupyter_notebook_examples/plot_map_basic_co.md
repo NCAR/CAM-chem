@@ -22,7 +22,7 @@ from pathlib import Path                   # System agnostic paths
 import xarray as xr                        # For loading the data arrays
 ```
 
-### Define the directories and file of interest for your results. This can be shortened to less lines as well.
+### Define the directories and file of interest for your results.
 
 
 ```python
