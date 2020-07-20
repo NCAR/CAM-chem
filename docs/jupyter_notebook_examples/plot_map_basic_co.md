@@ -6,7 +6,7 @@
 # Script aims to:
 # - Load a netCDF file
 # - Extract one variable: CO
-# - Create contour plot of variable as world map with coastlines
+# - Create contour plot as a world map with coastlines
 # - Add axes labels
 # - Add grid lines
 ```
@@ -18,7 +18,7 @@
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs                 # For plotting maps
 import cartopy.feature as cfeature         # For plotting maps
-from   pathlib import Path                 # System agnostic paths
+from pathlib import Path                   # System agnostic paths
 import xarray as xr                        # For loading the data arrays
 ```
 
@@ -32,26 +32,26 @@ file_to_open = result_dir / file
 #the netcdf file is now held in an xarray dataset named 'nc_load' and can be referenced later in the notebook
 nc_load = xr.open_dataset(file_to_open)
 #to see what the netCDF file contains, uncomment below
-#nc_load
+nc_load
 ```
 
 ### Extract the variable of choice at the time and level of choice
 
 
 ```python
-#extract grid variables
-lat = nc_load['lat']
-lon = nc_load['lon']
-
 #extract variable
 var_sel = nc_load['CO']
 #to see the dimensions and metadata of the variable, uncomment below
 #print(var_sel)
 
 #select the surface level and convert to ppbv from vmr
-var_srf = var_sel.isel(time=0,lev=55) # MAM chosen
+var_srf = var_sel.isel(time=0,lev=55)
 var_srf = var_srf*1e09 # 10-9 to ppb
 print(var_srf.shape)
+
+#extract grid variables
+lat = var_sel.coords['lat']
+lon = var_sel.coords['lon']
 ```
 
     (192, 288)
@@ -101,8 +101,3 @@ plt.show()
 
 ![png](plot_map_basic_co_files/plot_map_basic_co_9_0.png)
 
-
-
-```python
-
-```
