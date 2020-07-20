@@ -12,7 +12,7 @@ Find examples of code to process model output and compare with measurements and 
 
 |[map plotting](map_plotting.md) | profiles | timeseries | emission analysis |
 |:-------------:|:-------------:|:-------------:|:-------------:|
-|Some ways to plot model output on maps| [model output as contours <br> <img src="jupyter_notebook_examples/plot_map_basic_co_files/plot_map_basic_co_9_0.png" width="200px">](jupyter_notebook_examples/plot_map_basic_co.md) | [define contours and colorbar <br> <img src="jupyter_notebook_examples/plot_map_basic_co_cbar_files/plot_map_basic_co_cbar_9_0.png" width="200px">](jupyter_notebook_examples/plot_map_basic_co_cbar.md) | [add cyclic point](jupyter_notebook_examples/plot_map_basic_co.md) |
+|Some ways to plot model output on maps| Altitude versus concentration plots | Temporal analysis of model output - time versus concentratio plots | Aggregate emissions and plot in various ways |
 
 ------------------------------
 Helpful lists of commands for certain packages:
