@@ -10,13 +10,13 @@
 Python examples for atmospheric chemistry applications.<br>
 Find examples of code to process model output and compare with measurements and create plots.
 
-|[maps](map_plotting.md) | profiles | timeseries | emission analysis |
-|:-------------:|:-------------:|:-------------:|:-------------:|
-|Plot model output on maps| Altitude versus concentration plots | Temporal analysis of model output - time versus concentration plots | Aggregate emissions and plot in various ways |
+|[maps](map_plotting.md) | profiles | timeseries |
+|:-------------:|:-------------:|:-------------:|
+|Plot model output on maps| Altitude versus concentration plots | Temporal analysis of model output - time versus concentration plots |
 
-|[maps](map_plotting.md) | profiles | timeseries | emission analysis |
-|:-------------:|:-------------:|:-------------:|:-------------:|
-|Plot model output on maps| Altitude versus concentration plots | Temporal analysis of model output - time versus concentration plots | Aggregate emissions and plot in various ways |
+|curtains| profiles | emission analysis |
+|:-------------:|:-------------:|
+| Altitude versus concentration over time | Aggregate emissions and plot in various ways |
 
 ------------------------------
 Helpful lists of commands for certain packages:
