@@ -15,6 +15,8 @@ profile plotting
 
 timeseries plotting
 
+emission analysis
+
 ------------------------------
 Helpful lists of commands for certain packages:
 
