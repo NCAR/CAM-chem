@@ -32,7 +32,7 @@ file_to_open = result_dir / file
 #the netcdf file is now held in an xarray dataset named 'nc_load' and can be referenced later in the notebook
 nc_load = xr.open_dataset(file_to_open)
 #to see what the netCDF file contains, uncomment below
-nc_load
+#nc_load
 ```
 
 ### Extract the variable of choice at the time and level of choice
