@@ -1,6 +1,6 @@
 # Plot Maps
 
-This section describes some ways to plot model output as map contour plots.
+This section describes some ways to plot model output on maps.
 
 | <!-- -->| <!-- --> | <!-- --> |  <!-- --> |
 |:-------------:|:-------------:|:-------------:|:-------------:|
