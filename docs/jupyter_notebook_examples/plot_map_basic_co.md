@@ -11,7 +11,7 @@
 # - Add grid lines
 ```
 
-### At the start of a Jupyter notebook you need to import all modules that you will use
+### At the start of a Jupyter notebook you need to import all modules that you will use.
 
 
 ```python
@@ -35,7 +35,7 @@ nc_load = xr.open_dataset(file_to_open)
 #nc_load
 ```
 
-### Extract the variable of choice at the time and level of choice
+### Extract the variable of choice at the time and level of choice.
 
 
 ```python
@@ -57,7 +57,7 @@ lon = var_sel.coords['lon']
     (192, 288)
 
 
-### Plot the value over a specific region
+### Plot the value over the globe.
 
 
 ```python
