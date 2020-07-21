@@ -2,7 +2,7 @@
 
 
 ```python
-# By line: RRB 2020-07-20
+# By line: RRB 2020-07-20, adapted from F.L. 2020-07-16 https://wiki.ucar.edu/display/MUSICA/Plot+output+with+Python
 # Script aims to:
 # - Load a netCDF file
 # - Extract one variable: CO
