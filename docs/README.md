@@ -15,7 +15,7 @@ Find examples of code to process model output and compare with measurements and 
 |Plot model output on maps| Altitude versus concentration plots | Temporal analysis of model output - time versus concentration plots | <br>
 |curtains| emission analysis |   |
 |:-------------:|:-------------:|:-------------:|
-| Altitude versus concentration over time | Aggregate emissions and plot in various ways |
+| Altitude versus concentration over time | Aggregate emissions and plot in various ways |  |
 
 ------------------------------
 Helpful lists of commands for certain packages:
