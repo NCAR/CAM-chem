@@ -39,7 +39,7 @@ nc_load = xr.open_dataset(file_to_open)
 #nc_load
 ```
 
-### Extract the variable of choice at the time and level of choice
+### Extract the variable of choice at the time and level of choice.
 
 
 ```python
