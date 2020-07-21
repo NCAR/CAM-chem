@@ -9,7 +9,7 @@
 # - Add grid lines
 ```
 
-### At the start of a Jupyter notebook you need to import all modules that you will use
+### At the start of a Jupyter notebook you need to import all modules that you will use.
 
 
 ```python
@@ -18,7 +18,7 @@ import cartopy.crs as ccrs                 # For plotting maps
 import cartopy.feature as cfeature         # For plotting maps
 ```
 
-### Creat the Plot
+### Creat the Plot.
 
 
 ```python
