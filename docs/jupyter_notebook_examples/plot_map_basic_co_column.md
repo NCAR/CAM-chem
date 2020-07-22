@@ -1,4 +1,4 @@
-# Example Map Plotting
+# Example Map Plotting - Column values
 
 
 ```python
@@ -49,7 +49,6 @@ var_sel = nc_load['CO'].isel(time=0)
 #print(var_sel)
 
 #select the surface level at a specific time and convert to ppbv from vmr
-#select the surface level for an average over three times and convert to ppbv from vmr
 var_sel = var_sel*1e09 # 10-9 to ppb
 print(var_sel.shape)
 
