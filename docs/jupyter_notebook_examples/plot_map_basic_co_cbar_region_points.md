@@ -1,4 +1,4 @@
-# Example Map Plotting
+# Example Map Plotting - Zoom and add locations
 
 
 ```python
