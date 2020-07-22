@@ -47,7 +47,6 @@ var_sel = nc_load['CO']
 #print(var_sel)
 
 #select the surface level at a specific time and convert to ppbv from vmr
-#select the surface level for an average over three times and convert to ppbv from vmr
 var_srf = var_sel.isel(time=0, lev=55)
 var_srf = var_srf*1e09 # 10-9 to ppb
 print(var_srf.shape)
