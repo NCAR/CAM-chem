@@ -4,10 +4,8 @@
 ```python
 # By line: RRB 2020-07-26
 # Script aims to:
-# - Load a netCDF file
-# - Extract one variable: CO
-# - Calculate column values: load model pressure, multiply by ppb -> column conversion factor
-# - Add cyclic point
+# - Load a MOPITT HDF5 file
+# - Extract variables: CO column, latitude, longitude
 # - Create contour plot of variable as world map with coastlines
 # - Customize contours and colorbar
 # - Add axes labels
