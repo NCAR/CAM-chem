@@ -20,7 +20,6 @@ import matplotlib.pyplot as plt
 import cartopy.crs as ccrs                 # For plotting maps
 import cartopy.feature as cfeature         # For plotting maps
 from cartopy.util import add_cyclic_point  # For plotting maps
-from pathlib import Path                   # System agnostic paths
 import xarray as xr                        # For loading the data arrays
 import numpy as np                         # For array creation and calculations
 import h5py                                # For loading he5 files
@@ -46,9 +45,7 @@ def h5filedump(filename):
 
 
 ```python
-result_dir = Path("/home/buchholz/Documents/code_database/untracked/my-notebook/CAM_Chem_examples")
 file = "MOP03JM-201801-L3V95.6.3.he5"
-file_to_open = result_dir / file
 ```
 
 ### Load file
