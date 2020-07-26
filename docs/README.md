@@ -19,12 +19,12 @@ Find examples of code to process model output and compare with measurements and 
 ------------------------------
 **Helpful lists of commands for certain packages:**
 
-[matplotlib colormaps](https://matplotlib.org/3.1.1/gallery/color/colormap_reference.html)
+* [matplotlib colormaps](https://matplotlib.org/3.1.1/gallery/color/colormap_reference.html)
 
-[numpy command index](https://numpy.org/doc/stable/genindex.html)
+* [numpy command index](https://numpy.org/doc/stable/genindex.html)
 
-[scipy command index](https://docs.scipy.org/doc/scipy/reference/genindex.html)
+* [scipy command index](https://docs.scipy.org/doc/scipy/reference/genindex.html)
 
-[NASA python examples for reading satellite data](https://hdfeos.org/zoo/index_openLaRC_Examples.php)
+* [NASA python examples for reading satellite data](https://hdfeos.org/zoo/index_openLaRC_Examples.php)
 
 
