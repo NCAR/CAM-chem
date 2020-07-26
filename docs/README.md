@@ -25,4 +25,6 @@ Find examples of code to process model output and compare with measurements and 
 
 [scipy command index](https://docs.scipy.org/doc/scipy/reference/genindex.html)
 
+[NASA python examples for reading satellite data](https://hdfeos.org/zoo/index_openLaRC_Examples.php)
+
 
