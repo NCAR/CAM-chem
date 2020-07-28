@@ -17,7 +17,7 @@ Find examples of code to process model output and compare with measurements and 
 | Altitude versus concentration over time | Aggregate emissions and plot in various ways |  |
 
 ------------------------------
-**Helpful lists of commands for certain packages:**
+**Helpful lists and resources:**
 
 * [matplotlib colormaps](https://matplotlib.org/3.1.1/gallery/color/colormap_reference.html)
 
