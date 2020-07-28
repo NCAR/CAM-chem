@@ -13,8 +13,8 @@ Find examples of code to process model output and compare with measurements and 
 |[**maps**](map_plotting.md) | **profiles** | **timeseries** |
 |:-------------:|:-------------:|:-------------:|
 |Plot model output on maps| Altitude versus concentration plots | Temporal analysis of model output - time versus concentration plots |
-|**curtains**| **emission analysis** |   |
-| Altitude versus concentration over time | Aggregate emissions and plot in various ways |  |
+|**curtains**| **emission analysis** | **i/o tips**  |
+| Altitude versus concentration over time | Aggregate emissions and plot in various ways | Some tips and tricks for reading, writing and processing data. |
 
 ------------------------------
 **Helpful lists and resources:**
