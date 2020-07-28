@@ -21,9 +21,13 @@ Find examples of code to process model output and compare with measurements and 
 
 * [matplotlib colormaps](https://matplotlib.org/3.1.1/gallery/color/colormap_reference.html)
 
+* [date formats](https://strftime.org/)
+
 * [numpy command index](https://numpy.org/doc/stable/genindex.html)
 
 * [scipy command index](https://docs.scipy.org/doc/scipy/reference/genindex.html)
+
+* [NCAR PNGL and PNIO](https://www.pyngl.ucar.edu/)
 
 * [NASA python examples for reading satellite data](https://hdfeos.org/zoo/index_openLaRC_Examples.php)
 
