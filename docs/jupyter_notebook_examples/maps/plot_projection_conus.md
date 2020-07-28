@@ -97,7 +97,7 @@ except RuntimeError as oops:
 
 
 
-![png](plot_projection_conus_files/plot_projection_conus_1_1.png)
+![png](plot_projection_conus_files/plot_projection_conus_1_2.png)
 
 
 
