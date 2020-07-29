@@ -71,7 +71,7 @@ print("file time: ", time[0].values, "---> converted time: ", time2[0])
 ```python
 name_select = "Boulder"
 lat_select = 40.0150
-lon_select = 360-105.2705
+lon_select = 360-105.2705 # model longitude is from 0 to 360
 
 lat_i = find_index(lat,lat_select)
 lon_i = find_index(lon,lon_select)
