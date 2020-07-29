@@ -67,6 +67,8 @@ print("file time: ", time[0].values, "---> converted time: ", time2[0])
     file time:  2018-02-01T00:00:00.000000000 ---> converted time:  2018-01-15 00:00:00
 
 
+### Select and extract the location.
+
 
 ```python
 name_select = "Boulder"
@@ -87,6 +89,8 @@ var_srf = var_sel.isel(lev=55, lat=lat_i,lon=lon_i)*1e09
     Boulder  longitude:  254.7295 ---> nearest:  255.0
 
 
+### Plot the value versus time.
+
 
 ```python
 plt.figure(figsize=(20,8))
@@ -102,5 +106,5 @@ plt.show()
 ```
 
 
-![png](plot_timeseries_basic_files/plot_timeseries_basic_11_0.png)
+![png](plot_timeseries_basic_files/plot_timeseries_basic_13_0.png)
 
