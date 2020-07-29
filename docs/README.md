@@ -1,6 +1,6 @@
 # Collection of python examples
 <!--
-.. title: Python examples for atmospheric chemistry
+.. title: Python 3 examples for atmospheric chemistry
 .. date: 2020-03-26
 .. tags: atmospheric chemistry python examples gallery
 .. description: Based off the Unidata one-stop shop for Python in atmospheric science and meteorology
