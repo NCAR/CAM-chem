@@ -20,9 +20,9 @@ from ipywidgets import interactive
 
 
 ```python
-archive_dir = '/glade/scratch/buchholz/archive/'
-run = 'fmerra.2.1003.FCSD.f09.qfedcmip.56L.001.branch02'
-ds = xr.open_dataset(archive_dir+run+'/atm/hist/'+run+'.cam.h0.2018-01.nc')
+archive_dir = '/glade/work/buchholz/CAM_chem_output/'
+ds = xr.open_dataset(archive_dir+'CAM_chem_merra2_FCSD_1deg_QFED_monthly_2018.nc')
+ntime = ds['time'].size
 nlon = ds['lon'].size
 nlev = ds['lev'].size
 ```
@@ -31,14 +31,14 @@ nlev = ds['lev'].size
 
 
 ```python
-def plt_field(field, level, lon_index, plot_type, logtop):
+def plt_field(field, time_index, level, lon_index, plot_type, logtop):
     plt.figure(figsize=(12,8))
     
     var = ds[field]
     
     if (var.dims == ('time','lev', 'lat', 'lon')):
         
-        var1 = var.isel(time=0)
+        var1 = var.isel(time=time_index)
         
         if (plot_type == 'lon-lat'):
             var1[level,:,:].plot.imshow()
@@ -57,7 +57,7 @@ def plt_field(field, level, lon_index, plot_type, logtop):
             ax.set_yscale('log')
             ax.set_ylabel('Pressure (hPa)')
     elif (var.dims == ('time', 'lat', 'lon')):
-        var[0,:,:].plot.imshow()
+        var[time_index,:,:].plot.imshow()
     else:
         plt.scatter((0,360),(-90,90))
         plt.text(180, 0, 'select a 2-D or 3-D field', horizontalalignment='center')
@@ -72,6 +72,7 @@ def plt_field(field, level, lon_index, plot_type, logtop):
 
 ```python
 w = interactive(plt_field, field=ds.data_vars.keys(), 
+          time_index = (0,ntime-1,1),
           level=(0,nlev-1,1),
           lon_index = (0,nlon-1,1),
           plot_type=['lon-lat', 'zonal mean', 'fixed lon'], 
