@@ -76,7 +76,7 @@ w = interactive(plt_field, field=ds.data_vars.keys(),
           level=(0,nlev-1,1),
           lon_index = (0,nlon-1,1),
           plot_type=['lon-lat', 'zonal mean', 'fixed lon'], 
-          logtop=(-5,2,0.5))
+          logtop=(0,2,0.25))
 
 output = w.children[-1]
 output.layout.height = '500px'
