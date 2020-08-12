@@ -1,5 +1,5 @@
 # Create a widget for a quicklook at model output
-Provised options to look at output along various altitude slices of lat/lon plots, zonal averages or longitude vs altitude slices.
+Provides options to look at output along various altitude slices of lat/lon plots, zonal averages or longitude vs altitude slices.
 
 ```python
 # Dan Marsh, 2020-08-12
