@@ -1,18 +1,35 @@
+# Create a widget for a quicklook at model output along various slices
+
 ```python
 # Dan Marsh, 2020-08-12
 # Widget to help navigate through some varables in your output files.
+```
 
+### Load python packages
+
+
+```python
 import matplotlib.pyplot as plt
 import numpy as np
 import xarray as xr
 from ipywidgets import interactive
+```
 
+### Load file
+
+
+```python
 archive_dir = '/glade/scratch/buchholz/archive/'
 run = 'fmerra.2.1003.FCSD.f09.qfedcmip.56L.001.branch02'
 ds = xr.open_dataset(archive_dir+run+'/atm/hist/'+run+'.cam.h0.2018-01.nc')
 nlon = ds['lon'].size
 nlev = ds['lev'].size
+```
 
+### Create reusable functions
+
+
+```python
 def plt_field(field, level, lon_index, plot_type, logtop):
     plt.figure(figsize=(12,8))
     
