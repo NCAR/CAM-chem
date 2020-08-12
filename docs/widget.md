@@ -65,7 +65,12 @@ def plt_field(field, level, lon_index, plot_type, logtop):
     plt.show()
     
     return
+```
 
+### Call the widget
+
+
+```python
 w = interactive(plt_field, field=ds.data_vars.keys(), 
           level=(0,nlev-1,1),
           lon_index = (0,nlon-1,1),
