@@ -78,10 +78,5 @@ display(w)
 ```
 
 
-    interactive(children=(Dropdown(description='field', options=('gw', 'hyam', 'hybm', 'P0', 'hyai', 'hybi', 'dateâ¦
+![png](images/widget_interactive_screenshot.png)
 
-
-
-```python
-
-```
