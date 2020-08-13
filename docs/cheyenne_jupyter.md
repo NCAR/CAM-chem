@@ -4,7 +4,7 @@ Go to the folder that you have jupyter notebooks (*.ipynb) and start and interac
 >execdav
 
 Once the job has launched, in the same window load the following modules:
->module load ncarenv
+>module load ncarenv<br>
 >module load python
 
 Enter the default Python interface using:
