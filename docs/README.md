@@ -21,6 +21,8 @@ Find examples of code to process model output and compare with measurements and 
 ------------------------------
 **Helpful lists and resources:**
 
+* [start jupyter notebooks on cheyenne](cheyenne_jupyter.md)
+
 * [matplotlib colormaps](https://matplotlib.org/3.1.1/gallery/color/colormap_reference.html)
 
 * [date formats](https://strftime.org/)
