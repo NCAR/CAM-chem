@@ -1,6 +1,6 @@
 # Steps to start Jupyter on Casper
 
-Go to the folder that you have jupyter notebooks (*.ipynb) and start and interactive job from Cheyenne:
+Go to the folder that you have jupyter notebooks (*.ipynb) and start and interactive job from the NCAR HPC - Cheyenne:
 >execdav
 
 Once the job has launched, in the same window load the following modules:
