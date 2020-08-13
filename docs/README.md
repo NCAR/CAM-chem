@@ -13,7 +13,7 @@ Find examples of code to process model output and compare with measurements and 
 |[**maps**](map_plotting.md) | **profiles** | [**timeseries**](timeseries_plotting.md)|
 |:-------------:|:-------------:|:-------------:|
 |Plot model output on maps| Altitude versus concentration plots | Temporal analysis of model output - time versus concentration plots |
-|**curtains**| **emission analysis** | **i/o tips**  |
+|**curtains**| **emission analysis** | [**i/o tips**](io.md) |
 | Altitude versus concentration over time | Aggregate emissions and plot in various ways | Some tips and tricks for reading, writing and processing data. |
 |[**widget**](widget.md)|  **advanced**  |  |
 | Simplified navigator to quickly look through various slices | Advanced python scripts |  |
