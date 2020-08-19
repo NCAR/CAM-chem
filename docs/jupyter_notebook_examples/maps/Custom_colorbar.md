@@ -1,3 +1,11 @@
+```python
+# By line: DSJ 2020-08-10
+# Script aims to:
+# - Load custom colortable
+# - Use different colortables for different maps
+# - Use alternative 2D map function based on basemap
+```
+
 # Custom Colorbar example & alternative method to plot 2D maps
 ### This code uses "basemap" for 2D map plotting rather than using "cartopy", so it is an alternative method in addtion to cartopy, giving another exmaples in CAM-chem github but please note that "Basemap" package is being deprecated in favor of "Cartopy"
 #### This code is only compatible with python 3.x
