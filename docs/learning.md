@@ -6,6 +6,6 @@
 
 [Online book](https://www.johnny-lin.com/pyintro/) - Introduction to Using Python in the Atmospheric and Oceanic Sciences, by Johnny Wei-Bing Lin.
 
-[Online book](https://jakevdp.github.io/PythonDataScienceHandbook/index.html) - Python Data Science Handbook explaining NumPy, Pandas, Matplotlib and Machine Learning, by Jake VanderPlas
+[Online book](https://jakevdp.github.io/PythonDataScienceHandbook/index.html) - Python Data Science Handbook explaining NumPy, Pandas, Matplotlib and Machine Learning, by Jake VanderPlas.
 
 
