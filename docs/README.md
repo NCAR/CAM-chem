@@ -35,4 +35,4 @@ Find examples of code to process model output and compare with measurements and 
 
 * [NASA python examples for reading satellite data](https://hdfeos.org/zoo/index_openLaRC_Examples.php)
 
-
+* [Other learning resources](learning.md)
