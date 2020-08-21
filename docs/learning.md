@@ -1,6 +1,6 @@
 ### Some potentially helpful learning resources
 
-[NCAR hackathon](https://ncar-hackathons.github.io/python-general/intro) - General introduction to python such as data strictures, input/output, loops and functions.
+[NCAR hackathon](https://ncar-hackathons.github.io/python-general/intro) - General introduction to Python such as data strictures, input/output, loops and functions.
 
 [Unidata python workshop](https://unidata.github.io/python-training/workshop/workshop-intro/) - Training on the scientific Python ecosystem for atmospheric science and meteorology.
 
