@@ -1,4 +1,4 @@
-### Some potentially helpful learning resources
+# Some potentially helpful learning resources
 
 [NCAR hackathon](https://ncar-hackathons.github.io/python-general/intro) - General introduction to Python such as data strictures, input/output, loops and functions.
 
