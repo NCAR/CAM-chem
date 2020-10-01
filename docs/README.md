@@ -35,4 +35,6 @@ Find examples of code to process model output and compare with measurements and 
 
 * [NASA python examples for reading satellite data](https://hdfeos.org/zoo/index_openLaRC_Examples.php)
 
+* [NOAA MONET toolkit for comparing with measurements](https://monet-arl.readthedocs.io/en/master/)
+
 * [other learning resources](learning.md)
