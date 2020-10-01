@@ -33,6 +33,8 @@ Find examples of code to process model output and compare with measurements and 
 
 * [NCAR PyNGL and PyNIO](https://www.pyngl.ucar.edu/)
 
+* [Dan's examples for WACCM](https://sites.google.com/ucar.edu/dan-marsh/python?authuser=1)
+
 * [NASA python examples for reading satellite data](https://hdfeos.org/zoo/index_openLaRC_Examples.php)
 
 * [NOAA MONET toolkit for comparing with measurements](https://monet-arl.readthedocs.io/en/master/)
