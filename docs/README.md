@@ -31,6 +31,8 @@ Find examples of code to process model output and compare with measurements and 
 
 * [scipy command index](https://docs.scipy.org/doc/scipy/reference/genindex.html)
 
+* [xarray for working with structured data](http://xarray.pydata.org/en/stable/#)
+
 * [NCAR PyNGL and PyNIO](https://www.pyngl.ucar.edu/)
 
 * [Dan's examples for WACCM](https://sites.google.com/ucar.edu/dan-marsh/python?authuser=1)
