@@ -26,7 +26,7 @@ Find examples of code to process model output and compare with measurements and 
 | [matplotlib colormaps](https://matplotlib.org/3.1.1/gallery/color/colormap_reference.html) | [NCAR PyNGL and PyNIO](https://www.pyngl.ucar.edu/) |
 | [date formats](https://strftime.org/) | [Dan's examples for WACCM](https://sites.google.com/ucar.edu/dan-marsh/python?authuser=1) |
 | [numpy command index](https://numpy.org/doc/stable/genindex.html) | [NOAA MONET toolkit for comparing with measurements](https://monet-arl.readthedocs.io/en/master/) |
-| [scipy command index](https://docs.scipy.org/doc/scipy/reference/genindex.html) | [NASA python examples for reading satellite data](https://hdfeos.org/zoo/index_openLaRC_Examples.php) |
+| [scipy command index](https://docs.scipy.org/doc/scipy/reference/genindex.html) | [NASA python examples for satellite data](https://hdfeos.org/zoo/index_openLaRC_Examples.php) |
 | [xarray for working with structured data](http://xarray.pydata.org/en/stable/#) |  |
 | [other learning resources](learning.md) | |
 
