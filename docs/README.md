@@ -21,19 +21,12 @@ Find examples of code to process model output and compare with measurements and 
 ------------------------------
 | **Helpful resources:** | **Other Plotting examples:** |
 |:-------------:|:-------------:|
-| * [start jupyter notebooks on cheyenne](cheyenne_jupyter.md)|
-| * [matplotlib colormaps](https://matplotlib.org/3.1.1/gallery/color/colormap_reference.html)|
-| * [date formats](https://strftime.org/)|* [NCAR PyNGL and PyNIO](https://www.pyngl.ucar.edu/)|
-| * [numpy command index](https://numpy.org/doc/stable/genindex.html)|
-| * [scipy command index](https://docs.scipy.org/doc/scipy/reference/genindex.html)|
-| * [xarray for working with structured data](http://xarray.pydata.org/en/stable/#)|
+| [start jupyter notebooks on cheyenne](cheyenne_jupyter.md)| [GeoCAT](https://geocat-examples.readthedocs.io/en/latest/gallery/index.html)
+| [matplotlib colormaps](https://matplotlib.org/3.1.1/gallery/color/colormap_reference.html)|
+| [date formats](https://strftime.org/)| [NCAR PyNGL and PyNIO](https://www.pyngl.ucar.edu/)|
+| [numpy command index](https://numpy.org/doc/stable/genindex.html)| [Dan's examples for WACCM](https://sites.google.com/ucar.edu/dan-marsh/python?authuser=1) |
+| [scipy command index](https://docs.scipy.org/doc/scipy/reference/genindex.html)| [NASA python examples for reading satellite data](https://hdfeos.org/zoo/index_openLaRC_Examples.php) |
+| [xarray for working with structured data](http://xarray.pydata.org/en/stable/#) | [NOAA MONET toolkit for comparing with measurements](https://monet-arl.readthedocs.io/en/master/) |
+| [other learning resources](learning.md) | |
 
 
-
-* [Dan's examples for WACCM](https://sites.google.com/ucar.edu/dan-marsh/python?authuser=1)
-
-* [NASA python examples for reading satellite data](https://hdfeos.org/zoo/index_openLaRC_Examples.php)
-
-* [NOAA MONET toolkit for comparing with measurements](https://monet-arl.readthedocs.io/en/master/)
-
-* [other learning resources](learning.md)
