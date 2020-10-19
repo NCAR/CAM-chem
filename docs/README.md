@@ -19,6 +19,7 @@ Find examples of code to process model output and compare with measurements and 
 | Simplified navigator to quickly look through various slices | Advanced python scripts |  |
 
 ------------------------------
+
 | **Helpful resources:** | **Other Python examples:** |
 |:-------------:|:-------------:|
 | [start jupyter notebooks on cheyenne](cheyenne_jupyter.md)| [NCAR GeoCAT conversion of NCL scripts](https://geocat-examples.readthedocs.io/en/latest/gallery/index.html)
