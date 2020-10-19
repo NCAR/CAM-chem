@@ -19,21 +19,15 @@ Find examples of code to process model output and compare with measurements and 
 | Simplified navigator to quickly look through various slices | Advanced python scripts |  |
 
 ------------------------------
-**Helpful lists and resources:**
+|**Helpful resources:**|**Other Plotting examples:**|
+|* [start jupyter notebooks on cheyenne](cheyenne_jupyter.md)|
+|* [matplotlib colormaps](https://matplotlib.org/3.1.1/gallery/color/colormap_reference.html)|
+|* [date formats](https://strftime.org/)|* [NCAR PyNGL and PyNIO](https://www.pyngl.ucar.edu/)|
+|* [numpy command index](https://numpy.org/doc/stable/genindex.html)|
+|* [scipy command index](https://docs.scipy.org/doc/scipy/reference/genindex.html)|
+|* [xarray for working with structured data](http://xarray.pydata.org/en/stable/#)|
 
-* [start jupyter notebooks on cheyenne](cheyenne_jupyter.md)
 
-* [matplotlib colormaps](https://matplotlib.org/3.1.1/gallery/color/colormap_reference.html)
-
-* [date formats](https://strftime.org/)
-
-* [numpy command index](https://numpy.org/doc/stable/genindex.html)
-
-* [scipy command index](https://docs.scipy.org/doc/scipy/reference/genindex.html)
-
-* [xarray for working with structured data](http://xarray.pydata.org/en/stable/#)
-
-* [NCAR PyNGL and PyNIO](https://www.pyngl.ucar.edu/)
 
 * [Dan's examples for WACCM](https://sites.google.com/ucar.edu/dan-marsh/python?authuser=1)
 
