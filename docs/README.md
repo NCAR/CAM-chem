@@ -22,7 +22,8 @@ Find examples of code to process model output and compare with measurements and 
 
 | **Helpful resources:** | **Other Python examples:** |
 |:---------------:|:---------------:|
-| [start jupyter notebooks on cheyenne](cheyenne_jupyter.md)| [NCAR GeoCAT conversion of NCL scripts](https://geocat-examples.readthedocs.io/en/latest/gallery/index.html) |
+| [NCAR cheyenne JupyterHub](https://jupyterhub.ucar.edu/)|  |
+| [start jupyter notebooks on cheyenne natively](cheyenne_jupyter.md)| [NCAR GeoCAT conversion of NCL scripts](https://geocat-examples.readthedocs.io/en/latest/gallery/index.html) |
 | [matplotlib colormaps](https://matplotlib.org/3.1.1/gallery/color/colormap_reference.html) | [NCAR PyNGL and PyNIO](https://www.pyngl.ucar.edu/) |
 | [date formats](https://strftime.org/) | [Dan's examples for WACCM](https://sites.google.com/ucar.edu/dan-marsh/python?authuser=1) |
 | [numpy command index](https://numpy.org/doc/stable/genindex.html) | [NOAA MONET toolkit for comparing with measurements](https://monet-arl.readthedocs.io/en/master/) |
