@@ -21,10 +21,10 @@ Usage: save this script and run
 
     $python MOP03T-20131129-L3V5.2.1.he5.py
 
-The HDF file must be in your current working directory.
+Note any conditions for running - for example changing the path to the data file.
 
 Tested under: Python 3.7.6::Anaconda, Inc. on linux
-Last updated: 2018-09-13
+Last updated: YYYY-MM-DD
 
 '''
 ```
