@@ -33,3 +33,13 @@ These examples have been created primarily in jupyter notebooks.
 
 [How to contribute your code](contribute.md)
 
+
+<style>
+table {
+    background-color: white;
+}
+</style>
+
+| **Helpful resources:** | **Other Python examples:** |
+|:---------------:|:---------------:|
+| [NCAR cheyenne JupyterHub](https://jupyterhub.ucar.edu/)| [Dan Marsh's examples for WACCM](https://sites.google.com/ucar.edu/dan-marsh/python?authuser=1) |
