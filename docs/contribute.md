@@ -1,6 +1,6 @@
 # How to contribute to the python collection
 
-Add this to the top of your code:
+Add this to the top of your code, filling in the appropriate areas:
 
 
 ```python
