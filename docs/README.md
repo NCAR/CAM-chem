@@ -32,4 +32,5 @@ Find examples of code to process model output and compare with measurements and 
 | [other learning resources](learning.md) | |
 
 ------------------------------
-<div style="text-align: right"> [How to contribute your code](contribute.md) </div>
+
+[How to contribute your code](contribute.md)
