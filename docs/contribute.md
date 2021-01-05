@@ -29,3 +29,8 @@ Last updated: YYYY-MM-DD
 '''
 ```
 
+Convert to a markdown webpage format type in a terminal:
+
+$jupyter nbconvert yourfile.ipynb --to markdown
+
+Supply the markdown files and images, python code, and input data to the ACOM/python team.
