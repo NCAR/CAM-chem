@@ -2,6 +2,8 @@
 
 Add this to the top of your code:
 
+
+```python
 '''
 Copyright (C) 2021 ACOM/NCAR
 Copyright (C) 2021 Your Name
@@ -25,3 +27,5 @@ Tested under: Python 3.7.6::Anaconda, Inc. on linux
 Last updated: 2018-09-13
 
 '''
+```
+
