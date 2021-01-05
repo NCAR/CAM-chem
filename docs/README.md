@@ -10,7 +10,7 @@
 Python examples for atmospheric chemistry applications.<br>
 These examples have been created primarily in jupyter notebooks.
 
-|[**maps**](map_plotting.md) | **profiles** | [**timeseries**](timeseries_plotting.md)|
+|[**maps**](map_plotting.md){background: red;} | **profiles** | [**timeseries**](timeseries_plotting.md)|
 |:-------------:|:-------------:|:-------------:|
 |Plot model output on maps| Altitude versus concentration plots | Temporal analysis of model output - time versus concentration plots |
 |**curtains**| **emission analysis** | [**i/o tips**](io.md) |
@@ -33,27 +33,3 @@ These examples have been created primarily in jupyter notebooks.
 
 [How to contribute your code](contribute.md)
 
-<style>
-.heatMap {
-    width: 70%;
-    text-align: center;
-}
-.heatMap th {
-background: grey;
-word-wrap: break-word;
-text-align: center;
-}
-.heatMap tr:nth-child(1) { background: red; }
-.heatMap tr:nth-child(2) { background: orange; }
-.heatMap tr:nth-child(3) { background: green; }
-</style>
-
-<div class="heatMap">
-
-| Everything | in this table | is Centered |  and the table will only take up 70% of the screen width  | 
-| -- | -- | -- | -- |
-| This | is | a | Red Row |
-| This | is | an | Orange Row |
-| This | is | a | Green Row |
-
-</div>
