@@ -28,6 +28,14 @@ These examples have been created primarily in jupyter notebooks.
 > - [other learning resources](learning.md)
 
 
+>**Other Python examples:**
+> - [NCAR cheyenne JupyterHub](https://jupyterhub.ucar.edu/)
+> - [start jupyter notebooks on cheyenne natively](cheyenne_jupyter.md)
+> - [matplotlib colormaps](https://matplotlib.org/3.1.1/gallery/color/colormap_reference.html)
+> - [date formats](https://strftime.org/)
+> - [other learning resources](learning.md)
+
+
 | **Helpful resources:** | **Other Python examples:** |
 |:---------------:|:---------------:|
 | [NCAR cheyenne JupyterHub](https://jupyterhub.ucar.edu/)| [Dan Marsh's examples for WACCM](https://sites.google.com/ucar.edu/dan-marsh/python?authuser=1) |
