@@ -34,4 +34,6 @@ These examples have been created primarily in jupyter notebooks.
 [How to contribute your code](contribute.md)
 
 
-$bg-blue-light
+<div class="text-white bg-red mb-2">
+  .text-white on .bg-red
+</div>
