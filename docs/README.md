@@ -10,7 +10,7 @@
 Python examples for atmospheric chemistry applications.<br>
 These examples have been created primarily in jupyter notebooks.
 
-|[**maps**](map_plotting.md){background: red;} | **profiles** | [**timeseries**](timeseries_plotting.md)|
+|[**maps**](map_plotting.md) | **profiles** | [**timeseries**](timeseries_plotting.md)|
 |:-------------:|:-------------:|:-------------:|
 |Plot model output on maps| Altitude versus concentration plots | Temporal analysis of model output - time versus concentration plots |
 |**curtains**| **emission analysis** | [**i/o tips**](io.md) |
@@ -33,7 +33,3 @@ These examples have been created primarily in jupyter notebooks.
 
 [How to contribute your code](contribute.md)
 
-
-<div class="text-white bg-red mb-2">
-  .text-white on .bg-red
-</div>
