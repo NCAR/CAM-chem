@@ -8,18 +8,12 @@ Add this to the top of your code:
 Copyright (C) 2021 ACOM/NCAR
 Copyright (C) 2021 Your Name
 
-Brief description of what the code aims to do.
+Add a brief description of what the code aims to do.
 
 If you have any questions, suggestions, or comments on this example, please use
-the HDF-EOS Forum (http://hdfeos.org/forums).  If you would like to see an
-example of any other NASA HDF/HDF-EOS data product that is not listed in the
-HDF-EOS Comprehensive Examples page (http://hdfeos.org/zoo), feel free to
-contact us at eoshelp@hdfgroup.org or post it at the HDF-EOS Forum
-(http://hdfeos.org/forums).
+the CAM-chem Forum (https://bb.cgd.ucar.edu/cesm/forums/cam-chem.154/).
 
-Usage: save this script and run
-
-    $python MOP03T-20131129-L3V5.2.1.he5.py
+Usage: save this script and run through jupyter notebooks
 
 Note any conditions for running - for example changing the path to the data file.
 
@@ -30,9 +24,6 @@ Last updated: YYYY-MM-DD
 ```
 
 Convert to a markdown webpage format type in a terminal:
+    $jupyter nbconvert yourfile.ipynb --to markdown
 
-'''
-$jupyter nbconvert yourfile.ipynb --to markdown
-'''
-
-Supply the markdown files and images, python code, and input data to the ACOM/python team.
+Supply the markdown files and images, jupyter notebook code, and input data to the ACOM/python team by letting us know you would like to contribute through this form: **add form**. Optional is to also create a useable python script.
