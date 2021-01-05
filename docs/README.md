@@ -26,8 +26,8 @@ These examples have been created primarily in jupyter notebooks.
 | [start jupyter notebooks on cheyenne natively](cheyenne_jupyter.md)| [GeoCAT: conversion of NCL scripts](https://geocat-examples.readthedocs.io/en/latest/gallery/index.html) |
 | [matplotlib colormaps](https://matplotlib.org/3.1.1/gallery/color/colormap_reference.html) | [NCAR PyNGL and PyNIO](https://www.pyngl.ucar.edu/) |
 | [date formats](https://strftime.org/) | [NOAA MONET toolkit for model versus measurements](https://monet-arl.readthedocs.io/en/master/) |
-| [numpy command index](https://numpy.org/doc/stable/genindex.html) | [NASA python examples for satellite data](https://hdfeos.org/zoo/index_openLaRC_Examples.php) |
-| [other learning resources](learning.md) | [xarray for working with structured data](http://xarray.pydata.org/en/stable/#)  |
+| [other learning resources](learning.md) | [NASA python examples for satellite data](https://hdfeos.org/zoo/index_openLaRC_Examples.php) |
+|  | [xarray for working with structured data](http://xarray.pydata.org/en/stable/#)  |
 
 ------------------------------
 
