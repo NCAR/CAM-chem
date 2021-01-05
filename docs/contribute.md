@@ -1,4 +1,4 @@
-### How to contribute to the python collection
+## How to contribute to the python collection
 
 Add this to the top of your code:
 
