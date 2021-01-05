@@ -13,7 +13,7 @@ Add a brief description of what the code aims to do.
 If you have any questions, suggestions, or comments on this example, please use
 the CAM-chem Forum (https://bb.cgd.ucar.edu/cesm/forums/cam-chem.154/).
 
-Usage: save this script and run through jupyter notebooks
+Usage: save this script and run through jupyter notebooks.
 
 Note any conditions for running - for example changing the path to the data file.
 
