@@ -31,4 +31,5 @@ Find examples of code to process model output and compare with measurements and 
 | [xarray for working with structured data](http://xarray.pydata.org/en/stable/#) |  |
 | [other learning resources](learning.md) | |
 
-
+------------------------------
+<div style="text-align: right"> [How to contribute your code](contribute.md) </div>
