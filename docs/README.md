@@ -8,7 +8,7 @@
 -->
 
 Python examples for atmospheric chemistry applications.<br>
-Find examples of code to process model output and compare with measurements and create plots.
+These examples have been created primarily in jupyter notebooks.
 
 |[**maps**](map_plotting.md) | **profiles** | [**timeseries**](timeseries_plotting.md)|
 |:-------------:|:-------------:|:-------------:|
