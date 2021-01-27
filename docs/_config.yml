@@ -3,3 +3,5 @@ title: <a href="https://ncar.github.io/CAM-chem/" style="color:#FFFFFF;"> Python
 description: <a href="https://ncar.github.io/CAM-chem/" class="btn">Home</a> <a href="https://ncar.github.io/CAM-chem/map_plotting.html" class="btn">Maps</a> <a href="https://ncar.github.io/CAM-chem/timeseries_plotting.html" class="btn">Timeseries</a> <a href="https://ncar.github.io/CAM-chem/io.html" class="btn">I/O</a> <a href="https://wiki.ucar.edu/display/camchem/Home" class="btn">CAM-chem Wiki</a>
 github:
   is_project_page: false
+sidebar:
+  nav: "docs"
