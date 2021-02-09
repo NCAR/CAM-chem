@@ -5,3 +5,5 @@ github:
   is_project_page: false
 sidebar:
   nav: "docs"
+
+theme: jekyll-theme-cayman
