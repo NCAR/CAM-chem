@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+{% block head %}
+  <head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ pathto('_static/img/apple-touch-icon.png', 1) }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ pathto('_static/img/favicon-32x32.png', 1) }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ pathto('_static/img/favicon-16x16.png', 1) }}">
+    <link rel="manifest" href="{{ pathto('_static/site.webmanifest', 1) }}">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="{{ pathto('_static/custom.css', 1) }}" type=text/css>
+
+    <title>Python Resources for CAM-chem</title>
+
+    <script src="https://kit.fontawesome.com/be4ef5002e.js" crossorigin="anonymous"></script>
+  </head>
+{% endblock head %}
+
+  <body>
+
+{% block navbar %}
+    <nav class="navbar navbar-expand navbar-dark sticky-top bg-dark">
+      <a class="navbar-brand" href="{{ pathto('index') }}">Python resources for CAM-chem</a>
+      <ul class="navbar-nav mr-auto">
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="CAM-chem Wiki">CAM-chem Wiki</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/NCAR/CAM-chem"><i class="fab fa-github"></i></a>
+        </li>
+      </ul>
+    </nav>
+{% endblock navbar %}
+
+{% block main %}
+    <main role="main">
+      {% block body %}{% endblock body %}
+    </main>
+{% endblock main %}
+
+{% block footer %}
+    <footer class="text-light bg-dark pt-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md">
+            <a href="https://www2.acom.ucar.edu/"><img src="{{ pathto('_static/img/ACOM-contemp-logo-white.png', 1) }}" alt="ACOM" class="ncar-logo"></a>
+          </div>
+          <div class="col-12 col-md-auto">
+            <p class="footer-text copyright"><a href="https://www.ucar.edu/">University Corporation for Atmospheric Research</a> &copy; 2020<br>
+            Built with <a href="https://www.sphinx-doc.org/en/master/" target="_blank" rel="noopener">Sphinx</a>. Proudly published with <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a><br>
+            Apache 2.0</p>
+          </div>
+        </div>
+        <div class="row pt-3 border-top">
+          <div class="col-auto">
+            <a href="https://nsf.gov/"><img src="{{ pathto('_static/img/footer-logo-nsf.png', 1) }}" alt="NSF" class="nsf-logo"></a>
+          </div>
+          <div class="col">
+            <p class="footer-text">This material is based upon work supported by the National Center for Atmospheric Research, a major facility
+            sponsored by the National Science Foundation and managed by the University Corporation for Atmospheric Research. Any opinions,
+            findings and conclusions or recommendations expressed in this material do not necessarily reflect the views of the National
+            Science Foundation.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+{% endblock footer %}
+
+  </body>
+</html>
+
