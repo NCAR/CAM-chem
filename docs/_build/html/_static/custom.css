@@ -1,0 +1,296 @@
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+/************************************************
+ HTML
+ ************************************************/
+
+a, a:hover, a:focus {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+dd {
+  margin-left: 0.7rem;
+  font-size: smaller;
+}
+
+footer {
+  z-index: 2;
+  position: relative;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 1rem;
+}
+
+h1:first-of-type {
+  margin-top: 0;
+}
+
+p {
+  text-align: justify;
+}
+
+/************************************************
+ BOOTSTRAP v4.0
+ ************************************************/
+
+.btn {
+  font-size: medium;
+}
+
+.card {
+  border: none;
+}
+
+.card-body {
+  padding: 0;
+}
+
+.card-header {
+  color: #333;
+  background-color: #C0C0C0;
+  padding: 0;
+  border: none;
+}
+
+.card-header:first-child {
+  border: none;
+  border-radius: 0;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.dropdown-toggle[aria-expanded="false"]:after {
+  transform: rotate(90deg);
+}
+
+.dropdown-toggle:after {
+  margin-left: 0;
+  transition: 0.3s;
+}
+
+/************************************************
+ FONTAWESOME
+ ************************************************/
+
+.fa, .fas {
+  color: #585858;
+}
+
+.fab {
+  font-size: 1.6rem;
+}
+
+/************************************************
+ SPHINX
+ ************************************************/
+.admonition {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 10px;
+}
+
+.admonition-title {
+  font-weight: bold;
+}
+
+div.admonition dl,
+div.admonition ol,
+div.admonition ul {
+  margin-bottom: 0.7rem;
+}
+
+div.admonition dl:last-child,
+div.admonition ol:last-child,
+div.admonition ul:last-child {
+  margin-bottom: 0;
+}
+
+div.admonition p {
+  margin-bottom: 0.7em;
+}
+
+div.admonition p:last-child {
+  margin-bottom: 0;
+}
+
+div.math {
+  overflow-x: auto;
+}
+
+div.note {
+  background-color: #EEE;
+  border: 1px solid #4E9A06;
+  border-radius: 10px;
+}
+
+div.seealso {
+  background-color: #EEE;
+  border: 1px solid #007bff;
+  border-radius: 10px;
+}
+
+.headerlink {
+  visibility: hidden;
+}
+
+.highlight {
+  background: #F3F3F3;
+  border: 1px solid #C9C9C9;
+  border-radius: 3px;
+  padding: 5px;
+}
+
+.highlight pre {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.highlight-bash {
+  margin-bottom: 1rem;
+  overflow-x: scroll;
+}
+
+.highlight-python {
+  margin-bottom: 1rem;
+  overflow-x: scroll;
+}
+
+.highlighttable {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.linenos {
+  width: 2rem;
+}
+
+.linenodiv {
+  text-align: right;
+  padding-right: 0.5rem;
+}
+
+.linenodiv pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #A9A9A9;
+}
+
+.section[id]:before {
+  display: block;
+  content: " ";
+  margin-top: -4.5rem;
+  height: 4.5rem;
+}
+
+a.reference.external {
+  color: #007bff;
+}
+
+/************************************************
+ CUSTOM CLASSES
+ ************************************************/
+
+.accordian-sidebar {
+  padding-left: 15px;
+  padding-right: 0;
+  border-radius: 0;
+}
+
+.content {
+  padding: 2rem;
+  margin-left: 16rem;
+}
+
+@media (max-width: 768px) {
+  .content {
+      margin-left: 0;
+  }
+}
+
+.copyright {
+  margin-right: auto;
+}
+
+.footer-text {
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.full-ht {
+  min-height: 100vh;
+}
+
+.ncar-logo {
+  display: block;
+  margin-right: auto;
+  max-width: 409px;
+  padding-bottom: 15px;
+}
+
+.nsf-logo {
+  display: block;
+  width: 70px;
+  padding-bottom: 15px;
+}
+
+.sidebar {
+  width: 16rem;
+  height: 100vh;
+  position: fixed;
+  z-index: 1;
+  background: #C0C0C0;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+      display: none;
+  }
+}
+
+.sidebar-header {
+  padding: 15px;
+  background: #C0C0C0;
+}
+
+.sidebar ul p {
+  color: #fafafa;
+}
+
+.sidebar ul li a {
+  font-size: 1.1em;
+  display: block;
+}
+
+.sidebar ul li a:hover {
+  color: #C0C0C0;
+  background: #333;
+}
+
+.sidebar ul li.active > a, a[aria-expanded="true"] {
+  color: #333;
+  background: #A9A9A9;;
+}
+
+.tier0 {
+  padding-left: 0.25rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.tier1 {
+  padding-left: 1.1rem;
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.tier2 {
+  padding-left: 2.25rem;
+  font-size: 1.0rem;
+  font-weight: 400;
+}
