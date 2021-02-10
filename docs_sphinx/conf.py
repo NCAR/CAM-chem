@@ -43,6 +43,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 
 # -- Options for HTML output -------------------------------------------------
+master_doc = 'index'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
@@ -57,3 +58,8 @@ html_static_path = ['_static']
 # Let Sphinx know we want to generate the index page
 # but with a different template.
 #html_additional_pages = {'index': 'index.html'}
+
+
+# Add custom CSS
+def setup(app):
+    app.add_css_file('css/custom.css')

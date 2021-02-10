@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <div class="container-fluid">
+
+      <!-- Sidebar -->
+      <nav class="sidebar">
+        <div class="sidebar-header">
+          <h4>Examples</h4>
+        </div>
+
+        <div class="container accordian md-accordian accordian-sidebar">
+          <div id="accordion">
+            <div class="card">
+              <div class="card-header" id="headingMaps">
+                <div class="tier0" data-toggle="collapse" data-target="#collapseMaps" aria-expanded="true" aria-controls="collapseMaps">
+                  <a href="#">Maps <i class="fas fa-angle-down rotate-icon"></i></a>
+                </div>
+              </div>
+
+              <div id="collapseMaps" class="collapse show" aria-labelledby="headingMaps" data-parent="#accordion">
+                <div class="card-body" id="yourfirstOutline">
+
+                  <div class="card">
+                    <div class="card-header">
+                      <div class="tier1">
+                        <a href="#yourfirst-python-for-scientists">Welcome</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card">
+                    <div class="card-header">
+                      <div class="tier1">
+                        <a href="#why-python">Why Python?</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card">
+                    <div class="card-header">
+                      <div class="tier1">
+                        <a href="#why-another-python-tutorial">Why this?</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card">
+                    <div class="card-header">
+                      <div class="tier1">
+                        <a href="#requirements-installation">Requirements</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card">
+                    <div class="card-header" id="headingYourFirstPart1">
+                      <div class="tier1 collapsed" data-toggle="collapse" data-target="#collapseYourFirstPart1"  aria-expanded="false" aria-controls="collapseYourFirstPart1">
+                        <a href="#first-python-script">
+                          First Python Script <i class="fas fa-angle-down rotate-icon"></i>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="card-body collapse" aria-labelledby="headingYourFirstPart1" data-parent="#yourfirstOutline" id="collapseYourFirstPart1">
+                      <div class="card-body accordian-tier3" id="yourfirstPart1">
+                        <div class="card">
+                          <div class="card-header">
+                            <div class="tier2">
+                              <a href="#reading-a-txt-file">
+                                Reading in a .txt File
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header">
+                            <div class="tier2">
+                              <a href="#creating-a-data-dictionary">
+                                Creating a Data Dictionary
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header">
+                            <div class="tier2">
+                              <a href="#writing-functions">
+                                Writing Functions
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card">
+                    <div class="card-header" id="headingYourFirstPart2">
+                      <div class="tier1 collapsed" data-toggle="collapse" data-target="#collapseYourFirstPart2"  aria-expanded="false" aria-controls="collapseYourFirstPart2">
+                        <a href="#first-python-package">
+                          First Python Package <i class="fas fa-angle-down rotate-icon"></i>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="card-body collapse" aria-labelledby="headingYourFirstPart2" data-parent="#yourfirstOutline" id="collapseYourFirstPart2">
+                      <div class="card-body accordian-tier3" id="yourfirstPart2">
+                        <div class="card">
+                          <div class="card-header">
+                            <div class="tier2">
+                              <a href="#creating-your-own-package">
+                                Creating Your Own Package
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header">
+                            <div class="tier2">
+                              <a href="#using-a-built-in-package">
+                                Using a Built-In Package
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header">
+                            <div class="tier2">
+                              <a href="#publishing-your-package">
+                                Publishing Your Package
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Page Content -->
+      <main role="main" class="content">
+        {% block body %}{% endblock %}
+      </main>
+
+    </div>
+{% endblock main %}
