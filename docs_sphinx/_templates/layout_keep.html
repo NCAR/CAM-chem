@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+    <div class="container-fluid">
+
+      <!-- Sidebar -->
+      <nav class="sidebar">
+        <div class="sidebar-header">
+          <h4>Examples</h4>
+          <a href="index.html">Index</a>
+        </div>
+      </nav>
+
+
+      <!-- Page Content -->
+      <main role="main" class="content">
+        {% block body %}{% endblock %}
+      </main>
+
+    </div>
+{% endblock main %}

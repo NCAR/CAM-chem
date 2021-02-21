@@ -5,7 +5,8 @@
  ************************************************/
 
 a, a:hover, a:focus {
-  color: #D9D9D6;
+  color: inherit;
+  text-decoration: none;
   transition: all 0.3s;
 }
 
@@ -21,36 +22,15 @@ footer {
 
 h1, h2, h3, h4, h5, h6 {
   margin-top: 1rem;
-  color: #00797C;
 }
 
 h1:first-of-type {
   margin-top: 0;
-  color: #00797C;
 }
 
 p {
-  text-align: left;
-  color: #53565A;
+  text-align: justify;
 }
-
-table, th, td, tbody {
-  border: 0.8px solid #D9D9D6;
-  text-align: center;
-  padding: 0.6rem;
-  max-width: 1000px; 
-  color: #53565A;
-}
-
-ul {
-  line-height: 0.8em;
-  color: #53565A;
-}
-
-body {
-    min-height: 100vh;
-}
-
 
 /************************************************
  BOOTSTRAP v4.0
@@ -84,6 +64,14 @@ body {
   padding: 0;
 }
 
+.dropdown-toggle[aria-expanded="false"]:after {
+  transform: rotate(90deg);
+}
+
+.dropdown-toggle:after {
+  margin-left: 0;
+  transition: 0.3s;
+}
 
 /************************************************
  FONTAWESOME
@@ -113,7 +101,7 @@ body {
 div.admonition dl,
 div.admonition ol,
 div.admonition ul {
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.7rem;
 }
 
 div.admonition dl:last-child,
@@ -200,23 +188,23 @@ div.seealso {
 }
 
 a.reference.external {
-  color: #1e6bb8;
+  color: #007bff;
 }
-
 
 /************************************************
  CUSTOM CLASSES
  ************************************************/
+
+.accordian-sidebar {
+  padding-left: 15px;
+  padding-right: 0;
+  border-radius: 0;
+}
+
 .content {
   padding: 2rem;
   margin-left: 16rem;
 }
-
-
-/************************************************
- SIDEBAR
- ************************************************/
-
 
 @media (max-width: 768px) {
   .content {
@@ -224,62 +212,11 @@ a.reference.external {
   }
 }
 
-.sidebar {
-  width: 15rem;
-  height: 100vh;
-  position: fixed;
-  z-index: 1;
-  background: #C3D7EE;
-  color: #333;
-  padding: 10px;
-}
-
-@media (max-width: 768px) {
-  .sidebar {
-      display: none;
-  }
-}
-
-.sidebar-header {
-  padding: 10px;
-  background: #C3D7EE;
-}
-
-
-.sidebar ul p {
-  color: #fafafa;
-}
-
-.sidebar ul li a {
-  font-size: 1.1em;
-  display: block;
-  color: #53565A;
-  text-decoration: none;
-  transition: all 0.3s;
-  line-height: 2em;
-}
-
-.sidebar ul li a:hover {
-  color: #C0C0C0;
-  background: #333;
-}
-
-.sidebar ul li.active > a, a[aria-expanded="true"] {
-  color: #333;
-  background: #A9A9A9;;
-}
-
-
-/************************************************
- FOOTER
- ************************************************/
-
 .copyright {
   margin-right: auto;
 }
 
 .footer-text {
-  color: #D9D9D6;
   width: 100%;
   font-size: 0.9rem;
 }
@@ -301,3 +238,59 @@ a.reference.external {
   padding-bottom: 15px;
 }
 
+.sidebar {
+  width: 16rem;
+  height: 100vh;
+  position: fixed;
+  z-index: 1;
+  background: #C3D7EE;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+      display: none;
+  }
+}
+
+.sidebar-header {
+  padding: 15px;
+  background: #C3D7EE;
+}
+
+.sidebar ul p {
+  color: #fafafa;
+}
+
+.sidebar ul li a {
+  font-size: 1.1em;
+  display: block;
+}
+
+.sidebar ul li a:hover {
+  color: #C0C0C0;
+  background: #333;
+}
+
+.sidebar ul li.active > a, a[aria-expanded="true"] {
+  color: #333;
+  background: #A9A9A9;;
+}
+
+.tier0 {
+  padding-left: 0.25rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.tier1 {
+  padding-left: 1.1rem;
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.tier2 {
+  padding-left: 2.25rem;
+  font-size: 1.0rem;
+  font-weight: 400;
+}

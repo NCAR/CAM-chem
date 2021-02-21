@@ -30,11 +30,11 @@ release = '2021-02-09'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [
-]
+extensions = []
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
+source_suffix = ".rst"
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -49,6 +49,10 @@ master_doc = 'index'
 # a list of builtin themes.
 #
 html_theme = 'alabaster'
+html_theme_options = {
+    'sidebar_collapse': True,
+    'github_repo': 'alabaster',
+}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -59,7 +63,6 @@ html_static_path = ['_static']
 # but with a different template.
 #html_additional_pages = {'index': 'index.html'}
 
+html_sidebars = { '**': ['globaltoc.html', 'relations.html', 'sourcelink.html', 'searchbox.html'] }
 
-# Add custom CSS
-def setup(app):
-    app.add_css_file('css/custom.css')
+

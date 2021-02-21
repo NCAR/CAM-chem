@@ -1,21 +1,28 @@
 {% extends 'base.html' %}
 
+
 {% block main %}
     <div class="container-fluid">
 
       <!-- Sidebar -->
-      <nav class="sidebar">
+      <nav class="sidebar" >
         <div class="sidebar-header">
-          <h4>Examples</h4>
+          <h4></h4>
         </div>
-        <a class="active" href="#home">Home</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-        <a href="#about">About</a>
+        {{ toctree(includehidden=theme_sidebar_includehidden, collapse=theme_sidebar_collapse) }}
+        {% if theme_extra_nav_links %}
+          <hr />
+          <ul>
+          {% for text, uri in theme_extra_nav_links.items() %}
+          <li class="toctree-l2"><a href="{{ uri }}">{{ text }}</a></li>
+          {% endfor %}
+          </ul>
+        {% endif %}
       </nav>
 
+
       <!-- Page Content -->
-      <main role="main" class="content">
+      <main role="main" class="content" style="min-height:700px;">
         {% block body %}{% endblock %}
       </main>
 
