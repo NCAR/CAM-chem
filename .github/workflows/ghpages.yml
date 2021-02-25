@@ -29,7 +29,9 @@ jobs:
           pip install sphinx
           
       - name: Build Sphinx Documentation
-        run: make html
+        run: |
+          cd docs_sphinx
+          make html
           
       - name: Install SSH Client
         uses: webfactory/ssh-agent@v0.4.1
@@ -46,7 +48,7 @@ jobs:
         with:
           BASE_BRANCH: main
           BRANCH: gh-pages
-          FOLDER: build/html
+          FOLDER: docs_sphinx/_build/html
           CLEAN: true
           SSH: true
           COMMIT_MESSAGE: "[skip ci] Deploy to GitHub Pages"
