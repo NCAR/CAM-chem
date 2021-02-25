@@ -5,6 +5,8 @@
 Maps
 =======
 
+This section describes some ways to plot model output on maps.
+
 .. list-table::
    :widths: 20 20 20 20
    :header-rows: 0
