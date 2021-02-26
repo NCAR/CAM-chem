@@ -7,6 +7,14 @@ Functions
 
 A list of the functions to be discussed in this page
 
+
 .. toctree::
    :maxdepth: 1
+
+   functions/example_subpage.rst
+
+
+
+
+
 

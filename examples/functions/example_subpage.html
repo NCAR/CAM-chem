@@ -10,7 +10,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-    <link rel="stylesheet" href="../_static/custom.css" type=text/css>
+    <link rel="stylesheet" href="../../_static/custom.css" type=text/css>
 
     <title>Python Resources for CAM-chem</title>
 
@@ -22,7 +22,7 @@
 
 
     <nav class="navbar navbar-expand navbar-dark sticky-top bg-dark">
-      <a class="navbar-brand" style="font-weight:bold" href="../index.html">Python resources for CAM-chem</a>
+      <a class="navbar-brand" style="font-weight:bold" href="../../index.html">Python resources for CAM-chem</a>
       <ul class="navbar-nav mr-auto">
       </ul>
       <ul class="navbar-nav">
@@ -45,20 +45,21 @@
           <h4></h4>
         </div>
         <ul>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
 </ul>
 <p class="caption"><span class="caption-text">EXAMPLES</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="curtains.html">Curtains</a></li>
-<li class="toctree-l1"><a class="reference internal" href="emissions.html">Emissions processing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="io.html">I/O tips and tricks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="maps.html">Maps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="profiles.html">Profiles</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Timeseries</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="../curtains.html">Curtains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../emissions.html">Emissions processing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../functions.html">Functions</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">some.examplefunc</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="widget.html">Widget</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io.html">I/O tips and tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maps.html">Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../profiles.html">Profiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../timeseries.html">Timeseries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widget.html">Widget</a></li>
 </ul>
 <p class="caption"><span class="caption-text">DOWNLOAD SAMPLE FILES</span></p>
 <ul>
@@ -73,40 +74,22 @@
       <!-- Page Content -->
       <main role="main" class="content" style="min-height:700px;">
         
-  <div class="section" id="timeseries">
-<h1>Timeseries<a class="headerlink" href="#timeseries" title="Permalink to this headline">¶</a></h1>
-<table class="colwidths-given docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
+  <div class="section" id="some-examplefunc">
+<h1>some.examplefunc<a class="headerlink" href="#some-examplefunc" title="Permalink to this headline">¶</a></h1>
+<div class="docutils container">
+<p><strong>some.examplefunc</strong> (filename_or_obj, group=None, decode_cf=True, mask_and_scale=None, decode_times=True, autoclose=None, concat_characters=True, decode_coords=True, engine=None, chunks=None, lock=None, cache=None, drop_variables=None, backend_kwargs=None, use_cftime=None, decode_timedelta=None)</p>
 </div>
-</td>
-<td><div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-</div>
-</td>
-<td><div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-</div>
-</td>
-<td><div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="toctree-wrapper compound">
+<p>Open and decode a dataset from a file or file-like object.</p>
+<dl class="simple">
+<dt>Parameters</dt><dd><ul class="simple">
+<li><p>filename (str, optional) - (str, Path, file-like or DataStore) – Strings and Path objects are interpreted as a path to a netCDF file or an OpenDAP URL and opened with python-netCDF4, unless the filename ends with .gz, in which case the file is gunzipped and opened with scipy.io.netcdf (only netCDF3 supported). Byte-strings or file-like objects are opened by scipy.io.netcdf (netCDF3) or h5py (netCDF4/HDF).</p></li>
+<li><p>group (str, optional) - Path to the netCDF4 group in the given file to open (only works for netCDF4 files).</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="http://xarray.pydata.org/en/stable/generated/xarray.open_mfdataset.html#xarray.open_mfdataset">open_mfdataset</a></p>
 </div>
 </div>
 
@@ -121,7 +104,7 @@
       <div class="container" style="background-color:transparent; border:none">
         <div class="row">
           <div class="col-12 col-md">
-            <a href="https://www2.acom.ucar.edu/"><img src="../_static/img/ACOM-contemp-logo-white.png" alt="ACOM" class="ncar-logo"></a>
+            <a href="https://www2.acom.ucar.edu/"><img src="../../_static/img/ACOM-contemp-logo-white.png" alt="ACOM" class="ncar-logo"></a>
           </div>
           <div class="col-12 col-md-auto">
             <p class="footer-text copyright"><a href="https://www.ucar.edu/">University Corporation for Atmospheric Research</a> &copy; 2020<br>
@@ -131,7 +114,7 @@
         </div>
         <div class="row pt-3 border-top">
           <div class="col-auto">
-            <a href="https://nsf.gov/"><img src="../_static/img/footer-logo-nsf.png" alt="NSF" class="nsf-logo"></a>
+            <a href="https://nsf.gov/"><img src="../../_static/img/footer-logo-nsf.png" alt="NSF" class="nsf-logo"></a>
           </div>
           <div class="col">
             <p class="footer-text">This material is based upon work supported by the National Center for Atmospheric Research, a major facility

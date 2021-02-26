@@ -43,7 +43,7 @@ table, th, td, tbody {
 }
 
 ul {
-  line-height: 0.8em;
+  line-height: 1.2em;
   color: #53565A;
 }
 
@@ -135,15 +135,21 @@ div.math {
 }
 
 div.note {
-  background-color: #EEE;
+  background-color: #C3D7EE;
   border: 1px solid #4E9A06;
   border-radius: 10px;
 }
 
 div.seealso {
-  background-color: #EEE;
-  border: 1px solid #007bff;
-  border-radius: 10px;
+  background-color: #C3D7EE;
+  border: none;
+  color: #00797C;
+}
+
+div.container {
+  background-color: #C3D7EE;
+  border: none;
+  border-top: 5px solid #00797C;
 }
 
 .headerlink {
