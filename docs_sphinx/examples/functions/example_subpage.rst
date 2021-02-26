@@ -18,4 +18,10 @@ Parameters:
 
 .. seealso::
 
-   `open_mfdataset <http://xarray.pydata.org/en/stable/generated/xarray.open_mfdataset.html#xarray.open_mfdataset>`_
+   Test words: `open_mfdataset <http://xarray.pydata.org/en/stable/generated/xarray.open_mfdataset.html#xarray.open_mfdataset>`_
+   
+
+
+.. note::
+
+   Make sure to X, Y and Z

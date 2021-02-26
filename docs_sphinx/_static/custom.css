@@ -135,19 +135,20 @@ div.math {
 }
 
 div.note {
-  background-color: #C3D7EE;
-  border: 1px solid #4E9A06;
-  border-radius: 10px;
+  background-color: #E1EBF6;
+  border: 3px solid #00797C;
+  border-radius: 5px;
 }
 
 div.seealso {
-  background-color: #C3D7EE;
+  background-color: #E1EBF6;
   border: none;
   color: #00797C;
+  max-width: 1500px; 
 }
 
 div.container {
-  background-color: #C3D7EE;
+  background-color: #E1EBF6;
   border: none;
   border-top: 5px solid #00797C;
 }
@@ -272,7 +273,7 @@ a.reference.external {
 
 .sidebar ul li.active > a, a[aria-expanded="true"] {
   color: #333;
-  background: #A9A9A9;;
+  background: #A8C700;;
 }
 
 
