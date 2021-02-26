@@ -55,4 +55,5 @@ Creat the Plot
 
 
 .. image:: plot_map_basic_files/plot_map_basic_5_0.png
+   :width: 800px
 

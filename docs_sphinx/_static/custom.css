@@ -154,6 +154,10 @@ div.container {
   border-top: 5px solid #00797C;
 }
 
+div.code {
+  max-width: 1500px; 
+}
+
 .headerlink {
   visibility: hidden;
 }
