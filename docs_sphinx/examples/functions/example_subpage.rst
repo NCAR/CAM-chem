@@ -11,7 +11,7 @@ some.examplefunc
 
 Open and decode a dataset from a file or file-like object.
 
-Parameters
+Parameters:
    - filename (str, optional) - (str, Path, file-like or DataStore) – Strings and Path objects are interpreted as a path to a netCDF file or an OpenDAP URL and opened with python-netCDF4, unless the filename ends with .gz, in which case the file is gunzipped and opened with scipy.io.netcdf (only netCDF3 supported). Byte-strings or file-like objects are opened by scipy.io.netcdf (netCDF3) or h5py (netCDF4/HDF).
    - group (str, optional) - Path to the netCDF4 group in the given file to open (only works for netCDF4 files).
 
