@@ -7,12 +7,17 @@ Maps
 
 This section describes some ways to plot model output on maps.
 
+.. |map_img| image:: maps/plot_map_basic_files/plot_map_basic_5_0.png
+   :width: 200px
+
+
+
 .. list-table::
    :widths: 20 20 20 20
    :header-rows: 0
 
    * - | `map outlines <maps/plot_map_basic.html>`_
-       | :doc:`maps/plot_map_basic`
+       | |map_img|
      - | alternate projection
        |
      - | model output as contours
