@@ -138,6 +138,7 @@ div.note {
   background-color: #E1EBF6;
   border: 3px solid #00797C;
   border-radius: 5px;
+  max-width: 1500px; 
 }
 
 div.seealso {
