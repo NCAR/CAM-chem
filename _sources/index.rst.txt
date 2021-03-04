@@ -27,15 +27,15 @@
    :titlesonly:
    :caption: DOWNLOAD SAMPLE FILES
 
-    CAM-chem sample <https://acomstaff.acom.ucar.edu/cdswk/wiki/sample.nc>
-    MUSICA sample <https://acomstaff.acom.ucar.edu/cdswk/wiki/sample_se.nc>
+    CAM-chem sample <https://acomstaff.acom.ucar.edu/CESM/sample.nc>
+    MUSICA sample <https://acomstaff.acom.ucar.edu/CESM/sample_se.nc>
 
 ============================================================
 Welcome to the Python resources for CAM-chem
 ============================================================
 A collection of Python examples
 --------------------------------
-Here, you will find Python code for atmospheric chemistry applications. These examples have been created primarily in jupyter notebooks. You will mainly find applications to atmospheric chemistry modeling with CAM-chem, but there are also applications for MUSICA modeling, as well as observations from satellites, aircraft and ground-based instruments.
+Here, you will find a growing collection of Python code for atmospheric chemistry applications. These examples have been created primarily in jupyter notebooks. You will mainly find applications to atmospheric chemistry modeling with CAM-chem, but there are also applications for MUSICA modeling, as well as observations from satellites, aircraft and ground-based instruments.
 
 .. _curtains: examples/curtains.html
 .. |curtains| replace:: **curtains** 
@@ -83,11 +83,12 @@ Here, you will find Python code for atmospheric chemistry applications. These ex
 
    **Helpful resources:**
 
+   - `What is Jupyter? <https://youtu.be/xSzXvwzFsDU>`_
    - `NCAR cheyenne JupyterHub <https://jupyterhub.ucar.edu/>`_
    - `start jupyter notebooks on cheyenne natively <cheyenne_jupyter.md>`_
    - `matplotlib colormaps <https://matplotlib.org/3.1.1/gallery/color/colormap_reference.html>`_
    - `date formats <https://strftime.org/>`_
-   - `other learning resources <learning.md>`_
+   - `other learning resources <learning.html>`_
 
    **Other Python Examples:**
 
@@ -95,7 +96,6 @@ Here, you will find Python code for atmospheric chemistry applications. These ex
    - `NCAR PyNGL and PyNIO <https://www.pyngl.ucar.edu/>`_
    - `NOAA MONET toolkit for model versus measurements <https://monet-arl.readthedocs.io/en/master/>`_
    - `NASA python examples for satellite data <https://hdfeos.org/zoo/index_openLaRC_Examples.php>`_
-   - `xarray for working with structured data <http://xarray.pydata.org/en/stable/#>`_
    - `Dan Marsh's examples for WACCM <https://sites.google.com/ucar.edu/dan-marsh/python?authuser=1>`_ (requires a Google login).
 
 ----
