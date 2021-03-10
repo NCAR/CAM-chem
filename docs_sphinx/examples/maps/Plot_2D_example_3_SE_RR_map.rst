@@ -1,5 +1,5 @@
 Plot a global map from spectral element with regional refinement (SE-RR) mesh field (Plot_2D application)
-==========================================================================
+=========================================================================================================
 
 .. code:: ipython3
 
