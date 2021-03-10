@@ -46,7 +46,7 @@ Call Plot_2D script to plot surface CO
 
 
 
-.. image:: Plot_2D_example_1_global_map_files%5CPlot_2D_example_1_global_map_7_1.png
+.. image:: Plot_2D_example_1_global_map_files/Plot_2D_example_1_global_map_7_1.png
 
 
 You can specify colormap. For more information, you can check colormaps from here: https://matplotlib.org/stable/tutorials/colors/colormaps.html
@@ -66,7 +66,7 @@ You can specify colormap. For more information, you can check colormaps from her
 
 
 
-.. image:: Plot_2D_example_1_global_map_files%5CPlot_2D_example_1_global_map_9_1.png
+.. image:: Plot_2D_example_1_global_map_files/Plot_2D_example_1_global_map_9_1.png
 
 
 Let’s add an unit to the plot by using unit keyword
@@ -86,7 +86,7 @@ Let’s add an unit to the plot by using unit keyword
 
 
 
-.. image:: Plot_2D_example_1_global_map_files%5CPlot_2D_example_1_global_map_11_1.png
+.. image:: Plot_2D_example_1_global_map_files/Plot_2D_example_1_global_map_11_1.png
 
 
 You can also add a title to the plot
@@ -106,7 +106,7 @@ You can also add a title to the plot
 
 
 
-.. image:: Plot_2D_example_1_global_map_files%5CPlot_2D_example_1_global_map_13_1.png
+.. image:: Plot_2D_example_1_global_map_files/Plot_2D_example_1_global_map_13_1.png
 
 
 Set maximum and minimum values manually with cmin and cmax keywords
@@ -127,5 +127,5 @@ Set maximum and minimum values manually with cmin and cmax keywords
 
 
 
-.. image:: Plot_2D_example_1_global_map_files%5CPlot_2D_example_1_global_map_15_1.png
+.. image:: Plot_2D_example_1_global_map_files/Plot_2D_example_1_global_map_15_1.png
 
