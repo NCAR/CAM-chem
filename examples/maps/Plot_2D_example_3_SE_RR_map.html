@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="../../_static/custom.css" type=text/css>
+
+    <title>Python Resources for CAM-chem</title>
+
+    <script src="https://kit.fontawesome.com/be4ef5002e.js" crossorigin="anonymous"></script>
+  </head>
+
+
+  <body>
+
+
+    <nav class="navbar navbar-expand navbar-dark sticky-top bg-dark">
+      <a class="navbar-brand" style="font-weight:bold" href="../../index.html">Python resources for CAM-chem</a>
+      <ul class="navbar-nav mr-auto">
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" style="line-height:1.8em" href="https://wiki.ucar.edu/display/camchem/Home">CAM-chem Wiki</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/NCAR/CAM-chem"><i class="fab fa-github"></i></a>
+        </li>
+      </ul>
+    </nav>
+
+
+
+    <div class="container-fluid">
+
+      <!-- Sidebar -->
+      <nav class="sidebar" >
+        <div class="sidebar-header">
+          <h4></h4>
+        </div>
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+</ul>
+<p class="caption"><span class="caption-text">EXAMPLES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../curtains.html">Curtains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../emissions.html">Emissions processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io.html">I/O tips and tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maps.html">Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../profiles.html">Profiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../timeseries.html">Timeseries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widget.html">Widget</a></li>
+</ul>
+<p class="caption"><span class="caption-text">DOWNLOAD SAMPLE FILES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample.nc"> CAM-chem sample</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample_se.nc"> MUSICA sample</a></li>
+</ul>
+
+        
+      </nav>
+
+
+      <!-- Page Content -->
+      <main role="main" class="content" style="min-height:700px;">
+        
+  <div class="section" id="plot-a-global-map-from-finite-volume-fv-grid-field-plot-2d-application">
+<h1>Plot a global map from finite volume (FV) grid field (Plot_2D application)<a class="headerlink" href="#plot-a-global-map-from-finite-volume-fv-grid-field-plot-2d-application" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># By line: DSJ 10-MAR-2021
+# Script aims to:
+# - Plot a world map from SE-RR mesh
+# - Add a grid line
+# - Plot a regional map
+# - Change longitude interval and add state lines
+# - Add unit and title, and change maximum value of the plot
+</pre></div>
+</div>
+<div class="section" id="at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use">
+<h2>At the start of a Jupyter notebook you need to import all modules that you will use<a class="headerlink" href="#at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Make sure you have downloaded &quot;Plot_2D.py&quot; script from Github
+from Plot_2D import Plot_2D
+import xarray as xr # To read NetCDF file
+import matplotlib.cm as cm # To change colormap used in plots
+</pre></div>
+</div>
+</div>
+<div class="section" id="read-the-sample-file">
+<h2>Read the sample file<a class="headerlink" href="#read-the-sample-file" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Make sure you have downloaded &quot;sample_se.nc&quot; and &quot;sample_se_scrip&quot; files from Github
+ds = xr.open_dataset( &#39;sample_se.nc&#39; )
+</pre></div>
+</div>
+</div>
+<div class="section" id="call-plot-2d-script-to-plot-surface-so2">
+<h2>Call Plot_2D script to plot surface SO2<a class="headerlink" href="#call-plot-2d-script-to-plot-surface-so2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="note-that-you-must-specify-scrip-file-to-let-the-script-know-what-mesh-looks-like">
+<h3>Note that you must specify scrip file to let the script know what mesh looks like<a class="headerlink" href="#note-that-you-must-specify-scrip-file-to-let-the-script-know-what-mesh-looks-like" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># multiply by 1e9 to make it to ppbv
+Plot_2D( ds[&#39;SO2&#39;][0,-1,:]*1e9, scrip_file=&#39;sample_se_scrip.nc&#39;, cmap=cm.hot_r )
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Plot_2D</span><span class="o">.</span><span class="n">Plot_2D</span> <span class="n">at</span> <span class="mh">0x17be2243508</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<img alt="examples/maps/Plot_2D_example_3_SE_RR_map_files%5CPlot_2D_example_3_SE_RR_map_7_1.png" src="examples/maps/Plot_2D_example_3_SE_RR_map_files%5CPlot_2D_example_3_SE_RR_map_7_1.png" />
+</div>
+</div>
+<div class="section" id="add-a-grid-line-to-see-the-model-mesh">
+<h2>Add a grid line to see the model mesh<a class="headerlink" href="#add-a-grid-line-to-see-the-model-mesh" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># multiply by 1e9 to make it to ppbv
+Plot_2D( ds[&#39;SO2&#39;][0,-1,:]*1e9, scrip_file=&#39;sample_se_scrip.nc&#39;, cmap=cm.hot_r, grid_line=True, grid_line_lw=0.1 )
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Plot_2D</span><span class="o">.</span><span class="n">Plot_2D</span> <span class="n">at</span> <span class="mh">0x17ba18bb908</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<img alt="examples/maps/Plot_2D_example_3_SE_RR_map_files%5CPlot_2D_example_3_SE_RR_map_9_1.png" src="examples/maps/Plot_2D_example_3_SE_RR_map_files%5CPlot_2D_example_3_SE_RR_map_9_1.png" />
+</div>
+<div class="section" id="lets-plot-a-regional-map">
+<h2>Let’s plot a regional map<a class="headerlink" href="#lets-plot-a-regional-map" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># multiply by 1e9 to make it to ppbv
+Plot_2D( ds[&#39;SO2&#39;][0,-1,:]*1e9, scrip_file=&#39;sample_se_scrip.nc&#39;, cmap=cm.hot_r, grid_line=True, grid_line_lw=0.1, lon_range=[124,131], lat_range=[33,42] )
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Plot_2D</span><span class="o">.</span><span class="n">Plot_2D</span> <span class="n">at</span> <span class="mh">0x17c0ed5af48</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<img alt="examples/maps/Plot_2D_example_3_SE_RR_map_files%5CPlot_2D_example_3_SE_RR_map_11_1.png" src="examples/maps/Plot_2D_example_3_SE_RR_map_files%5CPlot_2D_example_3_SE_RR_map_11_1.png" />
+</div>
+<div class="section" id="lets-change-the-interval-of-longitude-labels-and-add-state-lines">
+<h2>Let’s change the interval of longitude labels and add state lines<a class="headerlink" href="#lets-change-the-interval-of-longitude-labels-and-add-state-lines" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># multiply by 1e9 to make it to ppbv
+Plot_2D( ds[&#39;SO2&#39;][0,-1,:]*1e9, scrip_file=&#39;sample_se_scrip.nc&#39;, cmap=cm.hot_r, grid_line=True, grid_line_lw=0.1, lon_range=[124,131], lat_range=[33,42], lon_interval=3, state=True )
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Plot_2D</span><span class="o">.</span><span class="n">Plot_2D</span> <span class="n">at</span> <span class="mh">0x17c2d5d8148</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<img alt="examples/maps/Plot_2D_example_3_SE_RR_map_files%5CPlot_2D_example_3_SE_RR_map_13_1.png" src="examples/maps/Plot_2D_example_3_SE_RR_map_files%5CPlot_2D_example_3_SE_RR_map_13_1.png" />
+</div>
+<div class="section" id="add-unit-and-title-and-change-maximum-value-of-the-plot">
+<h2>Add unit and title, and change maximum value of the plot<a class="headerlink" href="#add-unit-and-title-and-change-maximum-value-of-the-plot" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># multiply by 1e9 to make it to ppbv
+Plot_2D( ds[&#39;SO2&#39;][0,-1,:]*1e9, scrip_file=&#39;sample_se_scrip.nc&#39;, cmap=cm.hot_r, grid_line=True, grid_line_lw=0.1, lon_range=[124,131], lat_range=[33,42], lon_interval=3, state=True, unit=&#39;ppbv&#39;, title=&#39;SO2 over Korea&#39;, cmax=20 )
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Plot_2D</span><span class="o">.</span><span class="n">Plot_2D</span> <span class="n">at</span> <span class="mh">0x17c5c0dfcc8</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<img alt="examples/maps/Plot_2D_example_3_SE_RR_map_files%5CPlot_2D_example_3_SE_RR_map_15_1.png" src="examples/maps/Plot_2D_example_3_SE_RR_map_files%5CPlot_2D_example_3_SE_RR_map_15_1.png" />
+</div>
+</div>
+
+
+      </main>
+
+    </div>
+
+
+
+    <footer class="text-light bg-dark pt-3">
+      <div class="container" style="background-color:transparent; border:none">
+        <div class="row">
+          <div class="col-12 col-md">
+            <a href="https://www2.acom.ucar.edu/"><img src="../../_static/img/ACOM-contemp-logo-white.png" alt="ACOM" class="ncar-logo"></a>
+          </div>
+          <div class="col-12 col-md-auto">
+            <p class="footer-text copyright"><a href="https://www.ucar.edu/">University Corporation for Atmospheric Research</a> &copy; 2021<br>
+            Built with <a href="https://www.sphinx-doc.org/en/master/" target="_blank" rel="noopener">Sphinx</a>. Proudly published with <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a><br>
+            Created with the help of <a href="https://ncar.github.io/xdev/" target="_blank" rel="noopener">NCAR’s Xdev Team</a>. Apache 2.0</p>
+          </div>
+        </div>
+        <div class="row pt-3 border-top">
+          <div class="col-auto">
+            <a href="https://nsf.gov/"><img src="../../_static/img/footer-logo-nsf.png" alt="NSF" class="nsf-logo"></a>
+          </div>
+          <div class="col">
+            <p class="footer-text">This material is based upon work supported by the National Center for Atmospheric Research, a major facility
+            sponsored by the National Science Foundation and managed by the University Corporation for Atmospheric Research. Any opinions,
+            findings and conclusions or recommendations expressed in this material do not necessarily reflect the views of the National
+            Science Foundation.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+  </body>
+</html>

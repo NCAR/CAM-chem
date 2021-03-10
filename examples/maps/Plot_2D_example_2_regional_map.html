@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="../../_static/custom.css" type=text/css>
+
+    <title>Python Resources for CAM-chem</title>
+
+    <script src="https://kit.fontawesome.com/be4ef5002e.js" crossorigin="anonymous"></script>
+  </head>
+
+
+  <body>
+
+
+    <nav class="navbar navbar-expand navbar-dark sticky-top bg-dark">
+      <a class="navbar-brand" style="font-weight:bold" href="../../index.html">Python resources for CAM-chem</a>
+      <ul class="navbar-nav mr-auto">
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" style="line-height:1.8em" href="https://wiki.ucar.edu/display/camchem/Home">CAM-chem Wiki</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/NCAR/CAM-chem"><i class="fab fa-github"></i></a>
+        </li>
+      </ul>
+    </nav>
+
+
+
+    <div class="container-fluid">
+
+      <!-- Sidebar -->
+      <nav class="sidebar" >
+        <div class="sidebar-header">
+          <h4></h4>
+        </div>
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+</ul>
+<p class="caption"><span class="caption-text">EXAMPLES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../curtains.html">Curtains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../emissions.html">Emissions processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io.html">I/O tips and tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maps.html">Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../profiles.html">Profiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../timeseries.html">Timeseries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widget.html">Widget</a></li>
+</ul>
+<p class="caption"><span class="caption-text">DOWNLOAD SAMPLE FILES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample.nc"> CAM-chem sample</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample_se.nc"> MUSICA sample</a></li>
+</ul>
+
+        
+      </nav>
+
+
+      <!-- Page Content -->
+      <main role="main" class="content" style="min-height:700px;">
+        
+  <div class="section" id="plot-a-regional-map-from-finite-volume-fv-grid-field-plot-2d-application">
+<h1>Plot a regional map from finite volume (FV) grid field (Plot_2D application)<a class="headerlink" href="#plot-a-regional-map-from-finite-volume-fv-grid-field-plot-2d-application" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># By line: DSJ 10-MAR-2021
+# Script aims to:
+# - Plot a regional map with state lines
+# - Add grid lines to see the exact grids of the model
+</pre></div>
+</div>
+<div class="section" id="at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use">
+<h2>At the start of a Jupyter notebook you need to import all modules that you will use<a class="headerlink" href="#at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Make sure you have downloaded &quot;Plot_2D.py&quot; script from Github
+from Plot_2D import Plot_2D
+import xarray as xr # To read NetCDF file
+</pre></div>
+</div>
+</div>
+<div class="section" id="read-the-sample-file">
+<h2>Read the sample file<a class="headerlink" href="#read-the-sample-file" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Make sure you have downloaded &quot;sample.nc&quot; file from Github
+ds = xr.open_dataset( &#39;sample.nc&#39; )
+</pre></div>
+</div>
+</div>
+<div class="section" id="call-plot-2d-script-to-plot-surface-co-over-conus-region">
+<h2>Call Plot_2D script to plot surface CO over CONUS region<a class="headerlink" href="#call-plot-2d-script-to-plot-surface-co-over-conus-region" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Plot_2D( ds[&#39;CO&#39;][0,-1,:,:]*1e9, unit=&#39;ppbv&#39;, title=&#39;CO mixing ratio (SFC)&#39;,
+         lon_range=[-130,-70], lat_range=[20,55])
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Plot_2D</span><span class="o">.</span><span class="n">Plot_2D</span> <span class="n">at</span> <span class="mh">0x2235b2def88</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<img alt="examples/maps/Plot_2D_example_2_regional_map_files%5CPlot_2D_example_2_regional_map_7_1.png" src="examples/maps/Plot_2D_example_2_regional_map_files%5CPlot_2D_example_2_regional_map_7_1.png" />
+</div>
+<div class="section" id="add-state-bounday-lines">
+<h2>Add state bounday lines<a class="headerlink" href="#add-state-bounday-lines" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Plot_2D( ds[&#39;CO&#39;][0,-1,:,:]*1e9, unit=&#39;ppbv&#39;, title=&#39;CO mixing ratio (SFC)&#39;,
+         lon_range=[-130,-70], lat_range=[20,55], state=True)
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Plot_2D</span><span class="o">.</span><span class="n">Plot_2D</span> <span class="n">at</span> <span class="mh">0x2235bdcf488</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<img alt="examples/maps/Plot_2D_example_2_regional_map_files%5CPlot_2D_example_2_regional_map_9_1.png" src="examples/maps/Plot_2D_example_2_regional_map_files%5CPlot_2D_example_2_regional_map_9_1.png" />
+</div>
+<div class="section" id="add-grid-lines">
+<h2>Add grid lines<a class="headerlink" href="#add-grid-lines" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="sample-file-has-a-horizontal-resolution-of-0-9-x-1-25">
+<h3>Sample file has a horizontal resolution of 0.9 x 1.25<a class="headerlink" href="#sample-file-has-a-horizontal-resolution-of-0-9-x-1-25" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Plot_2D( ds[&#39;CO&#39;][0,-1,:,:]*1e9, unit=&#39;ppbv&#39;, title=&#39;CO mixing ratio (SFC)&#39;,
+         lon_range=[-130,-70], lat_range=[20,55], state=True, grid_line=True, grid_line_lw=0.5 )
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Plot_2D</span><span class="o">.</span><span class="n">Plot_2D</span> <span class="n">at</span> <span class="mh">0x2235ba70848</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<img alt="examples/maps/Plot_2D_example_2_regional_map_files%5CPlot_2D_example_2_regional_map_11_1.png" src="examples/maps/Plot_2D_example_2_regional_map_files%5CPlot_2D_example_2_regional_map_11_1.png" />
+</div>
+</div>
+</div>
+
+
+      </main>
+
+    </div>
+
+
+
+    <footer class="text-light bg-dark pt-3">
+      <div class="container" style="background-color:transparent; border:none">
+        <div class="row">
+          <div class="col-12 col-md">
+            <a href="https://www2.acom.ucar.edu/"><img src="../../_static/img/ACOM-contemp-logo-white.png" alt="ACOM" class="ncar-logo"></a>
+          </div>
+          <div class="col-12 col-md-auto">
+            <p class="footer-text copyright"><a href="https://www.ucar.edu/">University Corporation for Atmospheric Research</a> &copy; 2021<br>
+            Built with <a href="https://www.sphinx-doc.org/en/master/" target="_blank" rel="noopener">Sphinx</a>. Proudly published with <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a><br>
+            Created with the help of <a href="https://ncar.github.io/xdev/" target="_blank" rel="noopener">NCAR’s Xdev Team</a>. Apache 2.0</p>
+          </div>
+        </div>
+        <div class="row pt-3 border-top">
+          <div class="col-auto">
+            <a href="https://nsf.gov/"><img src="../../_static/img/footer-logo-nsf.png" alt="NSF" class="nsf-logo"></a>
+          </div>
+          <div class="col">
+            <p class="footer-text">This material is based upon work supported by the National Center for Atmospheric Research, a major facility
+            sponsored by the National Science Foundation and managed by the University Corporation for Atmospheric Research. Any opinions,
+            findings and conclusions or recommendations expressed in this material do not necessarily reflect the views of the National
+            Science Foundation.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+  </body>
+</html>
