@@ -23,7 +23,7 @@ MODIFICATION HISTORY:
     - Added a symlog functionality for minus values in log plot
     Duseong Jo, 13, FEB, 2021: VERSION 1.50
     - Added a diff option for difference plot
-    Duseong Jo, 24, JEB, 2021: VERSION 1.60
+    Duseong Jo, 24, FEB, 2021: VERSION 1.60
     - minor bug fix for log plot with maximum values less than 0.1
 '''
 
