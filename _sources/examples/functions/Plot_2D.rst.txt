@@ -58,12 +58,29 @@ Parameters:
  - unit_bold (bool, optional) - If True, set the unit font to bold. 
  - unit_italic (bool, optional) - If True, set unit font to italic.
  - unit_offset (list, optional) - If provided, the script will make an adjustment to the unit position. [x-axis, y-axis]. 
- - verbose: Display detailed information on what is being done.
+ - verbose(bool, optional) - Display detailed information on what is being done.
 
 .. seealso::
 
    Example jupyter notebooks using the Plot_2D function:    
+- `1. Global map [FV grid] <https://ncar.github.io/CAM-chem/examples/maps/Plot_2D_example_1_global_map.html>`_
 
+ - Plot a world map with coastlines, lon/lat lines, and colorbar
+ - Change colormap of the plot
+ - Add unit to the plot
+ - Add title to the plot
+ - Manually set maximum and minimum values of the plot
+
+- `2. Regional map [FV grid] <https://ncar.github.io/CAM-chem/examples/maps/Plot_2D_example_2_regional_map.html>`_
+ - Plot a regional map with state lines
+ - Add grid lines to see the exact grids of the model
+
+- `3. Global/Regional map [SE-RR grid] <https://ncar.github.io/CAM-chem/examples/maps/Plot_2D_example_3_SE_RR_map.html>`_
+ - Plot a world map from SE-RR mesh
+ - Add a grid line
+ - Plot a regional map
+ - Change longitude interval and add state lines
+ - Add unit and title, and change maximum value of the plot
 
 .. note::
 
