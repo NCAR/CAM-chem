@@ -11,7 +11,7 @@ A list of the functions to be discussed in this page
 .. toctree::
    :maxdepth: 1
 
-   Example 1 <functions/example_subpage>
+   Example 1 <functions/Plot_2D>
 
 
 
