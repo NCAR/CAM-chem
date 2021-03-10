@@ -5,6 +5,7 @@
 How to contribute to the python collection
 =============================================
 
+Where possible please use the sample example data files available from the side bar.
 Add this to the top of your code, filling in the appropriate areas:
 
 .. code-block:: ipython3

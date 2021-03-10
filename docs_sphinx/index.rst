@@ -25,7 +25,7 @@
 .. toctree::
    :hidden:
    :titlesonly:
-   :caption: DOWNLOAD SAMPLE FILES
+   :caption: DOWNLOAD SAMPLE DATA
 
     CAM-chem sample <https://acomstaff.acom.ucar.edu/CESM/sample.nc>
     MUSICA sample <https://acomstaff.acom.ucar.edu/CESM/sample_se.nc>

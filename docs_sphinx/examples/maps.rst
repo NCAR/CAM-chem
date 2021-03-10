@@ -9,7 +9,7 @@ This section describes some ways to plot model output on maps.
 
 .. |map_img_1| image:: maps/plot_map_basic_files/plot_map_basic_5_0.png
    :width: 200px
-.. |map_img_2| image:: maps/plot_map_basic_files/plot_map_basic_5_0.png
+.. |map_img_2| image:: maps/plot_projection_conus_files/plot_projection_conus_1_1.png
    :width: 200px
 .. |map_img_3| image:: maps/plot_map_basic_co_files/plot_map_basic_co_9_0.png
    :width: 200px
@@ -20,6 +20,10 @@ This section describes some ways to plot model output on maps.
 .. |map_img_6| image:: maps/plot_map_basic_co_cbar_region_files/plot_map_basic_co_cbar_region_9_0.png
    :width: 200px
 .. |map_img_7| image:: maps/plot_map_basic_co_cbar_region_points_files/plot_map_basic_co_cbar_region_points_11_0.png
+   :width: 200px
+.. |map_img_9| image:: maps/plot_map_basic_co_column_files/plot_map_basic_co_column_17_0.png
+   :width: 200px
+.. |map_img_10| image:: maps/plot_map_basic_co_satellite_files/plot_map_basic_co_satellite_11_0.png
    :width: 200px
 
   
@@ -43,10 +47,10 @@ This section describes some ways to plot model output on maps.
        | |map_img_7|
      - | add observation values at points
        |
-   * - | convert to column values
-       |
-     - | gridded satellite data
-       |
+   * - | `convert to column values <maps/plot_map_basic_co_column.html>`_
+       | |map_img_9|
+     - | `gridded satellite data <maps/plot_map_basic_co_satellite.html>`_
+       | |map_img_10|
      - | difference plot
        |
      - | using the basemap library/package
@@ -63,6 +67,8 @@ This section describes some ways to plot model output on maps.
    Remove dateline gap <maps/plot_map_basic_co_cbar_cyclic>
    Zoom to region <maps/plot_map_basic_co_cbar_region>
    Add locations <maps/plot_map_basic_co_cbar_region_points>
+   Column values <maps/plot_map_basic_co_column>
+   Satellite <maps/plot_map_basic_co_satellite>
 
 
 ------------
