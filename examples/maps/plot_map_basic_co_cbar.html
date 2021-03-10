@@ -54,9 +54,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io.html">I/O tips and tricks</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../maps.html">Maps</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Map outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_map_basic.html">Map outline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co.html">Plot Tracer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co_cbar.html">Adjust contours</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Adjust contours</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plot_2D_example_1_global_map.html">Plot2D: Global FV</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plot_2D_example_2_regional_map.html">Plot2D: Regional FV</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plot_2D_example_3_SE_RR_map.html">Plot2D: Regional SE</a></li>
@@ -79,29 +79,74 @@
       <!-- Page Content -->
       <main role="main" class="content" style="min-height:700px;">
         
-  <div class="section" id="plot-a-world-map">
-<h1>Plot a world map<a class="headerlink" href="#plot-a-world-map" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># By line: RRB 2020-07-18
+  <div class="section" id="example-map-plotting">
+<h1>Example Map Plotting<a class="headerlink" href="#example-map-plotting" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># By line: RRB 2020-07-20
 # Script aims to:
-# - Plot a world map with coastlines
+# - Load a netCDF file
+# - Extract one variable: CO
+# - Create contour plot of variable as world map with coastlines
+# - Customize contours and colorbar
 # - Add axes labels
 # - Add grid lines
 </pre></div>
 </div>
 <div class="section" id="at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use">
-<h2>At the start of a Jupyter notebook you need to import all modules that you will use<a class="headerlink" href="#at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use" title="Permalink to this headline">¶</a></h2>
+<h2>At the start of a Jupyter notebook you need to import all modules that you will use.<a class="headerlink" href="#at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
 import cartopy.crs as ccrs                 # For plotting maps
 import cartopy.feature as cfeature         # For plotting maps
+from pathlib import Path                   # System agnostic paths
+import xarray as xr                        # For loading the data arrays
+import numpy as np                         # For array creation and calculations
 </pre></div>
 </div>
 </div>
-<div class="section" id="creat-the-plot">
-<h2>Creat the Plot<a class="headerlink" href="#creat-the-plot" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-the-directories-and-file-of-interest-for-your-results">
+<h2>Define the directories and file of interest for your results.<a class="headerlink" href="#define-the-directories-and-file-of-interest-for-your-results" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>result_dir = Path(&quot;../../data/&quot;)
+file = &quot;CAM_chem_merra2_FCSD_1deg_QFED_monthoutput_CO_201801.nc&quot;
+file_to_open = result_dir / file
+#the netcdf file is now held in an xarray dataset named &#39;nc_load&#39; and can be referenced later in the notebook
+nc_load = xr.open_dataset(file_to_open)
+#to see what the netCDF file contains, uncomment below
+#nc_load
+</pre></div>
+</div>
+</div>
+<div class="section" id="extract-the-variable-of-choice-at-the-time-and-level-of-choice">
+<h2>Extract the variable of choice at the time and level of choice<a class="headerlink" href="#extract-the-variable-of-choice-at-the-time-and-level-of-choice" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#extract variable
+var_sel = nc_load[&#39;CO&#39;]
+#print(var_sel)
+
+#select the surface level at a specific time and convert to ppbv from vmr
+#select the surface level for an average over three times and convert to ppbv from vmr
+var_srf = var_sel.isel(time=0, lev=55)
+var_srf = var_srf*1e09 # 10-9 to ppb
+print(var_srf.shape)
+
+#extract grid variables
+lat = var_sel.coords[&#39;lat&#39;]
+lon = var_sel.coords[&#39;lon&#39;]
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">192</span><span class="p">,</span> <span class="mi">288</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="plot-the-value-over-a-specific-region">
+<h2>Plot the value over a specific region<a class="headerlink" href="#plot-the-value-over-a-specific-region" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(20,8))
 
 #Define projection
 ax = plt.axes(projection=ccrs.PlateCarree())
+
+#define contour levels
+clev = np.arange(30, 500, 10)
+
+#plot the data
+plt.contourf(lon,lat,var_srf,clev,cmap=&#39;Spectral_r&#39;,extend=&#39;both&#39;)
 
 # add coastlines
 ax.add_feature(cfeature.COASTLINE)
@@ -113,7 +158,7 @@ gl.ylabels_right = False
 
 # Titles
 # Main
-plt.title(&quot;Global map&quot;,fontsize=18)
+plt.title(&quot;Global map of CAM-chem CO, January 2018&quot;,fontsize=18)
 
 # y-axis
 ax.text(-0.04, 0.5, &#39;Latitude&#39;, va=&#39;bottom&#39;, ha=&#39;center&#39;,
@@ -123,12 +168,16 @@ ax.text(-0.04, 0.5, &#39;Latitude&#39;, va=&#39;bottom&#39;, ha=&#39;center&#39;
 ax.text(0.5, -0.08, &#39;Longitude&#39;, va=&#39;bottom&#39;, ha=&#39;center&#39;,
         rotation=&#39;horizontal&#39;, rotation_mode=&#39;anchor&#39;,
         transform=ax.transAxes)
+# legend
+ax.text(1.15, 0.5, &#39;CO (ppb)&#39;, va=&#39;bottom&#39;, ha=&#39;center&#39;,
+        rotation=&#39;vertical&#39;, rotation_mode=&#39;anchor&#39;,
+        transform=ax.transAxes)
 
-
+plt.colorbar()
 plt.show()
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/plot_map_basic_5_0.png"><img alt="../../_images/plot_map_basic_5_0.png" src="../../_images/plot_map_basic_5_0.png" style="width: 800px;" /></a>
+<img alt="../../_images/plot_map_basic_co_cbar_9_0.png" src="../../_images/plot_map_basic_co_cbar_9_0.png" />
 </div>
 </div>
 

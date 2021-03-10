@@ -9,6 +9,10 @@ This section describes some ways to plot model output on maps.
 
 .. |map_img| image:: maps/plot_map_basic_files/plot_map_basic_5_0.png
    :width: 200px
+.. |map_co| image:: maps/plot_map_basic_co_files/plot_map_basic_co_9_0.png
+   :width: 200px
+.. |map_co_cbar| image:: maps/plot_map_basic_co_cbar_files/plot_map_basic_co_cbar_9_0.png
+   :width: 200px
 
   
 .. list-table::
@@ -19,10 +23,10 @@ This section describes some ways to plot model output on maps.
        | |map_img|
      - | alternate projection
        |
-     - | model output as contours
-       |
-     - | define contour levels
-       |
+     - | `model output as contours <maps/plot_map_basic_co.html>`_
+       | |map_co|
+     - | `define contour levels <maps/plot_map_basic_co_cbar.html>`_
+       | |map_co_cbar|
    * - | remove while stripe at dateline
        |
      - | zoom into region
@@ -31,12 +35,22 @@ This section describes some ways to plot model output on maps.
        |
      - | add observation values at points
        |
+   * - | convert to column values
+       |
+     - | gridded satellite data
+       |
+     - | difference plot
+       |
+     - | using the basemap library/package
+       |
 
 .. toctree::
    :hidden:
    :maxdepth: 1
 
    Map outline <maps/plot_map_basic>
+   Plot Tracer <maps/plot_map_basic_co>
+   Adjust contours <maps/plot_map_basic_co_cbar>
 
 
 ------------
