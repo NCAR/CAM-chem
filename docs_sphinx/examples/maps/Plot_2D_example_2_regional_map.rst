@@ -43,7 +43,7 @@ Call Plot_2D script to plot surface CO over CONUS region
 
 
 
-.. image:: Plot_2D_example_2_regional_map_files%5CPlot_2D_example_2_regional_map_7_1.png
+.. image:: Plot_2D_example_2_regional_map_files/Plot_2D_example_2_regional_map_7_1.png
 
 
 Add state bounday lines
@@ -64,7 +64,7 @@ Add state bounday lines
 
 
 
-.. image:: Plot_2D_example_2_regional_map_files%5CPlot_2D_example_2_regional_map_9_1.png
+.. image:: Plot_2D_example_2_regional_map_files/Plot_2D_example_2_regional_map_9_1.png
 
 
 Add grid lines
@@ -88,5 +88,5 @@ Sample file has a horizontal resolution of 0.9 x 1.25
 
 
 
-.. image:: Plot_2D_example_2_regional_map_files%5CPlot_2D_example_2_regional_map_11_1.png
+.. image:: Plot_2D_example_2_regional_map_files/Plot_2D_example_2_regional_map_11_1.png
 
