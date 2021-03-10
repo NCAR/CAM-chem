@@ -60,9 +60,9 @@
 <li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co_cbar.html">Adjust contours</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co_cbar_cyclic.html">Remove dateline gap</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co_cbar_region.html">Zoom to region</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Add locations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co_cbar_region_points.html">Add locations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co_column.html">Column values</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co_satellite.html">Satellite</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Satellite</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plot_2D_example_1_global_map.html">Plot2D: Global FV</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plot_2D_example_2_regional_map.html">Plot2D: Regional FV</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plot_2D_example_3_SE_RR_map.html">Plot2D: Regional SE</a></li>
@@ -85,15 +85,13 @@
       <!-- Page Content -->
       <main role="main" class="content" style="min-height:700px;">
         
-  <div class="section" id="example-map-plotting">
-<h1>Example Map Plotting<a class="headerlink" href="#example-map-plotting" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># By line: RRB 2020-07-20
+  <div class="section" id="example-map-plotting-mopitt-co">
+<h1>Example Map Plotting - MOPITT CO<a class="headerlink" href="#example-map-plotting-mopitt-co" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># By line: RRB 2020-07-26
 # Script aims to:
-# - Load a netCDF file
-# - Extract one variable: CO
+# - Load a MOPITT HDF5 file
+# - Extract variables: CO column, latitude, longitude
 # - Create contour plot of variable as world map with coastlines
-# - Zoom to a specific region: North America
-# - Add in custom locations
 # - Customize contours and colorbar
 # - Add axes labels
 # - Add grid lines
@@ -104,91 +102,73 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
 import cartopy.crs as ccrs                 # For plotting maps
 import cartopy.feature as cfeature         # For plotting maps
+from cartopy.util import add_cyclic_point  # For plotting maps
 from pathlib import Path                   # System agnostic paths
 import xarray as xr                        # For loading the data arrays
 import numpy as np                         # For array creation and calculations
+import h5py                                # For loading he5 files
 </pre></div>
 </div>
 </div>
 <div class="section" id="define-the-directories-and-file-of-interest-for-your-results">
 <h2>Define the directories and file of interest for your results.<a class="headerlink" href="#define-the-directories-and-file-of-interest-for-your-results" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>result_dir = Path(&quot;../../data/&quot;)
-file = &quot;CAM_chem_merra2_FCSD_1deg_QFED_monthoutput_CO_201801.nc&quot;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>result_dir = Path(&quot;../../data&quot;)
+file = &quot;MOP03JM-201801-L3V95.6.3.he5&quot;
 file_to_open = result_dir / file
-#the netcdf file is now held in an xarray dataset named &#39;nc_load&#39; and can be referenced later in the notebook
-nc_load = xr.open_dataset(file_to_open)
-#to see what the netCDF file contains, uncomment below
-#nc_load
 </pre></div>
 </div>
 </div>
-<div class="section" id="extract-the-variable-of-choice-at-the-time-and-level-of-choice">
-<h2>Extract the variable of choice at the time and level of choice.<a class="headerlink" href="#extract-the-variable-of-choice-at-the-time-and-level-of-choice" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#extract variable
-var_sel = nc_load[&#39;CO&#39;]
-print(var_sel)
-
-#select the surface level at a specific time and convert to ppbv from vmr
-#select the surface level for an average over three times and convert to ppbv from vmr
-var_srf = var_sel.isel(time=0, lev=55)
-var_srf = var_srf*1e09 # 10-9 to ppb
-print(var_srf.shape)
-
-#extract grid variables
-lat = var_sel.coords[&#39;lat&#39;]
-lon = var_sel.coords[&#39;lon&#39;]
-print(lat.shape)
+<div class="section" id="load-file">
+<h2>Load file<a class="headerlink" href="#load-file" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>he5_load = h5py.File(file_to_open, mode=&#39;r&#39;)
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xarray</span><span class="o">.</span><span class="n">DataArray</span> <span class="s1">&#39;CO&#39;</span> <span class="p">(</span><span class="n">time</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">lev</span><span class="p">:</span> <span class="mi">56</span><span class="p">,</span> <span class="n">lat</span><span class="p">:</span> <span class="mi">192</span><span class="p">,</span> <span class="n">lon</span><span class="p">:</span> <span class="mi">288</span><span class="p">)</span><span class="o">&gt;</span>
-<span class="p">[</span><span class="mi">3096576</span> <span class="n">values</span> <span class="k">with</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">]</span>
+</div>
+<div class="section" id="extract-dataset-of-choice">
+<h2>Extract dataset of choice<a class="headerlink" href="#extract-dataset-of-choice" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># load the data
+dataset = he5_load[&quot;/HDFEOS/GRIDS/MOP03/Data Fields/RetrievedCOTotalColumnDay&quot;][:]
+lat = he5_load[&quot;/HDFEOS/GRIDS/MOP03/Data Fields/Latitude&quot;][:]
+lon = he5_load[&quot;/HDFEOS/GRIDS/MOP03/Data Fields/Longitude&quot;][:]
+
+# create xarray DataArray
+dataset_new = xr.DataArray(dataset, dims=[&quot;lon&quot;,&quot;lat&quot;], coords=[lon,lat])
+
+# missing value -&gt; nan
+ds_masked = dataset_new.where(dataset_new != -9999.)
+
+print(ds_masked)
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xarray</span><span class="o">.</span><span class="n">DataArray</span> <span class="p">(</span><span class="n">lon</span><span class="p">:</span> <span class="mi">360</span><span class="p">,</span> <span class="n">lat</span><span class="p">:</span> <span class="mi">180</span><span class="p">)</span><span class="o">&gt;</span>
+<span class="n">array</span><span class="p">([[</span><span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">],</span>
+       <span class="p">[</span><span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">],</span>
+       <span class="p">[</span><span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">],</span>
+       <span class="o">...</span><span class="p">,</span>
+       <span class="p">[</span><span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">],</span>
+       <span class="p">[</span><span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">],</span>
+       <span class="p">[</span><span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">)</span>
 <span class="n">Coordinates</span><span class="p">:</span>
-  <span class="o">*</span> <span class="n">lat</span>      <span class="p">(</span><span class="n">lat</span><span class="p">)</span> <span class="n">float64</span> <span class="o">-</span><span class="mf">90.0</span> <span class="o">-</span><span class="mf">89.06</span> <span class="o">-</span><span class="mf">88.12</span> <span class="o">-</span><span class="mf">87.17</span> <span class="o">...</span> <span class="mf">87.17</span> <span class="mf">88.12</span> <span class="mf">89.06</span> <span class="mf">90.0</span>
-  <span class="o">*</span> <span class="n">lon</span>      <span class="p">(</span><span class="n">lon</span><span class="p">)</span> <span class="n">float64</span> <span class="mf">0.0</span> <span class="mf">1.25</span> <span class="mf">2.5</span> <span class="mf">3.75</span> <span class="mf">5.0</span> <span class="o">...</span> <span class="mf">355.0</span> <span class="mf">356.2</span> <span class="mf">357.5</span> <span class="mf">358.8</span>
-  <span class="o">*</span> <span class="n">lev</span>      <span class="p">(</span><span class="n">lev</span><span class="p">)</span> <span class="n">float64</span> <span class="mf">1.868</span> <span class="mf">2.353</span> <span class="mf">2.948</span> <span class="mf">3.677</span> <span class="o">...</span> <span class="mf">947.5</span> <span class="mf">962.5</span> <span class="mf">977.5</span> <span class="mf">992.5</span>
-  <span class="o">*</span> <span class="n">time</span>     <span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="n">datetime64</span><span class="p">[</span><span class="n">ns</span><span class="p">]</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">01</span>
-<span class="n">Attributes</span><span class="p">:</span>
-    <span class="n">mdims</span><span class="p">:</span>         <span class="mi">1</span>
-    <span class="n">units</span><span class="p">:</span>         <span class="n">mol</span><span class="o">/</span><span class="n">mol</span>
-    <span class="n">long_name</span><span class="p">:</span>     <span class="n">CO</span> <span class="n">concentration</span>
-    <span class="n">cell_methods</span><span class="p">:</span>  <span class="n">time</span><span class="p">:</span> <span class="n">mean</span>
-<span class="p">(</span><span class="mi">192</span><span class="p">,</span> <span class="mi">288</span><span class="p">)</span>
-<span class="p">(</span><span class="mi">192</span><span class="p">,)</span>
+  <span class="o">*</span> <span class="n">lon</span>      <span class="p">(</span><span class="n">lon</span><span class="p">)</span> <span class="n">float32</span> <span class="o">-</span><span class="mf">179.5</span> <span class="o">-</span><span class="mf">178.5</span> <span class="o">-</span><span class="mf">177.5</span> <span class="o">-</span><span class="mf">176.5</span> <span class="o">...</span> <span class="mf">177.5</span> <span class="mf">178.5</span> <span class="mf">179.5</span>
+  <span class="o">*</span> <span class="n">lat</span>      <span class="p">(</span><span class="n">lat</span><span class="p">)</span> <span class="n">float32</span> <span class="o">-</span><span class="mf">89.5</span> <span class="o">-</span><span class="mf">88.5</span> <span class="o">-</span><span class="mf">87.5</span> <span class="o">-</span><span class="mf">86.5</span> <span class="o">-</span><span class="mf">85.5</span> <span class="o">...</span> <span class="mf">86.5</span> <span class="mf">87.5</span> <span class="mf">88.5</span> <span class="mf">89.5</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="define-location-data">
-<h2>Define location data.<a class="headerlink" href="#define-location-data" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Boulder, New York, Vancouver
-obs_names = [&quot;Boulder&quot;, &quot;Vancouver&quot;, &quot;New York&quot;]
-obs_lat = np.array([40.0150,49.2827,40.7128])
-obs_lon = np.array([-105.2705,-123.1207,-74.0060])
-num_obs = obs_lat.shape[0]
-</pre></div>
-</div>
-</div>
-<div class="section" id="plot-the-value-over-a-specific-region">
-<h2>Plot the value over a specific region.<a class="headerlink" href="#plot-the-value-over-a-specific-region" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="plot-the-value-over-the-globe">
+<h2>Plot the value over the globe.<a class="headerlink" href="#plot-the-value-over-the-globe" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(20,8))
 
 #Define projection
 ax = plt.axes(projection=ccrs.PlateCarree())
 
-# Zoom to a region
-#longitude limits in degrees
-ax.set_xlim(-170,-40)
-#latitude limits in degrees
-ax.set_ylim(5,75)
-
 #define contour levels
-clev = np.arange(40, 400, 5)
+clev = np.arange(0.5, 3.2, 0.1)
 
 #plot the data
-plt.contourf(lon,lat,var_srf,clev,cmap=&#39;Spectral_r&#39;,extend=&#39;both&#39;)
+plt.contourf(lon, lat, ds_masked.transpose()/1e18,clev,cmap=&#39;Spectral_r&#39;,extend=&#39;both&#39;)
 
 # add coastlines
 ax.add_feature(cfeature.COASTLINE)
-ax.add_feature(cfeature.BORDERS)
 
 #add lat lon grids
 gl = ax.gridlines(draw_labels=True, color=&#39;grey&#39;, alpha=0.8, linestyle=&#39;--&#39;)
@@ -197,7 +177,7 @@ gl.ylabels_right = False
 
 # Titles
 # Main
-plt.title(&quot;CAM-chem CO, January 2018&quot;,fontsize=18)
+plt.title(&quot;Global map of MOPITT column CO, January 2018&quot;,fontsize=18)
 
 # y-axis
 ax.text(-0.04, 0.5, &#39;Latitude&#39;, va=&#39;bottom&#39;, ha=&#39;center&#39;,
@@ -208,21 +188,15 @@ ax.text(0.5, -0.08, &#39;Longitude&#39;, va=&#39;bottom&#39;, ha=&#39;center&#39
         rotation=&#39;horizontal&#39;, rotation_mode=&#39;anchor&#39;,
         transform=ax.transAxes)
 # legend
-ax.text(1.15, 0.5, &#39;CO (ppb)&#39;, va=&#39;bottom&#39;, ha=&#39;center&#39;,
+ax.text(1.15, 0.5, &#39;CO (x 10$^{18}$ molec/cm$^{2}$)&#39;, va=&#39;bottom&#39;, ha=&#39;center&#39;,
         rotation=&#39;vertical&#39;, rotation_mode=&#39;anchor&#39;,
         transform=ax.transAxes)
-
-#add locations in a loop
-for i in range(num_obs):
-    plt.plot(obs_lon[i], obs_lat[i], linestyle=&#39;none&#39;, marker=&quot;o&quot;, markersize=8, alpha=0.8, c=&quot;black&quot;, markeredgecolor=&quot;black&quot;, markeredgewidth=1, transform=ccrs.PlateCarree())
-    plt.text(obs_lon[i] + 0.8, obs_lat[i] + 0.8, obs_names[i], fontsize=20, horizontalalignment=&#39;left&#39;, transform=ccrs.PlateCarree())
-
 
 plt.colorbar()
 plt.show()
 </pre></div>
 </div>
-<img alt="../../_images/plot_map_basic_co_cbar_region_points_11_0.png" src="../../_images/plot_map_basic_co_cbar_region_points_11_0.png" />
+<img alt="../../_images/plot_map_basic_co_satellite_11_0.png" src="../../_images/plot_map_basic_co_satellite_11_0.png" />
 </div>
 </div>
 

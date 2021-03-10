@@ -238,7 +238,7 @@ a.reference.external {
 
 .sidebar {
   width: 17rem;
-  height: 100vh;
+  height: 150vh;
   position: fixed;
   z-index: 1;
   background: #C3D7EE;
