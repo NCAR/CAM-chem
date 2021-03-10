@@ -16,6 +16,7 @@ This section describes some ways to plot model output on maps.
 .. |Plot_2D_ex3| image:: maps/Plot_2D_example_3_SE_RR_map_files/Plot_2D_example_3_SE_RR_map_15_1.png
    :width: 200px
 
+  
 .. list-table::
    :widths: 20 20 20 20
    :header-rows: 0
@@ -38,6 +39,8 @@ This section describes some ways to plot model output on maps.
        |
 
 
+
+------------
 
 - Examples using Plot_2D 
    
