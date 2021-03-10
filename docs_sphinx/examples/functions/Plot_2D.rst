@@ -65,11 +65,11 @@ Parameters:
    Example jupyter notebooks using the Plot_2D function:    
 - `1. Global map [FV grid] <https://ncar.github.io/CAM-chem/examples/maps/Plot_2D_example_1_global_map.html>`_
 
- - Plot a world map with coastlines, lon/lat lines, and colorbar
- - Change colormap of the plot
- - Add unit to the plot
- - Add title to the plot
- - Manually set maximum and minimum values of the plot
+ | ``-`` Plot a world map with coastlines, lon/lat lines, and colorbar
+ | ``-`` Change colormap of the plot
+ | ``-`` Add unit to the plot
+ | ``-`` Add title to the plot
+ | ``-`` Manually set maximum and minimum values of the plot
 
 - `2. Regional map [FV grid] <https://ncar.github.io/CAM-chem/examples/maps/Plot_2D_example_2_regional_map.html>`_
  - Plot a regional map with state lines
