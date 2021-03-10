@@ -38,8 +38,9 @@ This section describes some ways to plot model output on maps.
        |
 
 
-Examples using Plot_2D
 
+- Examples using Plot_2D 
+   
 .. list-table::
    :widths: 20 20 20 20
    :header-rows: 0
