@@ -7,11 +7,19 @@ Maps
 
 This section describes some ways to plot model output on maps.
 
-.. |map_img| image:: maps/plot_map_basic_files/plot_map_basic_5_0.png
+.. |map_img_1| image:: maps/plot_map_basic_files/plot_map_basic_5_0.png
    :width: 200px
-.. |map_co| image:: maps/plot_map_basic_co_files/plot_map_basic_co_9_0.png
+.. |map_img_2| image:: maps/plot_map_basic_files/plot_map_basic_5_0.png
    :width: 200px
-.. |map_co_cbar| image:: maps/plot_map_basic_co_cbar_files/plot_map_basic_co_cbar_9_0.png
+.. |map_img_3| image:: maps/plot_map_basic_co_files/plot_map_basic_co_9_0.png
+   :width: 200px
+.. |map_img_4| image:: maps/plot_map_basic_co_cbar_files/plot_map_basic_co_cbar_9_0.png
+   :width: 200px
+.. |map_img_5| image:: maps/plot_map_basic_co_cbar_cyclic_files/plot_map_basic_co_cbar_cyclic_11_0.png
+   :width: 200px
+.. |map_img_6| image:: maps/plot_map_basic_co_cbar_region_files/plot_map_basic_co_cbar_region_9_0.png
+   :width: 200px
+.. |map_img_7| image:: maps/plot_map_basic_co_cbar_region_points_files/plot_map_basic_co_cbar_region_points_11_0.png
    :width: 200px
 
   
@@ -20,19 +28,19 @@ This section describes some ways to plot model output on maps.
    :header-rows: 0
 
    * - | `map outlines <maps/plot_map_basic.html>`_
-       | |map_img|
-     - | alternate projection
-       |
+       | |map_img_1|
+     - | `alternate projection <maps/plot_projection_conus.html>`_
+       | |map_img_2|
      - | `model output as contours <maps/plot_map_basic_co.html>`_
-       | |map_co|
+       | |map_img_3|
      - | `define contour levels <maps/plot_map_basic_co_cbar.html>`_
-       | |map_co_cbar|
-   * - | remove while stripe at dateline
-       |
-     - | zoom into region
-       |
-     - | add location points
-       |
+       | |map_img_4|
+   * - | `remove while stripe at dateline <maps/plot_map_basic_co_cbar_cyclic.html>`_
+       | |map_img_5|
+     - | `zoom into region <maps/plot_map_basic_co_cbar_region.html>`_
+       | |map_img_6|
+     - | `add location points <maps/plot_map_basic_co_cbar_region_points.html>`_
+       | |map_img_7|
      - | add observation values at points
        |
    * - | convert to column values
@@ -50,7 +58,11 @@ This section describes some ways to plot model output on maps.
 
    Map outline <maps/plot_map_basic>
    Plot Tracer <maps/plot_map_basic_co>
+   CONUS projection <maps/plot_projection_conus>
    Adjust contours <maps/plot_map_basic_co_cbar>
+   Remove dateline gap <maps/plot_map_basic_co_cbar_cyclic>
+   Zoom to region <maps/plot_map_basic_co_cbar_region>
+   Add locations <maps/plot_map_basic_co_cbar_region_points>
 
 
 ------------

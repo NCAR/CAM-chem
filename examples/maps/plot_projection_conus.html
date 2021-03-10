@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="../../_static/custom.css" type=text/css>
+
+    <title>Python Resources for CAM-chem</title>
+
+    <script src="https://kit.fontawesome.com/be4ef5002e.js" crossorigin="anonymous"></script>
+  </head>
+
+
+  <body>
+
+
+    <nav class="navbar navbar-expand navbar-dark sticky-top bg-dark">
+      <a class="navbar-brand" style="font-weight:bold" href="../../index.html">Python resources for CAM-chem</a>
+      <ul class="navbar-nav mr-auto">
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" style="line-height:1.8em" href="https://wiki.ucar.edu/display/camchem/Home">CAM-chem Wiki</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/NCAR/CAM-chem"><i class="fab fa-github"></i></a>
+        </li>
+      </ul>
+    </nav>
+
+
+
+    <div class="container-fluid">
+
+      <!-- Sidebar -->
+      <nav class="sidebar" >
+        <div class="sidebar-header">
+          <h4></h4>
+        </div>
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+</ul>
+<p class="caption"><span class="caption-text">EXAMPLES</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../curtains.html">Curtains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../emissions.html">Emissions processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io.html">I/O tips and tricks</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../maps.html">Maps</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="plot_map_basic.html">Map outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co.html">Plot Tracer</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CONUS projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co_cbar.html">Adjust contours</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co_cbar_cyclic.html">Remove dateline gap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co_cbar_region.html">Zoom to region</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co_cbar_region_points.html">Add locations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plot_2D_example_1_global_map.html">Plot2D: Global FV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plot_2D_example_2_regional_map.html">Plot2D: Regional FV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plot_2D_example_3_SE_RR_map.html">Plot2D: Regional SE</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../profiles.html">Profiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../timeseries.html">Timeseries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widget.html">Widget</a></li>
+</ul>
+<p class="caption"><span class="caption-text">DOWNLOAD SAMPLE FILES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample.nc"> CAM-chem sample</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample_se.nc"> MUSICA sample</a></li>
+</ul>
+
+        
+      </nav>
+
+
+      <!-- Page Content -->
+      <main role="main" class="content" style="min-height:700px;">
+        
+  <div class="section" id="plot-a-map-as-lambert-conformal">
+<h1>Plot a map as Lambert Conformal<a class="headerlink" href="#plot-a-map-as-lambert-conformal" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># projections-conus.py
+# Carl Drews
+# July 2020
+# Added Lambert Conformal CONUS and Mexican states to Cartopy example 5 at:
+# https://scitools.org.uk/cartopy/docs/latest/crs/projections.html#lambertconformal
+
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature
+import matplotlib.pyplot as plt
+import cartopy.io.shapereader
+
+
+#plt.figure(figsize=(4.2897, 3))
+myLambert = ccrs.LambertConformal(central_longitude=-97.0,
+   central_latitude=(30.0 + 60.0)/2)
+ax = plt.axes(projection=myLambert)
+ax.set_extent([-119.90, -73.50, 23.08, 50.00])
+
+# set up line width
+width = 1.0
+
+ax.coastlines(resolution=&#39;50m&#39;, linewidth=width)
+ax.add_feature(cfeature.BORDERS.with_scale(&quot;50m&quot;), linewidth=width)
+ax.add_feature(cfeature.STATES.with_scale(&quot;50m&quot;), linewidth=width/2)
+
+# States of Mexico
+# download from: https://www.naturalearthdata.com/downloads/10m-cultural-vectors/
+shapeFilename = &quot;./ne_10m_admin_1_states_provinces/ne_10m_admin_1_states_provinces.shp&quot;
+print(&quot;Reading states provinces from {}\n&quot;.format(shapeFilename))
+reader = cartopy.io.shapereader.Reader(shapeFilename)
+statesProvinces = reader.records()
+
+mexicoStates = []
+for stateProvince in statesProvinces:
+   if (stateProvince.attributes[&quot;admin&quot;] == &quot;Mexico&quot;):
+      print(&quot;State province {}&quot;.format(stateProvince.attributes[&quot;name&quot;]))
+      mexicoStates.append(stateProvince.geometry)
+
+ax.add_geometries(mexicoStates, ccrs.PlateCarree(),
+   edgecolor=&quot;black&quot;, facecolor=&#39;none&#39;, linewidth=width/2)
+
+ax.gridlines()
+
+savePath = &quot;./images/projection-conus.png&quot;
+
+try:
+    print(&quot;Saving image to {}\n&quot;.format(savePath))
+    # trim whitespace but leave a narrow margin
+    plt.savefig(savePath,
+        bbox_inches=&quot;tight&quot;, pad_inches=0.04)
+
+except RuntimeError as oops:
+    print(&quot;{}\n&quot;.format(traceback.format_exc()))
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Reading</span> <span class="n">states</span> <span class="n">provinces</span> <span class="kn">from</span> <span class="nn">.</span><span class="o">/</span><span class="n">ne_10m_admin_1_states_provinces</span><span class="o">/</span><span class="n">ne_10m_admin_1_states_provinces</span><span class="o">.</span><span class="n">shp</span>
+
+<span class="n">State</span> <span class="n">province</span> <span class="n">Sonora</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Baja</span> <span class="n">California</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Chihuahua</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Coahuila</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Tamaulipas</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Nuevo</span> <span class="n">León</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Quintana</span> <span class="n">Roo</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Campeche</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Tabasco</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Chiapas</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Colima</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Nayarit</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Baja</span> <span class="n">California</span> <span class="n">Sur</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Sinaloa</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Yucatán</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Veracruz</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Jalisco</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Michoacán</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Guerrero</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Oaxaca</span>
+<span class="n">State</span> <span class="n">province</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">México</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Puebla</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Morelos</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Querétaro</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Hidalgo</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Guanajuato</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">San</span> <span class="n">Luis</span> <span class="n">Potosí</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Zacatecas</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Aguascalientes</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Durango</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Tlaxcala</span>
+<span class="n">State</span> <span class="n">province</span> <span class="n">Distrito</span> <span class="n">Federal</span>
+<span class="n">Saving</span> <span class="n">image</span> <span class="n">to</span> <span class="o">./</span><span class="n">images</span><span class="o">/</span><span class="n">projection</span><span class="o">-</span><span class="n">conus</span><span class="o">.</span><span class="n">png</span>
+</pre></div>
+</div>
+<img alt="../../_images/plot_projection_conus_1_1.png" src="../../_images/plot_projection_conus_1_1.png" />
+</div>
+
+
+      </main>
+
+    </div>
+
+
+
+    <footer class="text-light bg-dark pt-3">
+      <div class="container" style="background-color:transparent; border:none">
+        <div class="row">
+          <div class="col-12 col-md">
+            <a href="https://www2.acom.ucar.edu/"><img src="../../_static/img/ACOM-contemp-logo-white.png" alt="ACOM" class="ncar-logo"></a>
+          </div>
+          <div class="col-12 col-md-auto">
+            <p class="footer-text copyright"><a href="https://www.ucar.edu/">University Corporation for Atmospheric Research</a> &copy; 2021<br>
+            Built with <a href="https://www.sphinx-doc.org/en/master/" target="_blank" rel="noopener">Sphinx</a>. Proudly published with <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a><br>
+            Created with the help of <a href="https://ncar.github.io/xdev/" target="_blank" rel="noopener">NCAR’s Xdev Team</a>. Apache 2.0</p>
+          </div>
+        </div>
+        <div class="row pt-3 border-top">
+          <div class="col-auto">
+            <a href="https://nsf.gov/"><img src="../../_static/img/footer-logo-nsf.png" alt="NSF" class="nsf-logo"></a>
+          </div>
+          <div class="col">
+            <p class="footer-text">This material is based upon work supported by the National Center for Atmospheric Research, a major facility
+            sponsored by the National Science Foundation and managed by the University Corporation for Atmospheric Research. Any opinions,
+            findings and conclusions or recommendations expressed in this material do not necessarily reflect the views of the National
+            Science Foundation.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+  </body>
+</html>

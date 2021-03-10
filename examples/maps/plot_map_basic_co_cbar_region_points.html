@@ -57,10 +57,10 @@
 <li class="toctree-l2"><a class="reference internal" href="plot_map_basic.html">Map outline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co.html">Plot Tracer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_projection_conus.html">CONUS projection</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Adjust contours</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co_cbar.html">Adjust contours</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co_cbar_cyclic.html">Remove dateline gap</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co_cbar_region.html">Zoom to region</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co_cbar_region_points.html">Add locations</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Add locations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plot_2D_example_1_global_map.html">Plot2D: Global FV</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plot_2D_example_2_regional_map.html">Plot2D: Regional FV</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plot_2D_example_3_SE_RR_map.html">Plot2D: Regional SE</a></li>
@@ -90,6 +90,8 @@
 # - Load a netCDF file
 # - Extract one variable: CO
 # - Create contour plot of variable as world map with coastlines
+# - Zoom to a specific region: North America
+# - Add in custom locations
 # - Customize contours and colorbar
 # - Add axes labels
 # - Add grid lines
@@ -119,10 +121,10 @@ nc_load = xr.open_dataset(file_to_open)
 </div>
 </div>
 <div class="section" id="extract-the-variable-of-choice-at-the-time-and-level-of-choice">
-<h2>Extract the variable of choice at the time and level of choice<a class="headerlink" href="#extract-the-variable-of-choice-at-the-time-and-level-of-choice" title="Permalink to this headline">¶</a></h2>
+<h2>Extract the variable of choice at the time and level of choice.<a class="headerlink" href="#extract-the-variable-of-choice-at-the-time-and-level-of-choice" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#extract variable
 var_sel = nc_load[&#39;CO&#39;]
-#print(var_sel)
+print(var_sel)
 
 #select the surface level at a specific time and convert to ppbv from vmr
 #select the surface level for an average over three times and convert to ppbv from vmr
@@ -133,27 +135,58 @@ print(var_srf.shape)
 #extract grid variables
 lat = var_sel.coords[&#39;lat&#39;]
 lon = var_sel.coords[&#39;lon&#39;]
+print(lat.shape)
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">192</span><span class="p">,</span> <span class="mi">288</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xarray</span><span class="o">.</span><span class="n">DataArray</span> <span class="s1">&#39;CO&#39;</span> <span class="p">(</span><span class="n">time</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">lev</span><span class="p">:</span> <span class="mi">56</span><span class="p">,</span> <span class="n">lat</span><span class="p">:</span> <span class="mi">192</span><span class="p">,</span> <span class="n">lon</span><span class="p">:</span> <span class="mi">288</span><span class="p">)</span><span class="o">&gt;</span>
+<span class="p">[</span><span class="mi">3096576</span> <span class="n">values</span> <span class="k">with</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">]</span>
+<span class="n">Coordinates</span><span class="p">:</span>
+  <span class="o">*</span> <span class="n">lat</span>      <span class="p">(</span><span class="n">lat</span><span class="p">)</span> <span class="n">float64</span> <span class="o">-</span><span class="mf">90.0</span> <span class="o">-</span><span class="mf">89.06</span> <span class="o">-</span><span class="mf">88.12</span> <span class="o">-</span><span class="mf">87.17</span> <span class="o">...</span> <span class="mf">87.17</span> <span class="mf">88.12</span> <span class="mf">89.06</span> <span class="mf">90.0</span>
+  <span class="o">*</span> <span class="n">lon</span>      <span class="p">(</span><span class="n">lon</span><span class="p">)</span> <span class="n">float64</span> <span class="mf">0.0</span> <span class="mf">1.25</span> <span class="mf">2.5</span> <span class="mf">3.75</span> <span class="mf">5.0</span> <span class="o">...</span> <span class="mf">355.0</span> <span class="mf">356.2</span> <span class="mf">357.5</span> <span class="mf">358.8</span>
+  <span class="o">*</span> <span class="n">lev</span>      <span class="p">(</span><span class="n">lev</span><span class="p">)</span> <span class="n">float64</span> <span class="mf">1.868</span> <span class="mf">2.353</span> <span class="mf">2.948</span> <span class="mf">3.677</span> <span class="o">...</span> <span class="mf">947.5</span> <span class="mf">962.5</span> <span class="mf">977.5</span> <span class="mf">992.5</span>
+  <span class="o">*</span> <span class="n">time</span>     <span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="n">datetime64</span><span class="p">[</span><span class="n">ns</span><span class="p">]</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">01</span>
+<span class="n">Attributes</span><span class="p">:</span>
+    <span class="n">mdims</span><span class="p">:</span>         <span class="mi">1</span>
+    <span class="n">units</span><span class="p">:</span>         <span class="n">mol</span><span class="o">/</span><span class="n">mol</span>
+    <span class="n">long_name</span><span class="p">:</span>     <span class="n">CO</span> <span class="n">concentration</span>
+    <span class="n">cell_methods</span><span class="p">:</span>  <span class="n">time</span><span class="p">:</span> <span class="n">mean</span>
+<span class="p">(</span><span class="mi">192</span><span class="p">,</span> <span class="mi">288</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">192</span><span class="p">,)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="define-location-data">
+<h2>Define location data.<a class="headerlink" href="#define-location-data" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Boulder, New York, Vancouver
+obs_names = [&quot;Boulder&quot;, &quot;Vancouver&quot;, &quot;New York&quot;]
+obs_lat = np.array([40.0150,49.2827,40.7128])
+obs_lon = np.array([-105.2705,-123.1207,-74.0060])
+num_obs = obs_lat.shape[0]
 </pre></div>
 </div>
 </div>
 <div class="section" id="plot-the-value-over-a-specific-region">
-<h2>Plot the value over a specific region<a class="headerlink" href="#plot-the-value-over-a-specific-region" title="Permalink to this headline">¶</a></h2>
+<h2>Plot the value over a specific region.<a class="headerlink" href="#plot-the-value-over-a-specific-region" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(20,8))
 
 #Define projection
 ax = plt.axes(projection=ccrs.PlateCarree())
 
+# Zoom to a region
+#longitude limits in degrees
+ax.set_xlim(-170,-40)
+#latitude limits in degrees
+ax.set_ylim(5,75)
+
 #define contour levels
-clev = np.arange(30, 500, 10)
+clev = np.arange(40, 400, 5)
 
 #plot the data
 plt.contourf(lon,lat,var_srf,clev,cmap=&#39;Spectral_r&#39;,extend=&#39;both&#39;)
 
 # add coastlines
 ax.add_feature(cfeature.COASTLINE)
+ax.add_feature(cfeature.BORDERS)
 
 #add lat lon grids
 gl = ax.gridlines(draw_labels=True, color=&#39;grey&#39;, alpha=0.8, linestyle=&#39;--&#39;)
@@ -162,7 +195,7 @@ gl.ylabels_right = False
 
 # Titles
 # Main
-plt.title(&quot;Global map of CAM-chem CO, January 2018&quot;,fontsize=18)
+plt.title(&quot;CAM-chem CO, January 2018&quot;,fontsize=18)
 
 # y-axis
 ax.text(-0.04, 0.5, &#39;Latitude&#39;, va=&#39;bottom&#39;, ha=&#39;center&#39;,
@@ -177,11 +210,17 @@ ax.text(1.15, 0.5, &#39;CO (ppb)&#39;, va=&#39;bottom&#39;, ha=&#39;center&#39;,
         rotation=&#39;vertical&#39;, rotation_mode=&#39;anchor&#39;,
         transform=ax.transAxes)
 
+#add locations in a loop
+for i in range(num_obs):
+    plt.plot(obs_lon[i], obs_lat[i], linestyle=&#39;none&#39;, marker=&quot;o&quot;, markersize=8, alpha=0.8, c=&quot;black&quot;, markeredgecolor=&quot;black&quot;, markeredgewidth=1, transform=ccrs.PlateCarree())
+    plt.text(obs_lon[i] + 0.8, obs_lat[i] + 0.8, obs_names[i], fontsize=20, horizontalalignment=&#39;left&#39;, transform=ccrs.PlateCarree())
+
+
 plt.colorbar()
 plt.show()
 </pre></div>
 </div>
-<img alt="../../_images/plot_map_basic_co_cbar_9_0.png" src="../../_images/plot_map_basic_co_cbar_9_0.png" />
+<img alt="../../_images/plot_map_basic_co_cbar_region_points_11_0.png" src="../../_images/plot_map_basic_co_cbar_region_points_11_0.png" />
 </div>
 </div>
 

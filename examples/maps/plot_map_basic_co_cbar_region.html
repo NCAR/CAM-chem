@@ -57,9 +57,9 @@
 <li class="toctree-l2"><a class="reference internal" href="plot_map_basic.html">Map outline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co.html">Plot Tracer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_projection_conus.html">CONUS projection</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Adjust contours</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co_cbar.html">Adjust contours</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co_cbar_cyclic.html">Remove dateline gap</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co_cbar_region.html">Zoom to region</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Zoom to region</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co_cbar_region_points.html">Add locations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plot_2D_example_1_global_map.html">Plot2D: Global FV</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plot_2D_example_2_regional_map.html">Plot2D: Regional FV</a></li>
@@ -90,6 +90,7 @@
 # - Load a netCDF file
 # - Extract one variable: CO
 # - Create contour plot of variable as world map with coastlines
+# - Zoom to a specific region: North America
 # - Customize contours and colorbar
 # - Add axes labels
 # - Add grid lines
@@ -146,14 +147,21 @@ lon = var_sel.coords[&#39;lon&#39;]
 #Define projection
 ax = plt.axes(projection=ccrs.PlateCarree())
 
+# Zoom to a region
+#longitude limits in degrees
+ax.set_xlim(-170,-40)
+#latitude limits in degrees
+ax.set_ylim(5,75)
+
 #define contour levels
-clev = np.arange(30, 500, 10)
+clev = np.arange(40, 400, 5)
 
 #plot the data
 plt.contourf(lon,lat,var_srf,clev,cmap=&#39;Spectral_r&#39;,extend=&#39;both&#39;)
 
 # add coastlines
 ax.add_feature(cfeature.COASTLINE)
+ax.add_feature(cfeature.BORDERS)
 
 #add lat lon grids
 gl = ax.gridlines(draw_labels=True, color=&#39;grey&#39;, alpha=0.8, linestyle=&#39;--&#39;)
@@ -162,7 +170,7 @@ gl.ylabels_right = False
 
 # Titles
 # Main
-plt.title(&quot;Global map of CAM-chem CO, January 2018&quot;,fontsize=18)
+plt.title(&quot;CAM-chem CO, January 2018&quot;,fontsize=18)
 
 # y-axis
 ax.text(-0.04, 0.5, &#39;Latitude&#39;, va=&#39;bottom&#39;, ha=&#39;center&#39;,
@@ -181,7 +189,7 @@ plt.colorbar()
 plt.show()
 </pre></div>
 </div>
-<img alt="../../_images/plot_map_basic_co_cbar_9_0.png" src="../../_images/plot_map_basic_co_cbar_9_0.png" />
+<img alt="../../_images/plot_map_basic_co_cbar_region_9_0.png" src="../../_images/plot_map_basic_co_cbar_region_9_0.png" />
 </div>
 </div>
 

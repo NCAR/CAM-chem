@@ -57,8 +57,8 @@
 <li class="toctree-l2"><a class="reference internal" href="plot_map_basic.html">Map outline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co.html">Plot Tracer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_projection_conus.html">CONUS projection</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Adjust contours</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co_cbar_cyclic.html">Remove dateline gap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co_cbar.html">Adjust contours</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Remove dateline gap</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co_cbar_region.html">Zoom to region</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_map_basic_co_cbar_region_points.html">Add locations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plot_2D_example_1_global_map.html">Plot2D: Global FV</a></li>
@@ -90,6 +90,7 @@
 # - Load a netCDF file
 # - Extract one variable: CO
 # - Create contour plot of variable as world map with coastlines
+# - Add cyclic point
 # - Customize contours and colorbar
 # - Add axes labels
 # - Add grid lines
@@ -100,6 +101,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
 import cartopy.crs as ccrs                 # For plotting maps
 import cartopy.feature as cfeature         # For plotting maps
+from cartopy.util import add_cyclic_point  # For plotting maps
 from pathlib import Path                   # System agnostic paths
 import xarray as xr                        # For loading the data arrays
 import numpy as np                         # For array creation and calculations
@@ -139,8 +141,14 @@ lon = var_sel.coords[&#39;lon&#39;]
 </pre></div>
 </div>
 </div>
-<div class="section" id="plot-the-value-over-a-specific-region">
-<h2>Plot the value over a specific region<a class="headerlink" href="#plot-the-value-over-a-specific-region" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="add-cyclic-point-to-avoid-white-stripe-at-lon-0">
+<h2>Add cyclic point to avoid white stripe at lon=0.<a class="headerlink" href="#add-cyclic-point-to-avoid-white-stripe-at-lon-0" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>var_srf_cyc, lon_cyc = add_cyclic_point(var_srf, coord=lon)
+</pre></div>
+</div>
+</div>
+<div class="section" id="plot-the-value-over-the-globe">
+<h2>Plot the value over the globe.<a class="headerlink" href="#plot-the-value-over-the-globe" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(20,8))
 
 #Define projection
@@ -150,7 +158,7 @@ ax = plt.axes(projection=ccrs.PlateCarree())
 clev = np.arange(30, 500, 10)
 
 #plot the data
-plt.contourf(lon,lat,var_srf,clev,cmap=&#39;Spectral_r&#39;,extend=&#39;both&#39;)
+plt.contourf(lon_cyc,lat,var_srf_cyc,clev,cmap=&#39;Spectral_r&#39;,extend=&#39;both&#39;)
 
 # add coastlines
 ax.add_feature(cfeature.COASTLINE)
@@ -181,7 +189,7 @@ plt.colorbar()
 plt.show()
 </pre></div>
 </div>
-<img alt="../../_images/plot_map_basic_co_cbar_9_0.png" src="../../_images/plot_map_basic_co_cbar_9_0.png" />
+<img alt="../../_images/plot_map_basic_co_cbar_cyclic_11_0.png" src="../../_images/plot_map_basic_co_cbar_cyclic_11_0.png" />
 </div>
 </div>
 
