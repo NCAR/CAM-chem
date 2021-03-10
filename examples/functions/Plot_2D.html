@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="../../_static/custom.css" type=text/css>
+
+    <title>Python Resources for CAM-chem</title>
+
+    <script src="https://kit.fontawesome.com/be4ef5002e.js" crossorigin="anonymous"></script>
+  </head>
+
+
+  <body>
+
+
+    <nav class="navbar navbar-expand navbar-dark sticky-top bg-dark">
+      <a class="navbar-brand" style="font-weight:bold" href="../../index.html">Python resources for CAM-chem</a>
+      <ul class="navbar-nav mr-auto">
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" style="line-height:1.8em" href="https://wiki.ucar.edu/display/camchem/Home">CAM-chem Wiki</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/NCAR/CAM-chem"><i class="fab fa-github"></i></a>
+        </li>
+      </ul>
+    </nav>
+
+
+
+    <div class="container-fluid">
+
+      <!-- Sidebar -->
+      <nav class="sidebar" >
+        <div class="sidebar-header">
+          <h4></h4>
+        </div>
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+</ul>
+<p class="caption"><span class="caption-text">EXAMPLES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../curtains.html">Curtains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../emissions.html">Emissions processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io.html">I/O tips and tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maps.html">Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../profiles.html">Profiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../timeseries.html">Timeseries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widget.html">Widget</a></li>
+</ul>
+<p class="caption"><span class="caption-text">DOWNLOAD SAMPLE FILES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample.nc"> CAM-chem sample</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample_se.nc"> MUSICA sample</a></li>
+</ul>
+
+        
+      </nav>
+
+
+      <!-- Page Content -->
+      <main role="main" class="content" style="min-height:700px;">
+        
+  <div class="section" id="plot-2d">
+<h1>Plot_2D<a class="headerlink" href="#plot-2d" title="Permalink to this headline">¶</a></h1>
+<div class="docutils container">
+<dl class="simple">
+<dt><strong>Plot_2D</strong> (self, var, lons=None, lats=None, lon_range=[-180,180], lat_range=[-90,90],</dt><dd><p>scrip_file=””, ax=None, cmap=None, projection=ccrs.PlateCarree(),
+grid_line=False, grid_line_lw=1, coast=True, country=True, state=False,
+resolution=”10m”, feature_line_lw=0.5, feature_color=”black”,
+lonlat_line=True, lon_interval=None, lat_interval=None,
+font_family=”STIXGeneral”, label_size=15, colorbar=True,
+log_scale=False, log_scale_min=None, diff=False, orientation=”horizontal”,
+shrink=0.8, pad=0.12, fraction=0.1, extend=’both’,
+colorticks=None, colorlabels=None, pretty_tick=True, nticks=None,
+cmax=None, cmin=None, title=””, title_size=20, title_bold=False,
+unit=””, unit_size=15, unit_bold=False, unit_italic=True, unit_offset=[0.0,0.0],
+verbose=False)</p>
+</dd>
+</dl>
+</div>
+<p>Plot 2D map. This function can be used for either finite volume grid or spectral element (+regional refinement) mesh. It can also be used for either global or regional plots. Both linear and log scale plots are supported as well. The jupyter notebook file with example applications is available <a class="reference external" href="http://https://github.com/NCAR/CAM-chem/new/main/docs_sphinx/examples/functions/">here</a></p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p>var (<a class="reference external" href="http://xarray.pydata.org/en/stable/">xarray</a> or any array) - A 2D (or 1D for spectral element) variable array to be plotted.</p></li>
+<li><p>lons (1D array, optional) - Longitude values (1-D array) for plotting. Required for the non-xarray variable in the FV grid.</p></li>
+<li><p>lats (1D array, optional) -  Latitude values (1-D array) for plotting. Required for the non-xarray variable in the FV grid.</p></li>
+<li><p>lon_range (list, optional) - Used for regional plot. Ranges of longitudes to plot. e.g., [west longitude edge, east longitude edge].</p></li>
+<li><p>lat_range (list, optional) - Used for regional plot. Ranges of latitudes to plot. e.g., [south latitude edge, north latitude edge].</p></li>
+<li><p>scrip_file (str, optional) - A scrip filename for SE(-RR) mesh. Required for SE(-RR) plot.</p></li>
+<li><p>ax (matplotlib.axes, optional) - Parent axes from which space for the plot will be drawn for advanced users. Using this keyword, Plot_2D function can be used in a more customized way.</p></li>
+<li><p>cmap (matplotlib colormap, optional) - Colormap from <a class="reference external" href="https://matplotlib.org/stable/api/cm_api.html">matplotlib.cm</a> or <a class="reference external" href="https://github.com/NCAR/CAM-chem/blob/main/docs/jupyter_notebook_examples/maps/Custom_colorbar.md">user-defined colormap</a>. Default is cm.jet for normal plot and cm.bwr for difference plot.</p></li>
+<li><p>projection (cartopy.crs, optional) - map projection method by <a class="reference external" href="https://scitools.org.uk/cartopy/docs/latest/crs/projections.html">cartopy.crs</a>.</p></li>
+<li><p>grid_line (bool, optional) - If True, the script will draw grid lines. Deafulat is False.</p></li>
+<li><p>grid_line_lw (float, optional) - Line width for grid line when grid_line is True.</p></li>
+<li><p>coast (bool, optional) - If True, the script will draw coastlines.</p></li>
+<li><p>country (bool, optional) - If True, the script will draw country boundary lines.</p></li>
+<li><p>state (bool, optional) - If True, the script will draw state/province lines.</p></li>
+<li><p>resolution (str, optional) - Resolution of coast/country/state lines (10m, 50m, or 110m).</p></li>
+<li><p>feature_line_lw (float, optional) - Line width for coast/country/state lines.</p></li>
+<li><p>feature_color (str, optional) - Color for coast/country/state lines.</p></li>
+<li><p>lonlat_line (bool, optional) - If True, the script will draw longitude &amp; latitude lines.</p></li>
+<li><p>lon_interval (float, optional) - Used for specifying longitude interval in degree. If not provided, It is automatically calculated to have 6-7 longitude lines in the plot.</p></li>
+<li><p>lat_interval (float, optional) - Used for specifying latitude interval in degree. If not provided, It is automatically calculated to have 6-7 latitude lines in the plot.</p></li>
+<li><p>font_family (str, optional) - Font family being used for the plot. Default is STIXGeneral (similar to Times New Roman).</p></li>
+<li><p>label_size (integer, optional) - Label size of longitude and latitude values.</p></li>
+<li><p>colorbar (bool, optional) - If True, the script will add a colorbar.</p></li>
+<li><p>log_scale (bool, optional) - If True, the plot will be drawn on a log scale. If False, the plot will be drawn on a linear scale. Default is False.</p></li>
+<li><p>log_scale_min (float, optional) - If provided, this value is used for the closest tick to zero. It is used for maximum tick value &lt; 10^(-1). Ignored if both “cmin” and “cmax” are positive or if “colorticks” is specified.</p></li>
+<li><p>diff (bool, optional) - If True, absolute values of cmin and cmax set to be the same.</p></li>
+<li><p>orientation (str, optional) - Orientation of colorbar. Can be either “horizontal” or “vertical”.</p></li>
+<li><p>shrink (float, optional) - For colorbar adjustment. Fraction by which to multiply the size of the colorbar.</p></li>
+<li><p>pad (float, optional) - For colorbar adjustment. Fraction of original axis between colorbar and image axis.</p></li>
+<li><p>fraction (float, optional) - For colorbar adjustment. Fraction of original axis to use for colorbar.</p></li>
+<li><p>extend (str, optional) - For colorbar adjustment. If not ‘neither’, make pointed ends for out-of-range values. Can be {‘neither’, ‘both’, ‘min’, ‘max}. Default is ‘both’.</p></li>
+<li><p>colorticks (list, optional) - List of ticks being used for colorbar.</p></li>
+<li><p>colorlabels (list, optional) - List of tick labels being used for colorbar.</p></li>
+<li><p>pretty_tick (bool, optional) - If True, color ticks/labels are specially calculated inside of the code. Ignored if “colorticks” keyword is specified.</p></li>
+<li><p>nticks (integer, optional) - Number of ticks in colorbar. Ignored if “colorticks” keyword is specified.</p></li>
+<li><p>cmax (float, optional) - Maximum value for the plot and colorbar. If not specified, the script will calculate the maximum value of the “var”.</p></li>
+<li><p>cmin (float, optional) - Minimum value for the plot and colorbar. If not specified, the script will calculate the minimum value of the “var”.</p></li>
+<li><p>title (str, optional) - If specified, the script will add a title to the plot.</p></li>
+<li><p>title_size (integer, optional) - Font size of the title. Default is 20.</p></li>
+<li><p>title_bold (bool, optional) - If True, set title font to bold. Default is False.</p></li>
+<li><p>unit (str, optional) - If specified, the script will add a unit to the plot.</p></li>
+<li><p>unit_size (integer, optional) - Font size of the unit. Default is 15.</p></li>
+<li><p>unit_bold (bool, optional) - If True, set the unit font to bold.</p></li>
+<li><p>unit_italic (bool, optional) - If True, set unit font to italic.</p></li>
+<li><p>unit_offset (list, optional) - If provided, the script will make an adjustment to the unit position. [x-axis, y-axis].</p></li>
+<li><p>verbose: Display detailed information on what is being done.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Example jupyter notebooks using the Plot_2D function:</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>May not compatible with Python 2.7</p>
+</div>
+</div>
+
+
+      </main>
+
+    </div>
+
+
+
+    <footer class="text-light bg-dark pt-3">
+      <div class="container" style="background-color:transparent; border:none">
+        <div class="row">
+          <div class="col-12 col-md">
+            <a href="https://www2.acom.ucar.edu/"><img src="../../_static/img/ACOM-contemp-logo-white.png" alt="ACOM" class="ncar-logo"></a>
+          </div>
+          <div class="col-12 col-md-auto">
+            <p class="footer-text copyright"><a href="https://www.ucar.edu/">University Corporation for Atmospheric Research</a> &copy; 2021<br>
+            Built with <a href="https://www.sphinx-doc.org/en/master/" target="_blank" rel="noopener">Sphinx</a>. Proudly published with <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a><br>
+            Created with the help of <a href="https://ncar.github.io/xdev/" target="_blank" rel="noopener">NCAR’s Xdev Team</a>. Apache 2.0</p>
+          </div>
+        </div>
+        <div class="row pt-3 border-top">
+          <div class="col-auto">
+            <a href="https://nsf.gov/"><img src="../../_static/img/footer-logo-nsf.png" alt="NSF" class="nsf-logo"></a>
+          </div>
+          <div class="col">
+            <p class="footer-text">This material is based upon work supported by the National Center for Atmospheric Research, a major facility
+            sponsored by the National Science Foundation and managed by the University Corporation for Atmospheric Research. Any opinions,
+            findings and conclusions or recommendations expressed in this material do not necessarily reflect the views of the National
+            Science Foundation.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+  </body>
+</html>
