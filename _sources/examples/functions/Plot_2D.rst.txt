@@ -72,10 +72,12 @@ Parameters:
   - Manually set maximum and minimum values of the plot
 
 - `2. Regional map [FV grid] <https://ncar.github.io/CAM-chem/examples/maps/Plot_2D_example_2_regional_map.html>`_
+
   - Plot a regional map with state lines
   - Add grid lines to see the exact grids of the model
 
 - `3. Global/Regional map [SE-RR grid] <https://ncar.github.io/CAM-chem/examples/maps/Plot_2D_example_3_SE_RR_map.html>`_
+
   - Plot a world map from SE-RR mesh
   - Add a grid line
   - Plot a regional map
