@@ -50,7 +50,7 @@ Note that you must specify scrip file to let the script know what mesh looks lik
 
 
 
-.. image:: Plot_2D_example_3_SE_RR_map_files/Plot_2D_example_3_SE_RR_map_7_1.png
+.. image:: Plot_2D_example_3_SE_RR_map_files%5CPlot_2D_example_3_SE_RR_map_7_1.png
 
 
 Add a grid line to see the model mesh
@@ -71,7 +71,7 @@ Add a grid line to see the model mesh
 
 
 
-.. image:: Plot_2D_example_3_SE_RR_map_files/Plot_2D_example_3_SE_RR_map_9_1.png
+.. image:: Plot_2D_example_3_SE_RR_map_files%5CPlot_2D_example_3_SE_RR_map_9_1.png
 
 
 Let’s plot a regional map
@@ -92,7 +92,7 @@ Let’s plot a regional map
 
 
 
-.. image:: Plot_2D_example_3_SE_RR_map_files/Plot_2D_example_3_SE_RR_map_11_1.png
+.. image:: Plot_2D_example_3_SE_RR_map_files%5CPlot_2D_example_3_SE_RR_map_11_1.png
 
 
 Let’s change the interval of longitude labels and add state lines
@@ -113,7 +113,7 @@ Let’s change the interval of longitude labels and add state lines
 
 
 
-.. image:: Plot_2D_example_3_SE_RR_map_files/Plot_2D_example_3_SE_RR_map_13_1.png
+.. image:: Plot_2D_example_3_SE_RR_map_files%5CPlot_2D_example_3_SE_RR_map_13_1.png
 
 
 Add unit and title, and change maximum value of the plot
@@ -134,5 +134,5 @@ Add unit and title, and change maximum value of the plot
 
 
 
-.. image:: Plot_2D_example_3_SE_RR_map_files/Plot_2D_example_3_SE_RR_map_15_1.png
+.. image:: Plot_2D_example_3_SE_RR_map_files%5CPlot_2D_example_3_SE_RR_map_15_1.png
 
