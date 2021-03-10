@@ -9,7 +9,7 @@ Plot_2D
 
    **Plot_2D** (self, var, lons=None, lats=None, lon_range=[-180,180], lat_range=[-90,90], scrip_file="", ax=None, cmap=None, projection=ccrs.PlateCarree(), grid_line=False, grid_line_lw=1, coast=True, country=True, state=False, resolution="10m", feature_line_lw=0.5, feature_color="black", lonlat_line=True, lon_interval=None, lat_interval=None, font_family="STIXGeneral", label_size=15, colorbar=True, log_scale=False, log_scale_min=None, diff=False, orientation="horizontal", shrink=0.8, pad=0.12, fraction=0.1, extend='both', colorticks=None, colorlabels=None, pretty_tick=True, nticks=None, cmax=None, cmin=None, title="", title_size=20, title_bold=False, unit="", unit_size=15, unit_bold=False, unit_italic=True, unit_offset=[0.0,0.0], verbose=False)
 
-Plot 2D map. This function can be used for either finite volume grid or spectral element (+regional refinement) mesh. It can also be used for either global or regional plots. Both linear and log scale plots are supported as well. `The python script is available here <https://github.com/NCAR/CAM-chem/blob/main/docs_sphinx/examples/functions/Plot_2D.py>`_. The jupyter notebook file with example applications is available `here <https://ncar.github.io/CAM-chem/examples/maps.html>`_
+Plot 2D map. This function can be used for either finite volume grid or spectral element (+regional refinement) mesh. It can also be used for either global or regional plots. Both linear and log scale plots are supported as well. `The python script is available here <https://github.com/NCAR/CAM-chem/blob/main/docs_sphinx/examples/functions/Plot_2D.py>`_. The jupyter notebook files with example applications are available `here <https://ncar.github.io/CAM-chem/examples/maps.html>`_
 
 
 Parameters:
