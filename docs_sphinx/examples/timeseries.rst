@@ -5,6 +5,8 @@
 Timeseries
 ====================
 
+Some examples of working with time versus values.
+
 .. |ts_img_1| image:: timeseries/plot_timeseries_basic_files/plot_timeseries_basic_13_0.png
    :width: 150px
 .. |ts_img_2| image:: timeseries/plot_timeseries_customize_files/plot_timeseries_customize_13_0.png
