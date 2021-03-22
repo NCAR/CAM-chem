@@ -71,12 +71,11 @@ Here, you will find a growing collection of Python code for atmospheric chemistr
      - | |profiles|_
        | Altitude versus concentration plots
    * - | scatter plots
-       | 2D plots of one variable plotted against a second variable
+       | Plots of one variable plotted against a second variable
      - | |timeseries|_
        | Temporal analysis of model output - time versus concentration plots
      - | |widget|_
        | Simplified navigator to quickly look through various slices
-     - 
 
 |
 
