@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="../../_static/custom.css" type=text/css>
+
+    <title>Python Resources for CAM-chem</title>
+
+    <script src="https://kit.fontawesome.com/be4ef5002e.js" crossorigin="anonymous"></script>
+  </head>
+
+
+  <body>
+
+
+    <nav class="navbar navbar-expand navbar-dark sticky-top bg-dark">
+      <a class="navbar-brand" style="font-weight:bold" href="../../index.html">Python resources for CAM-chem</a>
+      <ul class="navbar-nav mr-auto">
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" style="line-height:1.8em" href="https://wiki.ucar.edu/display/camchem/Home">CAM-chem Wiki</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/NCAR/CAM-chem"><i class="fab fa-github"></i></a>
+        </li>
+      </ul>
+    </nav>
+
+
+
+    <div class="container-fluid">
+
+      <!-- Sidebar -->
+      <nav class="sidebar" >
+        <div class="sidebar-header">
+          <h4></h4>
+        </div>
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+</ul>
+<p><span class="caption-text">EXAMPLES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../curtains.html">Curtains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../emissions.html">Emissions processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io.html">I/O tips and tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maps.html">Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../profiles.html">Profiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../timeseries.html">Timeseries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widget.html">Widget</a></li>
+</ul>
+<p><span class="caption-text">DOWNLOAD SAMPLE DATA</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample.nc"> CAM-chem sample</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample_se.nc"> MUSICA sample</a></li>
+</ul>
+
+        
+      </nav>
+
+
+      <!-- Page Content -->
+      <main role="main" class="content" style="min-height:700px;">
+        
+  <section id="calc-emis-t">
+<h1>Calc_Emis_T<a class="headerlink" href="#calc-emis-t" title="Permalink to this headline">¶</a></h1>
+<div class="docutils container">
+<p><strong>Calc_Emis_T</strong> (var, dimension=[], dim_var={}, unit=’’, mw=None, date_range=[], lon_range=[], lat_range=[], ndays=31, scrip_file=””, print_results=True, ignore_warning=False, verbose=False)</p>
+</div>
+<p>Calculate the emission total of species. This function can be used for either finite volume grid or spectral element (+regional refinement) mesh. It can also be used for either global or regional emission total.</p>
+<dl>
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p>var (<a class="reference external" href="http://xarray.pydata.org/en/stable/">xarray</a> or any array) - A 2D (or 1D for spectral element) emission array. Basically it should have longitude and latitude dimensions, but time and altitude dimensions are also supported. If time dimension is provided, the function will calculate timeseries. If altitude dimension is provided, the function will calculate vertically-integrated emission total.</p></li>
+<li><p>dimension (list, optional) - if var is not an xarray, the dimension must be specified. supported dimensions are time, altitude, lat, lon, and ncol (SE).</p></li>
+<li><p>dim_var (dict, optional) - in case that var is not an xarray, dictionary with each dimension info must be provided.</p></li>
+</ul>
+</dd>
+<dt>e.g., dim_var = {‘time’:datetime64[ns] array,</dt><dd><blockquote>
+<div><p>‘lat’:[-89.95,-89.85,…,89.85,89.95],
+‘lon’:[-179.95,-179.85,…,179.85,179.95] }</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>unit (str, optional) - the unit of the provided emission array. e.g., unit = ‘molecules/cm2/s’, ‘kg/m2/s’. No need to be provided if var is an xarray which has ‘unit’ attribute in it.</p></li>
+<li><p>mw (float, optional) - molecular weight of the specis in g/mol (e.g., 28 for CO). If provided, it overwrites mw of xarray attribute (if available)</p></li>
+<li><p>date_range (list, optional) - 2-element list with date ranges to calculate emissions in a specific time window. e.g., [‘2000-05-01’, ‘2001-04-30’].</p></li>
+<li><p>lon_range (list, optional) - 2-element list with longitude ranges to calculate emissions in a specific longitude range. e.g., [100, 150]</p></li>
+<li><p>lat_range (list, optional) - 2-element list with latitude ranges to calculate emissions in a specific latitude range. e.g., [20, 50]</p></li>
+</ul>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>ndays (int, optional) - number of days for emission arrays when a time dimension doesn’t exist. i.e. to provide whether the emission is daily, monthly, or yearly, etc.</p></li>
+<li><p>scrip_file (str, optional) - a scrip filename for a spectral model mesh to provide grid area information.</p></li>
+<li><p>print_results (bool, optional) - If True, display results after the calculation.</p></li>
+<li><p>ignore_warning (bool, optional) - If True, the function will not print warning messages.</p></li>
+<li><p>verbose (bool, optional) - If True, display detailed information on what is being done.</p></li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Example jupyter notebooks using the Calc_Emis_T function will be available soon.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>May not compatible with Python 2.7</p>
+</div>
+</section>
+
+
+      </main>
+
+    </div>
+
+
+
+    <footer class="text-light bg-dark pt-3">
+      <div class="container" style="background-color:transparent; border:none">
+        <div class="row">
+          <div class="col-12 col-md">
+            <a href="https://www2.acom.ucar.edu/"><img src="../../_static/img/ACOM-contemp-logo-white.png" alt="ACOM" class="ncar-logo"></a>
+          </div>
+          <div class="col-12 col-md-auto">
+            <p class="footer-text copyright"><a href="https://www.ucar.edu/">University Corporation for Atmospheric Research</a> &copy; 2021<br>
+            Built with <a href="https://www.sphinx-doc.org/en/master/" target="_blank" rel="noopener">Sphinx</a>. Proudly published with <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a><br>
+            Created with the help of <a href="https://ncar.github.io/xdev/" target="_blank" rel="noopener">NCAR’s Xdev Team</a>. Apache 2.0</p>
+          </div>
+        </div>
+        <div class="row pt-3 border-top">
+          <div class="col-auto">
+            <a href="https://nsf.gov/"><img src="../../_static/img/footer-logo-nsf.png" alt="NSF" class="nsf-logo"></a>
+          </div>
+          <div class="col">
+            <p class="footer-text">This material is based upon work supported by the National Center for Atmospheric Research, a major facility
+            sponsored by the National Science Foundation and managed by the University Corporation for Atmospheric Research. Any opinions,
+            findings and conclusions or recommendations expressed in this material do not necessarily reflect the views of the National
+            Science Foundation.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+  </body>
+</html>
