@@ -47,7 +47,7 @@
         <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a></li>
 </ul>
-<p class="caption"><span class="caption-text">EXAMPLES</span></p>
+<p><span class="caption-text">EXAMPLES</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="curtains.html">Curtains</a></li>
 <li class="toctree-l1"><a class="reference internal" href="emissions.html">Emissions processing</a></li>
@@ -58,7 +58,7 @@
 <li class="toctree-l1"><a class="reference internal" href="timeseries.html">Timeseries</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Widget</a></li>
 </ul>
-<p class="caption"><span class="caption-text">DOWNLOAD SAMPLE DATA</span></p>
+<p><span class="caption-text">DOWNLOAD SAMPLE DATA</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample.nc"> CAM-chem sample</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample_se.nc"> MUSICA sample</a></li>
@@ -71,7 +71,7 @@
       <!-- Page Content -->
       <main role="main" class="content" style="min-height:700px;">
         
-  <div class="section" id="code-to-create-a-widget-for-a-quicklook">
+  <section id="code-to-create-a-widget-for-a-quicklook">
 <h1>Code to create a widget for a quicklook<a class="headerlink" href="#code-to-create-a-widget-for-a-quicklook" title="Permalink to this headline">¶</a></h1>
 <p># Create a widget for a quicklook at model output
 Provides options to look at output along various altitude slices of lat/lon plots, zonal averages or longitude vs altitude slices.</p>
@@ -79,7 +79,7 @@ Provides options to look at output along various altitude slices of lat/lon plot
 # Widget to help navigate through some varables in your output files.
 </pre></div>
 </div>
-<div class="section" id="load-python-packages">
+<section id="load-python-packages">
 <h2>Load python packages<a class="headerlink" href="#load-python-packages" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
 import numpy as np
@@ -87,8 +87,8 @@ import xarray as xr
 from ipywidgets import interactive
 </pre></div>
 </div>
-</div>
-<div class="section" id="load-file">
+</section>
+<section id="load-file">
 <h2>Load file<a class="headerlink" href="#load-file" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>archive_dir = &#39;/glade/work/buchholz/CAM_chem_output/&#39;
 ds = xr.open_dataset(archive_dir+&#39;CAM_chem_merra2_FCSD_1deg_QFED_monthly_2018.nc&#39;)
@@ -97,8 +97,8 @@ nlon = ds[&#39;lon&#39;].size
 nlev = ds[&#39;lev&#39;].size
 </pre></div>
 </div>
-</div>
-<div class="section" id="create-reusable-functions">
+</section>
+<section id="create-reusable-functions">
 <h2>Create reusable functions<a class="headerlink" href="#create-reusable-functions" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def plt_field(field, time_index, level, lon_index, plot_type, logtop):
     plt.figure(figsize=(12,8))
@@ -136,8 +136,8 @@ nlev = ds[&#39;lev&#39;].size
     return
 </pre></div>
 </div>
-</div>
-<div class="section" id="call-the-widget">
+</section>
+<section id="call-the-widget">
 <h2>Call the widget<a class="headerlink" href="#call-the-widget" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>w = interactive(plt_field, field=ds.data_vars.keys(),
           time_index = (0,ntime-1,1),
@@ -152,8 +152,8 @@ display(w)
 </pre></div>
 </div>
 <img alt="../_images/widget_interactive_screenshot.png" src="../_images/widget_interactive_screenshot.png" />
-</div>
-</div>
+</section>
+</section>
 
 
       </main>

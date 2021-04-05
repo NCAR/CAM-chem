@@ -47,7 +47,7 @@
         <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
 </ul>
-<p class="caption"><span class="caption-text">EXAMPLES</span></p>
+<p><span class="caption-text">EXAMPLES</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../curtains.html">Curtains</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../emissions.html">Emissions processing</a></li>
@@ -72,7 +72,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../timeseries.html">Timeseries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../widget.html">Widget</a></li>
 </ul>
-<p class="caption"><span class="caption-text">DOWNLOAD SAMPLE DATA</span></p>
+<p><span class="caption-text">DOWNLOAD SAMPLE DATA</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample.nc"> CAM-chem sample</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample_se.nc"> MUSICA sample</a></li>
@@ -85,7 +85,7 @@
       <!-- Page Content -->
       <main role="main" class="content" style="min-height:700px;">
         
-  <div class="section" id="example-map-plotting-mopitt-co">
+  <section id="example-map-plotting-mopitt-co">
 <h1>Example Map Plotting - MOPITT CO<a class="headerlink" href="#example-map-plotting-mopitt-co" title="Permalink to this headline">¶</a></h1>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># By line: RRB 2020-07-26
 # Script aims to:
@@ -97,7 +97,7 @@
 # - Add grid lines
 </pre></div>
 </div>
-<div class="section" id="at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use">
+<section id="at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use">
 <h2>At the start of a Jupyter notebook you need to import all modules that you will use.<a class="headerlink" href="#at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
 import cartopy.crs as ccrs                 # For plotting maps
@@ -109,22 +109,22 @@ import numpy as np                         # For array creation and calculations
 import h5py                                # For loading he5 files
 </pre></div>
 </div>
-</div>
-<div class="section" id="define-the-directories-and-file-of-interest-for-your-results">
+</section>
+<section id="define-the-directories-and-file-of-interest-for-your-results">
 <h2>Define the directories and file of interest for your results.<a class="headerlink" href="#define-the-directories-and-file-of-interest-for-your-results" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>result_dir = Path(&quot;../../data&quot;)
 file = &quot;MOP03JM-201801-L3V95.6.3.he5&quot;
 file_to_open = result_dir / file
 </pre></div>
 </div>
-</div>
-<div class="section" id="load-file">
+</section>
+<section id="load-file">
 <h2>Load file<a class="headerlink" href="#load-file" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>he5_load = h5py.File(file_to_open, mode=&#39;r&#39;)
 </pre></div>
 </div>
-</div>
-<div class="section" id="extract-dataset-of-choice">
+</section>
+<section id="extract-dataset-of-choice">
 <h2>Extract dataset of choice<a class="headerlink" href="#extract-dataset-of-choice" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># load the data
 dataset = he5_load[&quot;/HDFEOS/GRIDS/MOP03/Data Fields/RetrievedCOTotalColumnDay&quot;][:]
@@ -153,8 +153,8 @@ print(ds_masked)
   <span class="o">*</span> <span class="n">lat</span>      <span class="p">(</span><span class="n">lat</span><span class="p">)</span> <span class="n">float32</span> <span class="o">-</span><span class="mf">89.5</span> <span class="o">-</span><span class="mf">88.5</span> <span class="o">-</span><span class="mf">87.5</span> <span class="o">-</span><span class="mf">86.5</span> <span class="o">-</span><span class="mf">85.5</span> <span class="o">...</span> <span class="mf">86.5</span> <span class="mf">87.5</span> <span class="mf">88.5</span> <span class="mf">89.5</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="plot-the-value-over-the-globe">
+</section>
+<section id="plot-the-value-over-the-globe">
 <h2>Plot the value over the globe.<a class="headerlink" href="#plot-the-value-over-the-globe" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(20,8))
 
@@ -197,8 +197,8 @@ plt.show()
 </pre></div>
 </div>
 <img alt="../../_images/plot_map_basic_co_satellite_11_0.png" src="../../_images/plot_map_basic_co_satellite_11_0.png" />
-</div>
-</div>
+</section>
+</section>
 
 
       </main>
