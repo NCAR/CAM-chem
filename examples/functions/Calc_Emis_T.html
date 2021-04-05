@@ -81,18 +81,11 @@
 <p><strong>Calc_Emis_T</strong> (var, dimension=[], dim_var={}, unit=’’, mw=None, date_range=[], lon_range=[], lat_range=[], ndays=31, scrip_file=””, print_results=True, ignore_warning=False, verbose=False)</p>
 </div>
 <p>Calculate the emission total of species. This function can be used for either finite volume grid or spectral element (+regional refinement) mesh. It can also be used for either global or regional emission total.</p>
-<dl>
+<dl class="simple">
 <dt>Parameters:</dt><dd><ul class="simple">
 <li><p>var (<a class="reference external" href="http://xarray.pydata.org/en/stable/">xarray</a> or any array) - A 2D (or 1D for spectral element) emission array. Basically it should have longitude and latitude dimensions, but time and altitude dimensions are also supported. If time dimension is provided, the function will calculate timeseries. If altitude dimension is provided, the function will calculate vertically-integrated emission total.</p></li>
 <li><p>dimension (list, optional) - if var is not an xarray, the dimension must be specified. supported dimensions are time, altitude, lat, lon, and ncol (SE).</p></li>
-<li><p>dim_var (dict, optional) - in case that var is not an xarray, dictionary with each dimension info must be provided.</p></li>
-</ul>
-</dd>
-<dt>e.g., dim_var = {‘time’:datetime64[ns] array,</dt><dd><blockquote>
-<div><p>‘lat’:[-89.95,-89.85,…,89.85,89.95],
-‘lon’:[-179.95,-179.85,…,179.85,179.95] }</p>
-</div></blockquote>
-<ul class="simple">
+<li><p>dim_var (dict, optional) - in case that var is not an xarray, dictionary with each dimension info must be provided. e.g., dim_var = {‘time’:datetime64[ns] array, ‘lat’:[-89.95,-89.85,…,89.85,89.95], ‘lon’:[-179.95,-179.85,…,179.85,179.95] }</p></li>
 <li><p>unit (str, optional) - the unit of the provided emission array. e.g., unit = ‘molecules/cm2/s’, ‘kg/m2/s’. No need to be provided if var is an xarray which has ‘unit’ attribute in it.</p></li>
 <li><p>mw (float, optional) - molecular weight of the specis in g/mol (e.g., 28 for CO). If provided, it overwrites mw of xarray attribute (if available)</p></li>
 <li><p>date_range (list, optional) - 2-element list with date ranges to calculate emissions in a specific time window. e.g., [‘2000-05-01’, ‘2001-04-30’].</p></li>
