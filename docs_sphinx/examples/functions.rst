@@ -13,6 +13,7 @@ A list of the functions to be discussed in this page
 
    Plot_2D <functions/Plot_2D>
 
+   Calc_Emis_T <functions/Calc_Emis_T>
 
 
 
