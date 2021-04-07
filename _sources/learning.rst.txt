@@ -15,8 +15,10 @@ Potentially helpful learning resources
 
 `Online book explaining packages <https://jakevdp.github.io/PythonDataScienceHandbook/index.html>`_ - Python Data Science Handbook explaining NumPy, Pandas, Matplotlib and Machine Learning, by Jake VanderPlas.
 
-`xarray <http://xarray.pydata.org/en/stable/#>`_ - Package for working with structured data
+`xarray <http://xarray.pydata.org/en/stable/#>`_ - Package for working with structured data.
 
-`xarray and NetCDF <https://towardsdatascience.com/handling-netcdf-files-using-xarray-for-absolute-beginners-111a8ab4463f>`_ - Absolute beginners instructions for using xarray with NetCDF
+`xarray and NetCDF <https://towardsdatascience.com/handling-netcdf-files-using-xarray-for-absolute-beginners-111a8ab4463f>`_ - Absolute beginners instructions for using xarray with NetCDF.
 
-`xarray tutorial <https://www.youtube.com/watch?v=a339Q5F48UQ&feature=youtu.be>`_ - Recorded CISL tutorial on using xarray in the Jupyter Notebook setting
+`xarray tutorial <https://www.youtube.com/watch?v=a339Q5F48UQ&feature=youtu.be>`_ - Recorded CISL tutorial on using xarray in the Jupyter Notebook setting.
+
+`GeoWombat <https://geowombat.readthedocs.io/en/latest/>`_ - Utilities to process geospatial and time series of raster data at scale.
