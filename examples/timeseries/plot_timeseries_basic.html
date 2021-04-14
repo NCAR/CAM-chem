@@ -41,13 +41,10 @@
 
       <!-- Sidebar -->
       <nav class="sidebar" >
-        <div class="sidebar-header">
-          <h4></h4>
-        </div>
         <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
 </ul>
-<p><span class="caption-text">EXAMPLES</span></p>
+<p class="caption"><span class="caption-text">EXAMPLES</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../curtains.html">Curtains</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../emissions.html">Emissions processing</a></li>
@@ -62,20 +59,20 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../widget.html">Widget</a></li>
 </ul>
-<p><span class="caption-text">DOWNLOAD SAMPLE DATA</span></p>
+<p class="caption"><span class="caption-text">DOWNLOAD SAMPLE DATA</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample.nc"> CAM-chem sample</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample_se.nc"> MUSICA sample</a></li>
 </ul>
 
-        
+      <hr />
       </nav>
 
 
       <!-- Page Content -->
       <main role="main" class="content" style="min-height:700px;">
         
-  <section id="timeseries-basic-plot">
+  <div class="section" id="timeseries-basic-plot">
 <h1>Timeseries - basic plot<a class="headerlink" href="#timeseries-basic-plot" title="Permalink to this headline">¶</a></h1>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># By line: RRB 2020-07-28
 # Script aims to:
@@ -85,7 +82,7 @@
 # - Plot timeseries
 </pre></div>
 </div>
-<section id="load-python-packages">
+<div class="section" id="load-python-packages">
 <h2>Load python packages<a class="headerlink" href="#load-python-packages" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd
 from pandas.tseries.offsets import DateOffset
@@ -97,8 +94,8 @@ import datetime
 from pathlib import Path                   # System agnostic paths
 </pre></div>
 </div>
-</section>
-<section id="create-reusable-functions">
+</div>
+<div class="section" id="create-reusable-functions">
 <h2>Create reusable functions<a class="headerlink" href="#create-reusable-functions" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Find nearest index
 def find_index(array,x):
@@ -106,8 +103,8 @@ def find_index(array,x):
     return idx
 </pre></div>
 </div>
-</section>
-<section id="load-model-data">
+</div>
+<div class="section" id="load-model-data">
 <h2>Load model Data:<a class="headerlink" href="#load-model-data" title="Permalink to this headline">¶</a></h2>
 <p>Define the directories and file of interest for your results.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>result_dir = Path(&quot;../../data/&quot;)
@@ -118,8 +115,8 @@ nc_load = xr.open_mfdataset(str(result_dir/files_to_open),combine=&#39;by_coords
 #nc_load
 </pre></div>
 </div>
-</section>
-<section id="extract-the-variable-at-the-time-and-level-and-location-of-choice">
+</div>
+<div class="section" id="extract-the-variable-at-the-time-and-level-and-location-of-choice">
 <h2>Extract the variable at the time and level and location of choice<a class="headerlink" href="#extract-the-variable-at-the-time-and-level-and-location-of-choice" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#extract variable
 var_sel = nc_load[&#39;CO&#39;]
@@ -138,8 +135,8 @@ print(&quot;file time: &quot;, time[0].values, &quot;---&gt; converted time: &qu
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">file</span> <span class="n">time</span><span class="p">:</span>  <span class="mi">2018</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">01</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mf">00.000000000</span> <span class="o">---&gt;</span> <span class="n">converted</span> <span class="n">time</span><span class="p">:</span>  <span class="mi">2018</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">15</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
 </pre></div>
 </div>
-</section>
-<section id="select-and-extract-the-location">
+</div>
+<div class="section" id="select-and-extract-the-location">
 <h2>Select and extract the location.<a class="headerlink" href="#select-and-extract-the-location" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>name_select = &quot;Boulder&quot;
 lat_select = 40.0150
@@ -159,8 +156,8 @@ var_srf = var_sel.isel(lev=55, lat=lat_i,lon=lon_i)*1e09
 <span class="n">Boulder</span>  <span class="n">longitude</span><span class="p">:</span>  <span class="mf">254.7295</span> <span class="o">---&gt;</span> <span class="n">nearest</span><span class="p">:</span>  <span class="mf">255.0</span>
 </pre></div>
 </div>
-</section>
-<section id="plot-the-value-versus-time">
+</div>
+<div class="section" id="plot-the-value-versus-time">
 <h2>Plot the value versus time.<a class="headerlink" href="#plot-the-value-versus-time" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(20,8))
 
@@ -175,8 +172,8 @@ plt.show()
 </pre></div>
 </div>
 <img alt="../../_images/plot_timeseries_basic_13_0.png" src="../../_images/plot_timeseries_basic_13_0.png" />
-</section>
-</section>
+</div>
+</div>
 
 
       </main>

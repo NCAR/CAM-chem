@@ -41,13 +41,10 @@
 
       <!-- Sidebar -->
       <nav class="sidebar" >
-        <div class="sidebar-header">
-          <h4></h4>
-        </div>
         <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
 </ul>
-<p><span class="caption-text">EXAMPLES</span></p>
+<p class="caption"><span class="caption-text">EXAMPLES</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../curtains.html">Curtains</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../emissions.html">Emissions processing</a></li>
@@ -72,20 +69,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../timeseries.html">Timeseries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../widget.html">Widget</a></li>
 </ul>
-<p><span class="caption-text">DOWNLOAD SAMPLE DATA</span></p>
+<p class="caption"><span class="caption-text">DOWNLOAD SAMPLE DATA</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample.nc"> CAM-chem sample</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample_se.nc"> MUSICA sample</a></li>
 </ul>
 
-        
+      <hr />
       </nav>
 
 
       <!-- Page Content -->
       <main role="main" class="content" style="min-height:700px;">
         
-  <section id="plot-a-world-map">
+  <div class="section" id="plot-a-world-map">
 <h1>Plot a world map<a class="headerlink" href="#plot-a-world-map" title="Permalink to this headline">¶</a></h1>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># By line: RRB 2020-07-18
 # Script aims to:
@@ -94,15 +91,15 @@
 # - Add grid lines
 </pre></div>
 </div>
-<section id="at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use">
+<div class="section" id="at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use">
 <h2>At the start of a Jupyter notebook you need to import all modules that you will use<a class="headerlink" href="#at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
 import cartopy.crs as ccrs                 # For plotting maps
 import cartopy.feature as cfeature         # For plotting maps
 </pre></div>
 </div>
-</section>
-<section id="creat-the-plot">
+</div>
+<div class="section" id="creat-the-plot">
 <h2>Creat the Plot<a class="headerlink" href="#creat-the-plot" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(20,8))
 
@@ -135,8 +132,8 @@ plt.show()
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../../_images/plot_map_basic_5_0.png"><img alt="../../_images/plot_map_basic_5_0.png" src="../../_images/plot_map_basic_5_0.png" style="width: 800px;" /></a>
-</section>
-</section>
+</div>
+</div>
 
 
       </main>

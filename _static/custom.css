@@ -238,13 +238,17 @@ a.reference.external {
 
 .sidebar {
   width: 17rem;
-  height: 150vh;
+  min-height: 60vh;
+  max-height: 90vh;
   position: fixed;
   z-index: 1;
   background: #C3D7EE;
   color: #333;
   padding: 10px;
+  overflow-y: auto;
 }
+
+
 
 @media (max-width: 768px) {
   .sidebar {
@@ -256,7 +260,6 @@ a.reference.external {
   padding: 10px;
   background: #C3D7EE;
 }
-
 
 .sidebar ul p {
   color: #fafafa;
@@ -279,6 +282,11 @@ a.reference.external {
 .sidebar ul li.active > a, a[aria-expanded="true"] {
   color: #333;
   background: #A8C700;;
+}
+
+.sidebar ul li a.on > a, a[aria-expanded="true"] {
+  color: #C0C0C0;
+  background: #333;
 }
 
 

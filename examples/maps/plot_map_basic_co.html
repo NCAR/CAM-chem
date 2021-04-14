@@ -41,13 +41,10 @@
 
       <!-- Sidebar -->
       <nav class="sidebar" >
-        <div class="sidebar-header">
-          <h4></h4>
-        </div>
         <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
 </ul>
-<p><span class="caption-text">EXAMPLES</span></p>
+<p class="caption"><span class="caption-text">EXAMPLES</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../curtains.html">Curtains</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../emissions.html">Emissions processing</a></li>
@@ -72,20 +69,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../timeseries.html">Timeseries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../widget.html">Widget</a></li>
 </ul>
-<p><span class="caption-text">DOWNLOAD SAMPLE DATA</span></p>
+<p class="caption"><span class="caption-text">DOWNLOAD SAMPLE DATA</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample.nc"> CAM-chem sample</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample_se.nc"> MUSICA sample</a></li>
 </ul>
 
-        
+      <hr />
       </nav>
 
 
       <!-- Page Content -->
       <main role="main" class="content" style="min-height:700px;">
         
-  <section id="example-map-plotting">
+  <div class="section" id="example-map-plotting">
 <h1>Example Map Plotting<a class="headerlink" href="#example-map-plotting" title="Permalink to this headline">¶</a></h1>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># By line: RRB 2020-07-20
 # Script aims to:
@@ -96,7 +93,7 @@
 # - Add grid lines
 </pre></div>
 </div>
-<section id="at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use">
+<div class="section" id="at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use">
 <h2>At the start of a Jupyter notebook you need to import all modules that you will use.<a class="headerlink" href="#at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
 import cartopy.crs as ccrs                 # For plotting maps
@@ -105,8 +102,8 @@ from pathlib import Path                   # System agnostic paths
 import xarray as xr                        # For loading the data arrays
 </pre></div>
 </div>
-</section>
-<section id="define-the-directories-and-file-of-interest-for-your-results">
+</div>
+<div class="section" id="define-the-directories-and-file-of-interest-for-your-results">
 <h2>Define the directories and file of interest for your results.<a class="headerlink" href="#define-the-directories-and-file-of-interest-for-your-results" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>result_dir = Path(&quot;../../data/&quot;)
 file = &quot;CAM_chem_merra2_FCSD_1deg_QFED_monthoutput_CO_201801.nc&quot;
@@ -551,8 +548,8 @@ dl.xr-attrs {
         [ 69867.44,  69843.71, ...,  69915.56,  69891.61],
         ...,
         [102027.04, 102027.11, ..., 102026.87, 102026.95],
-        [102149.8 , 102149.8 , ..., 102149.8 , 102149.8 ]]], dtype=float32)</pre></li></ul></div></li><li class='xr-section-item'><input id='section-83eea498-5b83-4e12-9c67-e7206f280c1b' class='xr-section-summary-in' type='checkbox'  ><label for='section-83eea498-5b83-4e12-9c67-e7206f280c1b' class='xr-section-summary' >Attributes: <span>(11)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.0</dd><dt><span>source :</span></dt><dd>CAM</dd><dt><span>case :</span></dt><dd>fmerra.2.1003.FCSD.f09.qfedcmip.56L.001.branch02</dd><dt><span>logname :</span></dt><dd>buchholz</dd><dt><span>host :</span></dt><dd>cheyenne6</dd><dt><span>initial_file :</span></dt><dd>/glade/p/cesmdata/cseg/inputdata/atm/cam/inic/fv/f.e20.FCSD.f09_f09_mg17.cesm2.1-exp002.001.cam.i.2005-01-01-00000_c180801.nc</dd><dt><span>topography_file :</span></dt><dd>/glade/p/cesmdata/cseg/inputdata/atm/cam/met/MERRA2/0.9x1.25/fv_0.9x1.25_nc3000_Nsw042_Nrs008_Co060_Fi001_ZR_sgh30_24km_GRNL_MERRA2_c171218.nc</dd><dt><span>model_doi_url :</span></dt><dd>https://doi.org/10.5065/D67H1H0V</dd><dt><span>time_period_freq :</span></dt><dd>month_1</dd><dt><span>history :</span></dt><dd>Thu Jul  9 13:07:01 2020: ncrcat -O -v date,datesec,time,lat,lon,P0,hyam,hybm,hyai,hybi,PS,PDELDRY,CO /glade/scratch/buchholz/archive/fmerra.2.1003.FCSD.f09.qfedcmip.56L.001.branch02/atm/hist/fmerra.2.1003.FCSD.f09.qfedcmip.56L.001.branch02.cam.h0.2018-01.nc /glade/work/buchholz/CAM_chem_output/for_Janyl/CAM_chem_merra2_FCSD_1deg_QFED_monthoutput_201801.nc</dd><dt><span>NCO :</span></dt><dd>netCDF Operators version 4.7.9 (Homepage = http://nco.sf.net, Code = http://github.com/nco/nco)</dd></dl></div></li></ul></div></div></section>
-<section id="extract-the-variable-of-choice-at-the-time-and-level-of-choice">
+        [102149.8 , 102149.8 , ..., 102149.8 , 102149.8 ]]], dtype=float32)</pre></li></ul></div></li><li class='xr-section-item'><input id='section-83eea498-5b83-4e12-9c67-e7206f280c1b' class='xr-section-summary-in' type='checkbox'  ><label for='section-83eea498-5b83-4e12-9c67-e7206f280c1b' class='xr-section-summary' >Attributes: <span>(11)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.0</dd><dt><span>source :</span></dt><dd>CAM</dd><dt><span>case :</span></dt><dd>fmerra.2.1003.FCSD.f09.qfedcmip.56L.001.branch02</dd><dt><span>logname :</span></dt><dd>buchholz</dd><dt><span>host :</span></dt><dd>cheyenne6</dd><dt><span>initial_file :</span></dt><dd>/glade/p/cesmdata/cseg/inputdata/atm/cam/inic/fv/f.e20.FCSD.f09_f09_mg17.cesm2.1-exp002.001.cam.i.2005-01-01-00000_c180801.nc</dd><dt><span>topography_file :</span></dt><dd>/glade/p/cesmdata/cseg/inputdata/atm/cam/met/MERRA2/0.9x1.25/fv_0.9x1.25_nc3000_Nsw042_Nrs008_Co060_Fi001_ZR_sgh30_24km_GRNL_MERRA2_c171218.nc</dd><dt><span>model_doi_url :</span></dt><dd>https://doi.org/10.5065/D67H1H0V</dd><dt><span>time_period_freq :</span></dt><dd>month_1</dd><dt><span>history :</span></dt><dd>Thu Jul  9 13:07:01 2020: ncrcat -O -v date,datesec,time,lat,lon,P0,hyam,hybm,hyai,hybi,PS,PDELDRY,CO /glade/scratch/buchholz/archive/fmerra.2.1003.FCSD.f09.qfedcmip.56L.001.branch02/atm/hist/fmerra.2.1003.FCSD.f09.qfedcmip.56L.001.branch02.cam.h0.2018-01.nc /glade/work/buchholz/CAM_chem_output/for_Janyl/CAM_chem_merra2_FCSD_1deg_QFED_monthoutput_201801.nc</dd><dt><span>NCO :</span></dt><dd>netCDF Operators version 4.7.9 (Homepage = http://nco.sf.net, Code = http://github.com/nco/nco)</dd></dl></div></li></ul></div></div></div>
+<div class="section" id="extract-the-variable-of-choice-at-the-time-and-level-of-choice">
 <h2>Extract the variable of choice at the time and level of choice<a class="headerlink" href="#extract-the-variable-of-choice-at-the-time-and-level-of-choice" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#extract variable
 var_sel = nc_load[&#39;CO&#39;]
@@ -572,8 +569,8 @@ lon = var_sel.coords[&#39;lon&#39;]
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">192</span><span class="p">,</span> <span class="mi">288</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
-<section id="plot-the-value-over-a-specific-region">
+</div>
+<div class="section" id="plot-the-value-over-a-specific-region">
 <h2>Plot the value over a specific region<a class="headerlink" href="#plot-the-value-over-a-specific-region" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(20,8))
 
@@ -613,8 +610,8 @@ plt.show()
 </pre></div>
 </div>
 <img alt="../../_images/plot_map_basic_co_9_0.png" src="../../_images/plot_map_basic_co_9_0.png" />
-</section>
-</section>
+</div>
+</div>
 
 
       </main>
