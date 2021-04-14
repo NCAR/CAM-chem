@@ -21,15 +21,17 @@ Parameters:
  - date_range (list, optional) - 2-element list with date ranges to calculate emissions in a specific time window. e.g., ['2000-05-01', '2001-04-30']. 
  - lon_range (list, optional) - 2-element list with longitude ranges to calculate emissions in a specific longitude range. e.g., [100, 150]
  - lat_range (list, optional) - 2-element list with latitude ranges to calculate emissions in a specific latitude range. e.g., [20, 50]
-- ndays (int, optional) - number of days for emission arrays when a time dimension doesn't exist. i.e. to provide whether the emission is daily, monthly, or yearly, etc. 
-- scrip_file (str, optional) - a scrip filename for a spectral model mesh to provide grid area information.
-- print_results (bool, optional) - If True, display results after the calculation. 
-- ignore_warning (bool, optional) - If True, the function will not print warning messages. 
-- verbose (bool, optional) - If True, display detailed information on what is being done. 
+ - ndays (int, optional) - number of days for emission arrays when a time dimension doesn't exist. i.e. to provide whether the emission is daily, monthly, or yearly, etc. 
+ - scrip_file (str, optional) - a scrip filename for a spectral model mesh to provide grid area information.
+ - print_results (bool, optional) - If True, display results after the calculation. 
+ - ignore_warning (bool, optional) - If True, the function will not print warning messages. 
+ - verbose (bool, optional) - If True, display detailed information on what is being done. 
+
 
 .. seealso::
 
-   Example jupyter notebooks using the Calc_Emis_T function will be available soon. 
+   Example jupyter notebooks using the Calc_Emis_T function will be available soon.
+
 
 .. note::
 
