@@ -221,7 +221,7 @@ a.reference.external {
  ************************************************/
 .content {
   padding: 2rem;
-  margin-left: 16rem;
+  margin-left: 17rem;
 }
 
 
@@ -237,14 +237,14 @@ a.reference.external {
 }
 
 .sidebar {
-  width: 17rem;
-  min-height: 60vh;
-  max-height: 90vh;
+  width: 18rem;
+  min-height: 100%;
+  max-height: 100%;
   position: fixed;
   z-index: 1;
   background: #C3D7EE;
   color: #333;
-  padding: 10px;
+  padding: 8px;
   overflow-y: auto;
 }
 
