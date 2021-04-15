@@ -11,12 +11,12 @@ Potentially helpful learning resources
 
 `Unidata gallery examples <https://unidata.github.io/python-training/gallery/gallery-home/>`_ - Atmospheric science and meteorology example plots.
 
-`Python Tutorial <https://docs.python.org/3/tutorial/>`_ - Comprehensive source for general python exercises and examples.
-
 `xarray tutorial <https://www.youtube.com/watch?v=a339Q5F48UQ&feature=youtu.be>`_ - Recorded CISL tutorial on using the xarray package in the Jupyter Notebook setting.
 
 
 **EXTERNAL TO NCAR:**
+
+`Python Tutorial <https://docs.python.org/3/tutorial/>`_ - Comprehensive source for general python exercises and examples.
 
 `Online book for applications <https://www.johnny-lin.com/pyintro/>`_ - Introduction to Using Python in the Atmospheric and Oceanic Sciences, by Johnny Wei-Bing Lin.
 
