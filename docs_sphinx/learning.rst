@@ -13,7 +13,7 @@ Potentially helpful learning resources
 
 `xarray tutorial <https://www.youtube.com/watch?v=a339Q5F48UQ&feature=youtu.be>`_ - Recorded CISL tutorial on using the xarray package in the Jupyter Notebook setting.
 
-`NCAR PyNGL and PyNIO <https://www.pyngl.ucar.edu/>`_ - 
+`NCAR PyNGL and PyNIO <https://www.pyngl.ucar.edu/>`_ - Continuation on from the NCAR Command language pivot to Python.
 
 
 **EXTERNAL TO NCAR:**
