@@ -94,7 +94,6 @@ Here, you will find a growing collection of Python code for atmospheric chemistr
    **Other Python Examples:**
 
    - `GeoCAT: conversion of NCL scripts <https://geocat-examples.readthedocs.io/en/latest/gallery/index.html>`_
-   - `NCAR PyNGL and PyNIO <https://www.pyngl.ucar.edu/>`_
    - `NOAA MONET toolkit for model versus measurements <https://monet-arl.readthedocs.io/en/master/>`_
    - `NASA python examples for satellite data <https://hdfeos.org/zoo/index_openLaRC_Examples.php>`_
    - `Dan Marsh's examples for WACCM <https://sites.google.com/ucar.edu/dan-marsh/python?authuser=1>`_ (requires a Google login).
