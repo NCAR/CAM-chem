@@ -3,7 +3,7 @@ Potentially helpful learning resources
 
 **NCAR/UCAR/UCP developed:**
 
-`NCAR hackathon <https://ncar-hackathons.github.io/python-general/intro>`_ - General introduction to Python such as data strictures, input/output, loops and functions.
+`NCAR hackathon <https://ncar-hackathons.github.io/python-general/intro>`_ - General introduction to Python such as data structures, input/output, loops and functions.
 
 `NCAR Xdev python tutorials <https://ncar.github.io/python-tutorial/index.html>`_ - Training on the scientific Python ecosystem for atmospheric science and meteorology.
 
