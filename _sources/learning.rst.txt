@@ -1,7 +1,7 @@
 Potentially helpful learning resources
 ============================================
 
-NCAR developed:
+*NCAR developed:*
 
 `NCAR hackathon <https://ncar-hackathons.github.io/python-general/intro>`_ - General introduction to Python such as data strictures, input/output, loops and functions.
 
