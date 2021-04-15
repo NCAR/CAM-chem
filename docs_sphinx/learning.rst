@@ -1,7 +1,7 @@
 Potentially helpful learning resources
 ============================================
 
-*NCAR developed:*
+**NCAR developed:**
 
 `NCAR hackathon <https://ncar-hackathons.github.io/python-general/intro>`_ - General introduction to Python such as data strictures, input/output, loops and functions.
 
@@ -16,7 +16,7 @@ Potentially helpful learning resources
 `xarray tutorial <https://www.youtube.com/watch?v=a339Q5F48UQ&feature=youtu.be>`_ - Recorded CISL tutorial on using the xarray package in the Jupyter Notebook setting.
 
 
-EXTERNAL TO NCAR:
+**EXTERNAL TO NCAR:**
 
 `Online book for applications <https://www.johnny-lin.com/pyintro/>`_ - Introduction to Using Python in the Atmospheric and Oceanic Sciences, by Johnny Wei-Bing Lin.
 
