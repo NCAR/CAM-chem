@@ -9,7 +9,7 @@ Regridding
 
    **Regridding** (self, var_array, fields=[], add_fields=[], dimension=[], dim_var={}, src_grid_file=None, dst_grid_file=None, wgt_file=None, save_wgt_file=False, save_wgt_file_only=False, method="Conserve", save_results=True, speed_up=True, datatype='f4', nc_file_format='NETCDF3_64BIT_DATA', dst_file=None, creation_date=True, check_results=False, mw=None, unit=None, check_timings=True, ignore_warning=False, verbose=False)
 
-Regrid fields (e.g., emission, meteorological data, model output, etc.) between finite volume grid and spectral element mesh. This program relies on `ESMPy <https://earthsystemmodeling.org/esmpy/>`_ tool. There are several `regridding methods <https://earthsystemmodeling.org/regrid/#regridding-methods)`_ but currently, only conservative regridding methods are supported due to some errors in calling ESMPy functions on Cheyenne and Casper machines, but it might work on other machines. The function will be available as a PIP package soon with jupyter notebook examples. 
+Regrid fields (e.g., emission, meteorological data, model output, etc.) between finite volume grid and spectral element mesh. This program relies on `ESMPy <https://earthsystemmodeling.org/esmpy/>`_ tool. There are several `regridding methods <https://earthsystemmodeling.org/regrid/#regridding-methods>`_ but currently, only conservative regridding methods are supported due to some errors in calling ESMPy functions on Cheyenne and Casper machines, but it might work on other machines. The function will be available as a PIP package soon with jupyter notebook examples. 
 
 
 Parameters:
