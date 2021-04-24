@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="../../_static/custom.css" type=text/css>
+
+    <title>Python Resources for CAM-chem</title>
+
+    <script src="https://kit.fontawesome.com/be4ef5002e.js" crossorigin="anonymous"></script>
+  </head>
+
+
+  <body>
+
+
+    <nav class="navbar navbar-expand navbar-dark sticky-top bg-dark">
+      <a class="navbar-brand" style="font-weight:bold" href="../../index.html">Python resources for CAM-chem</a>
+      <ul class="navbar-nav mr-auto">
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" style="line-height:1.8em" href="https://wiki.ucar.edu/display/camchem/Home">CAM-chem Wiki</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/NCAR/CAM-chem"><i class="fab fa-github"></i></a>
+        </li>
+      </ul>
+    </nav>
+
+
+
+    <div class="container-fluid">
+
+      <!-- Sidebar -->
+      <nav class="sidebar" >
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+</ul>
+<p class="caption"><span class="caption-text">EXAMPLES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../curtains.html">Curtains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../emissions.html">Emissions processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io.html">I/O tips and tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maps.html">Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../profiles.html">Profiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../timeseries.html">Timeseries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widget.html">Widget</a></li>
+</ul>
+<p class="caption"><span class="caption-text">DOWNLOAD SAMPLE DATA</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample.nc"> CAM-chem sample</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample_se.nc"> MUSICA sample</a></li>
+</ul>
+
+
+      <span style="padding-bottom:50px"> &nbsp; </span>
+      <hr />
+      </nav>
+
+
+      <!-- Page Content -->
+      <main role="main" class="content" style="min-height:700px;">
+        
+  <div class="section" id="regridding">
+<h1>Regridding<a class="headerlink" href="#regridding" title="Permalink to this headline">¶</a></h1>
+<div class="docutils container">
+<p><strong>Regridding</strong> (self, var_array, fields=[], add_fields=[], dimension=[], dim_var={}, src_grid_file=None, dst_grid_file=None, wgt_file=None, save_wgt_file=False, save_wgt_file_only=False, method=”Conserve”, save_results=True, speed_up=True, datatype=’f4’, nc_file_format=’NETCDF3_64BIT_DATA’, dst_file=None, creation_date=True, check_results=False, mw=None, unit=None, check_timings=True, ignore_warning=False, verbose=False)</p>
+</div>
+<p>Regrid fields (e.g., emission, meteorological data, model output, etc.) between finite volume grid and spectral element mesh. This program relies on <a class="reference external" href="https://earthsystemmodeling.org/esmpy/">ESMPy</a> tool. There are several <a href="#id1"><span class="problematic" id="id2">`regridding methods &lt;https://earthsystemmodeling.org/regrid/#regridding-methods)`_</span></a> but currently, only conservative regridding methods are supported due to some errors in calling ESMPy functions on Cheyenne and Casper machines, but it might work on other machines. The function will be available as a PIP package soon with jupyter notebook examples.</p>
+<p>Parameters:
+- var_array (<a class="reference external" href="http://xarray.pydata.org/en/stable/">xarray</a> or any array) - A 2D (or 1D for spectral element) array. Basically it should have longitude and latitude dimensions, and up to 2 more dimensions are supported (e.g., time and altitude dimensions).
+- fields (list, optional) - a list that has field names in var_array (for the case of using xarray). If a xarray has multiple fields, only specified fields provided in this keyword will be processed.
+- add_fields (list, optional) - for additional fields that are not needed to be regridded, but if a user wants to save additional fields in addition to regridded fields.
+- dimension (list, optional) - If var_array is not an xarray, dimension must be provided for var_array. e.g., dimension = [‘time’,’lat’,’lon’]; [‘any’,’any2’,’lat’,’lon’]; [‘any’,’ncol’]
+- dim_var (dictionary, optional) - If var_array is not an xarray, dim_var must be provided for dimension variables. e.g.,  dim_var = {‘time’:datetime64[ns] array, ‘lat’:[-89.95,-89.85,…,89.85,89.95], ‘lon’:[-179.95,-179.85,…,179.85,179.95] }
+- src_grid_file (str) - grid/mesh filename for source field.
+- dst_grid_file (str) - grid/mesh filename for destination field.
+- wgt_file (str) - weight filename. use the existing weight file (save_weight_file=False) or create new weight file (save_weight_file=True)
+- save_wgt_file (bool) - If true, create new weight file
+- save_wgt_file_only (bool) - if true, save wegith file only (not regridding)
+- no_wgt_file (bool) - if true, the script will not create weight file (useful for one-time regridding)
+- creation_date (bool) - If true, add the creation date to the end of the filename
+- method (str) - regridding method: “Bilinear”, High-order patch recovery (“Patch”), Nearest source to destination (“Nearest_StoD”), Nearest destination to source (“Nearest_DtoS”), First-order conservative (“Conserve”), Second-order conservative (“Conserve_2nd”). More information are available at: <a class="reference external" href="https://earthsystemmodeling.org/regrid/#regridding-methods">https://earthsystemmodeling.org/regrid/#regridding-methods</a>.
+- save_results (bool, optional) - If True, save the regridded fields to the NetCDF file.
+- datatype (str) - Can be ‘f8’ (double) or ‘f4’ (float). Datatypes of dimension and basic information variables are fixed to f8.
+- nc_file_format (str) - NetCDF file formmat to be used in NetCDF4 library. Default is NETCDF3_64BIT_DATA for compatability with CESM.
+- speed_up (bool, optional) - If true, speed up regridding, but it doesn’t return the results to python shell. Good for very large dataset and saving NetCDF file in terms of speed and memory.
+- dst_file (str, optional) - NetCDF filename for resulting regridded fields
+- check_results (bool, optional) - If true, calculate the total of source and destination field. It can be useful especially for emission processing.
+- mw (float, optional) - In case check_results=True. To calculate emission total
+- unit (str, optional) - In case check_results=True. To calculate emission total.
+- check_timings (bool, optional) - If true, measure time spent for regridding
+- ignore_warning (bool, optional) - If true, ignore warning messages.
+- verbose (bool, optional) - If true, display detailed information on what is being done.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Example jupyter notebooks using the Regridding function will be available soon.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>May not compatible with Python 2.7</p>
+</div>
+</div>
+
+
+      </main>
+
+    </div>
+
+
+
+    <footer class="text-light bg-dark pt-3">
+      <div class="container" style="background-color:transparent; border:none">
+        <div class="row">
+          <div class="col-12 col-md">
+            <a href="https://www2.acom.ucar.edu/"><img src="../../_static/img/ACOM-contemp-logo-white.png" alt="ACOM" class="ncar-logo"></a>
+          </div>
+          <div class="col-12 col-md-auto">
+            <p class="footer-text copyright"><a href="https://www.ucar.edu/">University Corporation for Atmospheric Research</a> &copy; 2021<br>
+            Built with <a href="https://www.sphinx-doc.org/en/master/" target="_blank" rel="noopener">Sphinx</a>. Proudly published with <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a><br>
+            Created with the help of <a href="https://ncar.github.io/xdev/" target="_blank" rel="noopener">NCAR’s Xdev Team</a>. Apache 2.0</p>
+          </div>
+        </div>
+        <div class="row pt-3 border-top">
+          <div class="col-auto">
+            <a href="https://nsf.gov/"><img src="../../_static/img/footer-logo-nsf.png" alt="NSF" class="nsf-logo"></a>
+          </div>
+          <div class="col">
+            <p class="footer-text">This material is based upon work supported by the National Center for Atmospheric Research, a major facility
+            sponsored by the National Science Foundation and managed by the University Corporation for Atmospheric Research. Any opinions,
+            findings and conclusions or recommendations expressed in this material do not necessarily reflect the views of the National
+            Science Foundation.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+  </body>
+</html>
