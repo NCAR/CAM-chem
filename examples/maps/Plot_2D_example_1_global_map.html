@@ -44,7 +44,7 @@
         <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
 </ul>
-<p class="caption"><span class="caption-text">EXAMPLES</span></p>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../curtains.html">Curtains</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../emissions.html">Emissions processing</a></li>
@@ -69,7 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../timeseries.html">Timeseries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../widget.html">Widget</a></li>
 </ul>
-<p class="caption"><span class="caption-text">DOWNLOAD SAMPLE DATA</span></p>
+<p class="caption" role="heading"><span class="caption-text">DOWNLOAD SAMPLE DATA</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample.nc"> CAM-chem sample</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample_se.nc"> MUSICA sample</a></li>
@@ -84,7 +84,7 @@
       <!-- Page Content -->
       <main role="main" class="content" style="min-height:700px;">
         
-  <div class="section" id="plot-a-global-map-from-finite-volume-fv-grid-field-plot-2d-application">
+  <section id="plot-a-global-map-from-finite-volume-fv-grid-field-plot-2d-application">
 <h1>Plot a global map from finite volume (FV) grid field (Plot_2D application)<a class="headerlink" href="#plot-a-global-map-from-finite-volume-fv-grid-field-plot-2d-application" title="Permalink to this headline">¶</a></h1>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># By line: DSJ 10-MAR-2021
 # Script aims to:
@@ -95,7 +95,7 @@
 # - Manually set maximum and minimum values of the plot
 </pre></div>
 </div>
-<div class="section" id="at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use">
+<section id="at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use">
 <h2>At the start of a Jupyter notebook you need to import all modules that you will use<a class="headerlink" href="#at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Make sure you have downloaded &quot;Plot_2D.py&quot; script from Github
 from Plot_2D import Plot_2D
@@ -103,15 +103,15 @@ import xarray as xr # To read NetCDF file
 import matplotlib.cm as cm # To change colormap used in plots
 </pre></div>
 </div>
-</div>
-<div class="section" id="read-the-sample-file">
+</section>
+<section id="read-the-sample-file">
 <h2>Read the sample file<a class="headerlink" href="#read-the-sample-file" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Make sure you have downloaded &quot;sample.nc&quot; file from Github
 ds = xr.open_dataset( &#39;sample.nc&#39; )
 </pre></div>
 </div>
-</div>
-<div class="section" id="call-plot-2d-script-to-plot-surface-co">
+</section>
+<section id="call-plot-2d-script-to-plot-surface-co">
 <h2>Call Plot_2D script to plot surface CO<a class="headerlink" href="#call-plot-2d-script-to-plot-surface-co" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Plot_2D( ds[&#39;CO&#39;][0,-1,:,:]*1e9 ) # multiply by 1e9 to make it to ppbv
 </pre></div>
@@ -120,8 +120,8 @@ ds = xr.open_dataset( &#39;sample.nc&#39; )
 </pre></div>
 </div>
 <img alt="../../_images/Plot_2D_example_1_global_map_7_1.png" src="../../_images/Plot_2D_example_1_global_map_7_1.png" />
-</div>
-<div class="section" id="you-can-specify-colormap-for-more-information-you-can-check-colormaps-from-here-https-matplotlib-org-stable-tutorials-colors-colormaps-html">
+</section>
+<section id="you-can-specify-colormap-for-more-information-you-can-check-colormaps-from-here-https-matplotlib-org-stable-tutorials-colors-colormaps-html">
 <h2>You can specify colormap. For more information, you can check colormaps from here: <a class="reference external" href="https://matplotlib.org/stable/tutorials/colors/colormaps.html">https://matplotlib.org/stable/tutorials/colors/colormaps.html</a><a class="headerlink" href="#you-can-specify-colormap-for-more-information-you-can-check-colormaps-from-here-https-matplotlib-org-stable-tutorials-colors-colormaps-html" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Plot_2D( ds[&#39;CO&#39;][0,-1,:,:]*1e9, cmap=cm.hot_r )
 </pre></div>
@@ -130,8 +130,8 @@ ds = xr.open_dataset( &#39;sample.nc&#39; )
 </pre></div>
 </div>
 <img alt="../../_images/Plot_2D_example_1_global_map_9_1.png" src="../../_images/Plot_2D_example_1_global_map_9_1.png" />
-</div>
-<div class="section" id="lets-add-an-unit-to-the-plot-by-using-unit-keyword">
+</section>
+<section id="lets-add-an-unit-to-the-plot-by-using-unit-keyword">
 <h2>Let’s add an unit to the plot by using unit keyword<a class="headerlink" href="#lets-add-an-unit-to-the-plot-by-using-unit-keyword" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Plot_2D( ds[&#39;CO&#39;][0,-1,:,:]*1e9, cmap=cm.hot_r, unit=&#39;ppbv&#39; )
 </pre></div>
@@ -140,8 +140,8 @@ ds = xr.open_dataset( &#39;sample.nc&#39; )
 </pre></div>
 </div>
 <img alt="../../_images/Plot_2D_example_1_global_map_11_1.png" src="../../_images/Plot_2D_example_1_global_map_11_1.png" />
-</div>
-<div class="section" id="you-can-also-add-a-title-to-the-plot">
+</section>
+<section id="you-can-also-add-a-title-to-the-plot">
 <h2>You can also add a title to the plot<a class="headerlink" href="#you-can-also-add-a-title-to-the-plot" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Plot_2D( ds[&#39;CO&#39;][0,-1,:,:]*1e9, cmap=cm.hot_r, unit=&#39;ppbv&#39;, title=&#39;CO mixing ratio (SFC)&#39; )
 </pre></div>
@@ -150,8 +150,8 @@ ds = xr.open_dataset( &#39;sample.nc&#39; )
 </pre></div>
 </div>
 <img alt="../../_images/Plot_2D_example_1_global_map_13_1.png" src="../../_images/Plot_2D_example_1_global_map_13_1.png" />
-</div>
-<div class="section" id="set-maximum-and-minimum-values-manually-with-cmin-and-cmax-keywords">
+</section>
+<section id="set-maximum-and-minimum-values-manually-with-cmin-and-cmax-keywords">
 <h2>Set maximum and minimum values manually with cmin and cmax keywords<a class="headerlink" href="#set-maximum-and-minimum-values-manually-with-cmin-and-cmax-keywords" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Plot_2D( ds[&#39;CO&#39;][0,-1,:,:]*1e9, cmap=cm.hot_r, unit=&#39;ppbv&#39;, title=&#39;CO mixing ratio (SFC)&#39;,
          cmax=1000, cmin=100 )
@@ -161,8 +161,8 @@ ds = xr.open_dataset( &#39;sample.nc&#39; )
 </pre></div>
 </div>
 <img alt="../../_images/Plot_2D_example_1_global_map_15_1.png" src="../../_images/Plot_2D_example_1_global_map_15_1.png" />
-</div>
-</div>
+</section>
+</section>
 
 
       </main>

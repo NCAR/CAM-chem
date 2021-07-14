@@ -44,7 +44,7 @@
         <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
 </ul>
-<p class="caption"><span class="caption-text">EXAMPLES</span></p>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../curtains.html">Curtains</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../emissions.html">Emissions processing</a></li>
@@ -69,7 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../timeseries.html">Timeseries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../widget.html">Widget</a></li>
 </ul>
-<p class="caption"><span class="caption-text">DOWNLOAD SAMPLE DATA</span></p>
+<p class="caption" role="heading"><span class="caption-text">DOWNLOAD SAMPLE DATA</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample.nc"> CAM-chem sample</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://acomstaff.acom.ucar.edu/CESM/sample_se.nc"> MUSICA sample</a></li>
@@ -84,7 +84,7 @@
       <!-- Page Content -->
       <main role="main" class="content" style="min-height:700px;">
         
-  <div class="section" id="plot-a-global-map-from-spectral-element-with-regional-refinement-se-rr-mesh-field-plot-2d-application">
+  <section id="plot-a-global-map-from-spectral-element-with-regional-refinement-se-rr-mesh-field-plot-2d-application">
 <h1>Plot a global map from spectral element with regional refinement (SE-RR) mesh field (Plot_2D application)<a class="headerlink" href="#plot-a-global-map-from-spectral-element-with-regional-refinement-se-rr-mesh-field-plot-2d-application" title="Permalink to this headline">¶</a></h1>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># By line: DSJ 10-MAR-2021
 # Script aims to:
@@ -95,7 +95,7 @@
 # - Add unit and title, and change maximum value of the plot
 </pre></div>
 </div>
-<div class="section" id="at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use">
+<section id="at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use">
 <h2>At the start of a Jupyter notebook you need to import all modules that you will use<a class="headerlink" href="#at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Make sure you have downloaded &quot;Plot_2D.py&quot; script from Github
 from Plot_2D import Plot_2D
@@ -103,17 +103,17 @@ import xarray as xr # To read NetCDF file
 import matplotlib.cm as cm # To change colormap used in plots
 </pre></div>
 </div>
-</div>
-<div class="section" id="read-the-sample-file">
+</section>
+<section id="read-the-sample-file">
 <h2>Read the sample file<a class="headerlink" href="#read-the-sample-file" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Make sure you have downloaded &quot;sample_se.nc&quot; and &quot;sample_se_scrip&quot; files from Github
 ds = xr.open_dataset( &#39;sample_se.nc&#39; )
 </pre></div>
 </div>
-</div>
-<div class="section" id="call-plot-2d-script-to-plot-surface-so2">
+</section>
+<section id="call-plot-2d-script-to-plot-surface-so2">
 <h2>Call Plot_2D script to plot surface SO2<a class="headerlink" href="#call-plot-2d-script-to-plot-surface-so2" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="note-that-you-must-specify-scrip-file-to-let-the-script-know-what-mesh-looks-like">
+<section id="note-that-you-must-specify-scrip-file-to-let-the-script-know-what-mesh-looks-like">
 <h3>Note that you must specify scrip file to let the script know what mesh looks like<a class="headerlink" href="#note-that-you-must-specify-scrip-file-to-let-the-script-know-what-mesh-looks-like" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># multiply by 1e9 to make it to ppbv
 Plot_2D( ds[&#39;SO2&#39;][0,-1,:]*1e9, scrip_file=&#39;sample_se_scrip.nc&#39;, cmap=cm.hot_r )
@@ -123,9 +123,9 @@ Plot_2D( ds[&#39;SO2&#39;][0,-1,:]*1e9, scrip_file=&#39;sample_se_scrip.nc&#39;,
 </pre></div>
 </div>
 <img alt="../../_images/Plot_2D_example_3_SE_RR_map_7_1.png" src="../../_images/Plot_2D_example_3_SE_RR_map_7_1.png" />
-</div>
-</div>
-<div class="section" id="add-a-grid-line-to-see-the-model-mesh">
+</section>
+</section>
+<section id="add-a-grid-line-to-see-the-model-mesh">
 <h2>Add a grid line to see the model mesh<a class="headerlink" href="#add-a-grid-line-to-see-the-model-mesh" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># multiply by 1e9 to make it to ppbv
 Plot_2D( ds[&#39;SO2&#39;][0,-1,:]*1e9, scrip_file=&#39;sample_se_scrip.nc&#39;, cmap=cm.hot_r, grid_line=True, grid_line_lw=0.1 )
@@ -135,8 +135,8 @@ Plot_2D( ds[&#39;SO2&#39;][0,-1,:]*1e9, scrip_file=&#39;sample_se_scrip.nc&#39;,
 </pre></div>
 </div>
 <img alt="../../_images/Plot_2D_example_3_SE_RR_map_9_1.png" src="../../_images/Plot_2D_example_3_SE_RR_map_9_1.png" />
-</div>
-<div class="section" id="lets-plot-a-regional-map">
+</section>
+<section id="lets-plot-a-regional-map">
 <h2>Let’s plot a regional map<a class="headerlink" href="#lets-plot-a-regional-map" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># multiply by 1e9 to make it to ppbv
 Plot_2D( ds[&#39;SO2&#39;][0,-1,:]*1e9, scrip_file=&#39;sample_se_scrip.nc&#39;, cmap=cm.hot_r, grid_line=True, grid_line_lw=0.1, lon_range=[124,131], lat_range=[33,42] )
@@ -146,8 +146,8 @@ Plot_2D( ds[&#39;SO2&#39;][0,-1,:]*1e9, scrip_file=&#39;sample_se_scrip.nc&#39;,
 </pre></div>
 </div>
 <img alt="../../_images/Plot_2D_example_3_SE_RR_map_11_1.png" src="../../_images/Plot_2D_example_3_SE_RR_map_11_1.png" />
-</div>
-<div class="section" id="lets-change-the-interval-of-longitude-labels-and-add-state-lines">
+</section>
+<section id="lets-change-the-interval-of-longitude-labels-and-add-state-lines">
 <h2>Let’s change the interval of longitude labels and add state lines<a class="headerlink" href="#lets-change-the-interval-of-longitude-labels-and-add-state-lines" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># multiply by 1e9 to make it to ppbv
 Plot_2D( ds[&#39;SO2&#39;][0,-1,:]*1e9, scrip_file=&#39;sample_se_scrip.nc&#39;, cmap=cm.hot_r, grid_line=True, grid_line_lw=0.1, lon_range=[124,131], lat_range=[33,42], lon_interval=3, state=True )
@@ -157,8 +157,8 @@ Plot_2D( ds[&#39;SO2&#39;][0,-1,:]*1e9, scrip_file=&#39;sample_se_scrip.nc&#39;,
 </pre></div>
 </div>
 <img alt="../../_images/Plot_2D_example_3_SE_RR_map_13_1.png" src="../../_images/Plot_2D_example_3_SE_RR_map_13_1.png" />
-</div>
-<div class="section" id="add-unit-and-title-and-change-maximum-value-of-the-plot">
+</section>
+<section id="add-unit-and-title-and-change-maximum-value-of-the-plot">
 <h2>Add unit and title, and change maximum value of the plot<a class="headerlink" href="#add-unit-and-title-and-change-maximum-value-of-the-plot" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># multiply by 1e9 to make it to ppbv
 Plot_2D( ds[&#39;SO2&#39;][0,-1,:]*1e9, scrip_file=&#39;sample_se_scrip.nc&#39;, cmap=cm.hot_r, grid_line=True, grid_line_lw=0.1, lon_range=[124,131], lat_range=[33,42], lon_interval=3, state=True, unit=&#39;ppbv&#39;, title=&#39;SO2 over Korea&#39;, cmax=20 )
@@ -168,8 +168,8 @@ Plot_2D( ds[&#39;SO2&#39;][0,-1,:]*1e9, scrip_file=&#39;sample_se_scrip.nc&#39;,
 </pre></div>
 </div>
 <img alt="../../_images/Plot_2D_example_3_SE_RR_map_15_1.png" src="../../_images/Plot_2D_example_3_SE_RR_map_15_1.png" />
-</div>
-</div>
+</section>
+</section>
 
 
       </main>
