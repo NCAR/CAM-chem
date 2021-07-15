@@ -32,4 +32,4 @@ Potentially helpful learning resources
 
 `GeoWombat <https://geowombat.readthedocs.io/en/latest/>`_ - Utilities to process geospatial and time series of raster data at scale.
 
-_`geoplot <https://residentmario.github.io/geoplot/index.html>`_ - Geospatial data visualization.
+`geoplot <https://residentmario.github.io/geoplot/index.html>`_ - Geospatial data visualization.
