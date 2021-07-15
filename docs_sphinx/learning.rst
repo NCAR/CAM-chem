@@ -31,3 +31,5 @@ Potentially helpful learning resources
 `xarray and NetCDF <https://towardsdatascience.com/handling-netcdf-files-using-xarray-for-absolute-beginners-111a8ab4463f>`_ - Absolute beginners instructions for using xarray with NetCDF.
 
 `GeoWombat <https://geowombat.readthedocs.io/en/latest/>`_ - Utilities to process geospatial and time series of raster data at scale.
+
+_`geoplot <https://residentmario.github.io/geoplot/index.html>`_ - Geospatial data visualization.
