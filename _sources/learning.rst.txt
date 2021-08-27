@@ -36,4 +36,4 @@ Potentially helpful learning resources
 
 `The Python Graph Gallery <https://www.python-graph-gallery.com/>`_ - Examples of many different types of graphs.
 
-_`Install conda <https://conda.io/projects/conda/en/latest/user-guide/install/index.html>`_ - Use conda as a python environment manager.
+`Install conda <https://conda.io/projects/conda/en/latest/user-guide/install/index.html>`_ - Use conda as a python environment manager.
