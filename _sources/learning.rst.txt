@@ -33,3 +33,5 @@ Potentially helpful learning resources
 `GeoWombat <https://geowombat.readthedocs.io/en/latest/>`_ - Utilities to process geospatial and time series of raster data at scale.
 
 `geoplot <https://residentmario.github.io/geoplot/index.html>`_ - Geospatial data visualization.
+
+`The Python Graph Gallery <https://www.python-graph-gallery.com/>`_ - Examples of many different types of graphs.
