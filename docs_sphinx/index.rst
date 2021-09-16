@@ -58,17 +58,17 @@ Here, you will find a growing collection of Python code for atmospheric chemistr
    :widths: 20 20 20
    :header-rows: 0
 
-   * - | |curtains|_
+   * - | curtains
        | Altitude slices of concentrations, versus time or space
-     - | |emissions|_
+     - | emissions
        | Aggregate emissions and plot in various ways
      - | |functions|_
        | Advanced python scripts and processing
-   * - | |io|_
+   * - | io
        | Some tips and tricks for reading, writing and processing data
      - | |maps|_
        | Plot model output on maps
-     - | |profiles|_
+     - | profiles
        | Altitude versus concentration plots
    * - | scatter plots
        | Plots of one variable plotted against a second variable
