@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: vivaldi-a
+Version: 0.1.0
+Summary: Visualization Validation and Diagnostics for Atmospheric chemistry
+Home-page: https://ncar.github.io/CAM-chem/
+Author: Rebecca Buchholz;Duseong Jo
+Author-email: cdswk@ucar.edu
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: atmospheric chemistry,cesm,cam-chem,air quality,emission
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering :: Atmospheric Science
