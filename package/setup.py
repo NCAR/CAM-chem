@@ -7,7 +7,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="vivaldi_a",
-    version="0.2.0",
+    version="0.2.6",
     description="Visualization Validation and Diagnostics for Atmospheric chemistry",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -20,15 +20,10 @@ setup(
         'numpy',
         'matplotlib',
         'xarray',
-        'cartopy'
+        'cartopy',
         'cftime',
-        'ESMF',
-        'calendar',
-        'netCDF4',
-        'subprocess',
-        'datetime', 
-        'time', 
-        'os' ],
+        'ESMPy>=8.1.0',
+        'netCDF4' ],
     classifiers=[
         "Programming Language :: Python :: 3.7",
         "Topic :: Scientific/Engineering :: Atmospheric Science",

@@ -1,3 +1,5 @@
+# jupyter notebook related
+.ipynb_checkpoints
 
 #GitHub pages specific
 docs_sphinx/_build
