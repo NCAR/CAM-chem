@@ -6,5 +6,8 @@ vivaldi_a.egg-info/SOURCES.txt
 vivaldi_a.egg-info/dependency_links.txt
 vivaldi_a.egg-info/requires.txt
 vivaldi_a.egg-info/top_level.txt
+vivaldi_a/analysis/Calc_Emis.py
+vivaldi_a/analysis/Regridding_ESMF.py
+vivaldi_a/analysis/__init__.py
 vivaldi_a/plot/Plot_2D.py
 vivaldi_a/plot/__init__.py

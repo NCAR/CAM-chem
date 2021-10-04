@@ -1,13 +1,21 @@
-Metadata-Version: 1.1
+Metadata-Version: 2.1
 Name: vivaldi-a
-Version: 0.1.0
+Version: 0.2.0
 Summary: Visualization Validation and Diagnostics for Atmospheric chemistry
 Home-page: https://ncar.github.io/CAM-chem/
 Author: Rebecca Buchholz;Duseong Jo
 Author-email: cdswk@ucar.edu
 License: UNKNOWN
-Description: UNKNOWN
+Description: # Vivaldi-A
+        
+        **Vi**sualization **Val**idation and **Di**agnostics for **A**tmospheric chemistry.
+        
+        Check out information about this package at the [CAM-chem python collection page](https://ncar.github.io/CAM-chem/)
+        
 Keywords: atmospheric chemistry,cesm,cam-chem,air quality,emission
 Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3.7
 Classifier: Topic :: Scientific/Engineering :: Atmospheric Science
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
