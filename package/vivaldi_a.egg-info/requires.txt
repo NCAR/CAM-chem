@@ -1,4 +1,11 @@
 numpy
 matplotlib
 xarray
-cartopy
+cartopycftime
+ESMF
+calendar
+netCDF4
+subprocess
+datetime
+time
+os

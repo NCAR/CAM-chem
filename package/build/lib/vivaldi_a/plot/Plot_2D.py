@@ -23,10 +23,11 @@ MODIFICATION HISTORY:
     - Added a symlog functionality for minus values in log plot
     Duseong Jo, 13, FEB, 2021: VERSION 1.50
     - Added a diff option for difference plot
-    Duseong Jo, 24, FEB, 2021: VERSION 1.60
+    Duseong Jo, 24, JEB, 2021: VERSION 1.60
     - minor bug fix for log plot with maximum values less than 0.1
+    Duseong Jo, 31, MAY, 2021: VERSION 1.61
+    - minor bug fix when colorbar is False
 '''
-
 
 ### Module import ###
 import numpy as np
@@ -108,7 +109,7 @@ class Plot_2D(object):
                  font_family="STIXGeneral", label_size=15, colorbar=True, 
                  log_scale=False, log_scale_min=None, diff=False, orientation="horizontal", 
                  shrink=0.8, pad=0.12, fraction=0.1, extend='both',
-                 colorticks=None, colorlabels=None, pretty_tick=True, nticks=None, 
+                 colorticks=None, colorlabels=None, pretty_tick=False, nticks=None, 
                  cmax=None, cmin=None, title="", title_size=20, title_bold=False,
                  unit="", unit_size=15, unit_bold=False, unit_italic=True, unit_offset=[0.0,0.0],
                  verbose=False):
@@ -747,24 +748,25 @@ class Plot_2D(object):
             self.ax.grid( lw=1.0, color='black', alpha=0.5, linestyle=':')
   
         # === Set colorbar properties ===
-        self.cb = self.fig.colorbar( self.im, ax=self.ax, orientation=self.orientation,
-                                     shrink=self.shrink, pad=self.pad, extend=self.extend,
-                                     fraction=self.fraction, ticks=self.colorticks )
+        if self.colorbar:
+            self.cb = self.fig.colorbar( self.im, ax=self.ax, orientation=self.orientation,
+                                         shrink=self.shrink, pad=self.pad, extend=self.extend,
+                                         fraction=self.fraction, ticks=self.colorticks )
 
-        self.cb.ax.tick_params(labelsize=self.label_size-1)
-        #if not (self.log_scale & self.pretty_tick):
-        self.cb.ax.set_xticklabels( self.colorlabels, size=13 )
+            self.cb.ax.tick_params(labelsize=self.label_size-1)
+            #if not (self.log_scale & self.pretty_tick):
+            self.cb.ax.set_xticklabels( self.colorlabels, size=13 )       
+
+            # === Add a unit if specified ===
+            if self.unit != "":
+                self.cb.ax.text( 1.02+self.unit_offset[0], 1.0+self.unit_offset[1], self.unit,
+                                 size=self.unit_size, ha='left', va='top',
+                                 transform=self.cb.ax.transAxes, **self.kwd_unit )
         
         # === Add a title if specified ===
         if self.title != "":
             self.ax.set_title( self.title, fontsize=self.title_size, 
                                fontfamily=self.font_family, **self.kwd_title )
-        
-        # === Add a unit if specified ===
-        if self.unit != "":
-            self.cb.ax.text( 1.02+self.unit_offset[0], 1.0+self.unit_offset[1], self.unit,
-                             size=self.unit_size, ha='left', va='top',
-                             transform=self.cb.ax.transAxes, **self.kwd_unit )
             
     # ============================= END Plotting =============================
     # ========================================================================
