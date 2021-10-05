@@ -7,7 +7,7 @@ Functions
 
 First, you can install functions using the **Vivaldi-A** PyPI package: https://pypi.org/project/vivaldi-a/
 
-* try this commane to use the package
+* try this command to use the package
 
  pip install vivaldi_a
 or
