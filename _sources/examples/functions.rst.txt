@@ -6,8 +6,13 @@ Functions
 ====================
 
 First, you can install functions using the **Vivaldi-A** PyPI package: https://pypi.org/project/vivaldi-a/
+
 * try this commane to use the package
-> pip install vivaldi_a
+
+ pip install vivaldi_a
+or
+
+ pip install vivaldi_a==version_number (e.g., pip install vivaldi_a==0.2.6)
 
 
 A list of the functions to be discussed in this page
