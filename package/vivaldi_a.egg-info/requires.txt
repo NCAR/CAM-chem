@@ -1,11 +1,7 @@
 numpy
 matplotlib
 xarray
-cartopycftime
-ESMF
-calendar
+cartopy
+cftime
+ESMPy>=8.1.0
 netCDF4
-subprocess
-datetime
-time
-os
