@@ -17,6 +17,10 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Install pandoc
+        run: |
+          sudo apt-get install --no-install-recommends pandoc
+        
       - name: Set up Python 3.7
         uses: actions/setup-python@v2
         with:
@@ -28,7 +32,6 @@ jobs:
           pip install -r requirements.txt
           pip install sphinx
           pip install nbsphinx
-          pip install pandoc
           
       - name: Build Sphinx Documentation
         run: |
