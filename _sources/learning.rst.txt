@@ -15,9 +15,9 @@ Potentially helpful learning resources
      - | YouTube link
      - | Blog post
      - | GitHub link
-   * - | eg1
-     - | 
-     - | 
+   * - | Jupyter Notebooks
+     - | `video <https://youtu.be/xSzXvwzFsDU>`_
+     - | `FAQ <https://ncar.github.io/esds/posts/2021/jupyter-notebooks-faq/>`_
      - | 
        
 
