@@ -22,9 +22,9 @@ Potentially helpful learning resources
    * - | Pandas
      - | `video <https://youtu.be/BsV3ek7qsiM>`_
      - | `blog <https://ncar.github.io/esds/posts/2021/pandas-tutorial/>`_
-     - | `link <https://github.com/mgrover1/ncar_pandas_tutorial`_
+     - | `link <https://github.com/mgrover1/ncar_pandas_tutorial>`_
    * - | Cartopy
-     - | `video <https://youtu.be/ivmd3RluMiw`_
+     - | `video <https://youtu.be/ivmd3RluMiw>`_
      - | `blog <https://ncar.github.io/esds/posts/2021/cartopy-tutorial/>`_
      - | `link <https://github.com/michaelavs/cartopy_tutorial`_
    * - | Xarray (using binder)
