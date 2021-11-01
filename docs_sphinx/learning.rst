@@ -19,13 +19,15 @@ Potentially helpful learning resources
      - | `video <https://youtu.be/xSzXvwzFsDU>`_
      - | `FAQ <https://ncar.github.io/esds/posts/2021/jupyter-notebooks-faq/>`_
      - | 
+   * - | Xarray (using binder)
+     - | `video <https://www.youtube.com/watch?v=a339Q5F48UQ&feature=youtu.be>`_
+     - |
+     - | `link <https://github.com/xarray-contrib/xarray-tutorial>`_
        
 
 `Unidata python workshop <https://unidata.github.io/python-training/workshop/workshop-intro/>`_ - Training on the scientific Python ecosystem for atmospheric science and meteorology.
 
 `Unidata gallery examples <https://unidata.github.io/python-training/gallery/gallery-home/>`_ - Atmospheric science and meteorology example plots.
-
-`xarray tutorial <https://www.youtube.com/watch?v=a339Q5F48UQ&feature=youtu.be>`_ - Recorded CISL tutorial on using the xarray package in the Jupyter Notebook setting.
 
 `NCAR PyNGL and PyNIO <https://www.pyngl.ucar.edu/>`_ - Continuation on from the NCAR Command language pivot to Python.
 
