@@ -55,6 +55,7 @@ html_theme_options = {
     'sidebar_collapse': True,
     'github_repo': 'alabaster',
 }
+highlight_language ='python3'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
