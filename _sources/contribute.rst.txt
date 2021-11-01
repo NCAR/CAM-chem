@@ -25,13 +25,7 @@ Add this to the top of your code, filling in the appropriate areas:
 
 |
 
-Convert your code to restructred text (.rst) webpage format type in a terminal:
-
-.. code-block:: ipython3
-
-   jupyter nbconvert yourfile.ipynb --to rst
-
-Supply the rst files and accompanying image folder, jupyter notebook and/or python code, and the input data used to the ACOM/python team by letting us know you would like to contribute through this form: **add form**.
+Then supply the .ipynb or python files and accompanying input data used to the ACOM/python team by letting us know you would like to contribute through this form: **add form**.
 
 
 
