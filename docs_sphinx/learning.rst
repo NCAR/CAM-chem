@@ -7,6 +7,19 @@ Potentially helpful learning resources
 
 `NCAR CISL/Xdev python tutorials <https://ncar.github.io/esds/blog/tag/python-tutorial-series/>`_ - Training on the scientific Python ecosystem for atmospheric science and meteorology.
 
+.. list-table::
+   :widths: 20 20 20 20
+   :header-rows: 1
+  
+   * - | Tutorial
+     - | YouTube link
+     - | Blog post
+     - | GitHub link
+   * - | eg1
+     - | 
+     - | 
+     - | 
+       
 
 `Unidata python workshop <https://unidata.github.io/python-training/workshop/workshop-intro/>`_ - Training on the scientific Python ecosystem for atmospheric science and meteorology.
 
