@@ -26,7 +26,7 @@ Potentially helpful learning resources
    * - | Cartopy
      - | `video <https://youtu.be/ivmd3RluMiw>`_
      - | `blog <https://ncar.github.io/esds/posts/2021/cartopy-tutorial/>`_
-     - | `link <https://github.com/michaelavs/cartopy_tutorial`_
+     - | `link <https://github.com/michaelavs/cartopy_tutorial>`_
    * - | Xarray (using binder)
      - | `video <https://www.youtube.com/watch?v=a339Q5F48UQ&feature=youtu.be>`_
      - |
