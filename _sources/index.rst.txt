@@ -44,7 +44,7 @@ Here, you will find a growing collection of Python code for atmospheric chemistr
 .. _functions: examples/functions.html
 .. |functions| replace:: **functions** 
 .. _io: examples/io.html
-.. |io| replace:: **i/o and processing** 
+.. |io| replace:: **io and processing** 
 .. _maps: examples/maps.html
 .. |maps| replace:: **maps** 
 .. _profiles: examples/profiles.html
@@ -64,7 +64,7 @@ Here, you will find a growing collection of Python code for atmospheric chemistr
        | Aggregate emissions and plot in various ways
      - | |functions|_
        | Advanced python scripts and processing
-   * - | io
+   * - | i/o and processing
        | Some tips and tricks for reading, writing and processing data
      - | |maps|_
        | Plot model output on maps
