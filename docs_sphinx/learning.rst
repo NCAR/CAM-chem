@@ -19,6 +19,14 @@ Potentially helpful learning resources
      - | `video <https://youtu.be/xSzXvwzFsDU>`_
      - | `FAQ <https://ncar.github.io/esds/posts/2021/jupyter-notebooks-faq/>`_
      - | 
+   * - | Numpy
+     - | `video <https://youtu.be/kstc-6uz7AQ>`_
+     - | `FAQ <https://ncar.github.io/esds/posts/2021/numpy-faq/>`_
+     - | `blog <https://ncar.github.io/esds/posts/2021/numpy-tutorial//>`_
+   * - | Jupyter Notebooks
+     - | `video <https://youtu.be/xSzXvwzFsDU>`_
+     - | `FAQ <https://ncar.github.io/esds/posts/2021/jupyter-notebooks-faq/>`_
+     - |
    * - | Xarray (using binder)
      - | `video <https://www.youtube.com/watch?v=a339Q5F48UQ&feature=youtu.be>`_
      - |
