@@ -86,59 +86,59 @@
         
   <section id="plot-a-map-as-lambert-conformal">
 <h1>Plot a map as Lambert Conformal<a class="headerlink" href="#plot-a-map-as-lambert-conformal" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># projections-conus.py
-# Carl Drews
-# July 2020
-# Added Lambert Conformal CONUS and Mexican states to Cartopy example 5 at:
-# https://scitools.org.uk/cartopy/docs/latest/crs/projections.html#lambertconformal
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># projections-conus.py</span>
+<span class="c1"># Carl Drews</span>
+<span class="c1"># July 2020</span>
+<span class="c1"># Added Lambert Conformal CONUS and Mexican states to Cartopy example 5 at:</span>
+<span class="c1"># https://scitools.org.uk/cartopy/docs/latest/crs/projections.html#lambertconformal</span>
 
-import cartopy.crs as ccrs
-import cartopy.feature as cfeature
-import matplotlib.pyplot as plt
-import cartopy.io.shapereader
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="k">as</span> <span class="nn">cfeature</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">cartopy.io.shapereader</span>
 
 
-#plt.figure(figsize=(4.2897, 3))
-myLambert = ccrs.LambertConformal(central_longitude=-97.0,
-   central_latitude=(30.0 + 60.0)/2)
-ax = plt.axes(projection=myLambert)
-ax.set_extent([-119.90, -73.50, 23.08, 50.00])
+<span class="c1">#plt.figure(figsize=(4.2897, 3))</span>
+<span class="n">myLambert</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">LambertConformal</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=-</span><span class="mf">97.0</span><span class="p">,</span>
+   <span class="n">central_latitude</span><span class="o">=</span><span class="p">(</span><span class="mf">30.0</span> <span class="o">+</span> <span class="mf">60.0</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">myLambert</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="o">-</span><span class="mf">119.90</span><span class="p">,</span> <span class="o">-</span><span class="mf">73.50</span><span class="p">,</span> <span class="mf">23.08</span><span class="p">,</span> <span class="mf">50.00</span><span class="p">])</span>
 
-# set up line width
-width = 1.0
+<span class="c1"># set up line width</span>
+<span class="n">width</span> <span class="o">=</span> <span class="mf">1.0</span>
 
-ax.coastlines(resolution=&#39;50m&#39;, linewidth=width)
-ax.add_feature(cfeature.BORDERS.with_scale(&quot;50m&quot;), linewidth=width)
-ax.add_feature(cfeature.STATES.with_scale(&quot;50m&quot;), linewidth=width/2)
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;50m&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">width</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">BORDERS</span><span class="o">.</span><span class="n">with_scale</span><span class="p">(</span><span class="s2">&quot;50m&quot;</span><span class="p">),</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">width</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">STATES</span><span class="o">.</span><span class="n">with_scale</span><span class="p">(</span><span class="s2">&quot;50m&quot;</span><span class="p">),</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
 
-# States of Mexico
-# download from: https://www.naturalearthdata.com/downloads/10m-cultural-vectors/
-shapeFilename = &quot;./ne_10m_admin_1_states_provinces/ne_10m_admin_1_states_provinces.shp&quot;
-print(&quot;Reading states provinces from {}\n&quot;.format(shapeFilename))
-reader = cartopy.io.shapereader.Reader(shapeFilename)
-statesProvinces = reader.records()
+<span class="c1"># States of Mexico</span>
+<span class="c1"># download from: https://www.naturalearthdata.com/downloads/10m-cultural-vectors/</span>
+<span class="n">shapeFilename</span> <span class="o">=</span> <span class="s2">&quot;./ne_10m_admin_1_states_provinces/ne_10m_admin_1_states_provinces.shp&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reading states provinces from </span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">shapeFilename</span><span class="p">))</span>
+<span class="n">reader</span> <span class="o">=</span> <span class="n">cartopy</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">shapereader</span><span class="o">.</span><span class="n">Reader</span><span class="p">(</span><span class="n">shapeFilename</span><span class="p">)</span>
+<span class="n">statesProvinces</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">records</span><span class="p">()</span>
 
-mexicoStates = []
-for stateProvince in statesProvinces:
-   if (stateProvince.attributes[&quot;admin&quot;] == &quot;Mexico&quot;):
-      print(&quot;State province {}&quot;.format(stateProvince.attributes[&quot;name&quot;]))
-      mexicoStates.append(stateProvince.geometry)
+<span class="n">mexicoStates</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">stateProvince</span> <span class="ow">in</span> <span class="n">statesProvinces</span><span class="p">:</span>
+   <span class="k">if</span> <span class="p">(</span><span class="n">stateProvince</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s2">&quot;admin&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Mexico&quot;</span><span class="p">):</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;State province </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">stateProvince</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]))</span>
+      <span class="n">mexicoStates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stateProvince</span><span class="o">.</span><span class="n">geometry</span><span class="p">)</span>
 
-ax.add_geometries(mexicoStates, ccrs.PlateCarree(),
-   edgecolor=&quot;black&quot;, facecolor=&#39;none&#39;, linewidth=width/2)
+<span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">(</span><span class="n">mexicoStates</span><span class="p">,</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+   <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
 
-ax.gridlines()
+<span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">()</span>
 
-savePath = &quot;./images/projection-conus.png&quot;
+<span class="n">savePath</span> <span class="o">=</span> <span class="s2">&quot;./images/projection-conus.png&quot;</span>
 
-try:
-    print(&quot;Saving image to {}\n&quot;.format(savePath))
-    # trim whitespace but leave a narrow margin
-    plt.savefig(savePath,
-        bbox_inches=&quot;tight&quot;, pad_inches=0.04)
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Saving image to </span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">savePath</span><span class="p">))</span>
+    <span class="c1"># trim whitespace but leave a narrow margin</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">savePath</span><span class="p">,</span>
+        <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">,</span> <span class="n">pad_inches</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span>
 
-except RuntimeError as oops:
-    print(&quot;{}\n&quot;.format(traceback.format_exc()))
+<span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">oops</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">()))</span>
 </pre></div>
 </div>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">Reading</span> <span class="n">states</span> <span class="n">provinces</span> <span class="kn">from</span> <span class="nn">.</span><span class="o">/</span><span class="n">ne_10m_admin_1_states_provinces</span><span class="o">/</span><span class="n">ne_10m_admin_1_states_provinces</span><span class="o">.</span><span class="n">shp</span>

@@ -86,56 +86,56 @@
         
   <section id="example-map-plotting">
 <h1>Example Map Plotting<a class="headerlink" href="#example-map-plotting" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># By line: RRB 2020-07-20
-# Script aims to:
-# - Load a netCDF file
-# - Extract one variable: CO
-# - Calculate column values: load model pressure, multiply by ppb -&gt; column conversion factor
-# - Add cyclic point
-# - Create contour plot of variable as world map with coastlines
-# - Customize contours and colorbar
-# - Add axes labels
-# - Add grid lines
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># By line: RRB 2020-07-20</span>
+<span class="c1"># Script aims to:</span>
+<span class="c1"># - Load a netCDF file</span>
+<span class="c1"># - Extract one variable: CO</span>
+<span class="c1"># - Calculate column values: load model pressure, multiply by ppb -&gt; column conversion factor</span>
+<span class="c1"># - Add cyclic point</span>
+<span class="c1"># - Create contour plot of variable as world map with coastlines</span>
+<span class="c1"># - Customize contours and colorbar</span>
+<span class="c1"># - Add axes labels</span>
+<span class="c1"># - Add grid lines</span>
 </pre></div>
 </div>
 <section id="at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use">
 <h2>At the start of a Jupyter notebook you need to import all modules that you will use.<a class="headerlink" href="#at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
-import cartopy.crs as ccrs                 # For plotting maps
-import cartopy.feature as cfeature         # For plotting maps
-from cartopy.util import add_cyclic_point  # For plotting maps
-from pathlib import Path                   # System agnostic paths
-import xarray as xr                        # For loading the data arrays
-import numpy as np                         # For array creation and calculations
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>                 <span class="c1"># For plotting maps</span>
+<span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="k">as</span> <span class="nn">cfeature</span>         <span class="c1"># For plotting maps</span>
+<span class="kn">from</span> <span class="nn">cartopy.util</span> <span class="kn">import</span> <span class="n">add_cyclic_point</span>  <span class="c1"># For plotting maps</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>                   <span class="c1"># System agnostic paths</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>                        <span class="c1"># For loading the data arrays</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>                         <span class="c1"># For array creation and calculations</span>
 </pre></div>
 </div>
 </section>
 <section id="define-the-directories-and-file-of-interest-for-your-results">
 <h2>Define the directories and file of interest for your results.<a class="headerlink" href="#define-the-directories-and-file-of-interest-for-your-results" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>result_dir = Path(&quot;../../data&quot;)
-file = &quot;CAM_chem_merra2_FCSD_1deg_QFED_monthoutput_CO_201801.nc&quot;
-file_to_open = result_dir / file
-#the netcdf file is now held in an xarray dataset named &#39;nc_load&#39; and can be referenced later in the notebook
-nc_load = xr.open_dataset(file_to_open)
-#to see what the netCDF file contains, uncomment below
-#nc_load
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../../data&quot;</span><span class="p">)</span>
+<span class="n">file</span> <span class="o">=</span> <span class="s2">&quot;CAM_chem_merra2_FCSD_1deg_QFED_monthoutput_CO_201801.nc&quot;</span>
+<span class="n">file_to_open</span> <span class="o">=</span> <span class="n">result_dir</span> <span class="o">/</span> <span class="n">file</span>
+<span class="c1">#the netcdf file is now held in an xarray dataset named &#39;nc_load&#39; and can be referenced later in the notebook</span>
+<span class="n">nc_load</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">file_to_open</span><span class="p">)</span>
+<span class="c1">#to see what the netCDF file contains, uncomment below</span>
+<span class="c1">#nc_load</span>
 </pre></div>
 </div>
 </section>
 <section id="extract-the-variable-of-choice-at-the-time-and-level-of-choice">
 <h2>Extract the variable of choice at the time and level of choice.<a class="headerlink" href="#extract-the-variable-of-choice-at-the-time-and-level-of-choice" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#extract variable
-var_sel = nc_load[&#39;CO&#39;].isel(time=0)
-#print(var_sel)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#extract variable</span>
+<span class="n">var_sel</span> <span class="o">=</span> <span class="n">nc_load</span><span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1">#print(var_sel)</span>
 
-#select the surface level at a specific time and convert to ppbv from vmr
-#select the surface level for an average over three times and convert to ppbv from vmr
-var_sel = var_sel*1e09 # 10-9 to ppb
-print(var_sel.shape)
+<span class="c1">#select the surface level at a specific time and convert to ppbv from vmr</span>
+<span class="c1">#select the surface level for an average over three times and convert to ppbv from vmr</span>
+<span class="n">var_sel</span> <span class="o">=</span> <span class="n">var_sel</span><span class="o">*</span><span class="mf">1e09</span> <span class="c1"># 10-9 to ppb</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">var_sel</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
-#extract grid variables
-lat = var_sel.coords[&#39;lat&#39;]
-lon = var_sel.coords[&#39;lon&#39;]
+<span class="c1">#extract grid variables</span>
+<span class="n">lat</span> <span class="o">=</span> <span class="n">var_sel</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span>
+<span class="n">lon</span> <span class="o">=</span> <span class="n">var_sel</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">56</span><span class="p">,</span> <span class="mi">192</span><span class="p">,</span> <span class="mi">288</span><span class="p">)</span>
@@ -144,14 +144,14 @@ lon = var_sel.coords[&#39;lon&#39;]
 </section>
 <section id="define-constants-for-converting-to-column-amounts">
 <h2>Define constants for converting to column amounts.<a class="headerlink" href="#define-constants-for-converting-to-column-amounts" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#-------------------------------
-#CONSTANTS and conversion factor
-#-------------------------------
-NAv = 6.0221415e+23                       #--- Avogadro&#39;s number
-g = 9.81                                  #--- m/s - gravity
-MWair = 28.94                             #--- g/mol
-xp_const = (NAv* 10)/(MWair*g)*1e-09      #--- scaling factor for turning vmr into pcol
-                                          #--- (note 1*e-09 because in ppb)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#-------------------------------</span>
+<span class="c1">#CONSTANTS and conversion factor</span>
+<span class="c1">#-------------------------------</span>
+<span class="n">NAv</span> <span class="o">=</span> <span class="mf">6.0221415e+23</span>                       <span class="c1">#--- Avogadro&#39;s number</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mf">9.81</span>                                  <span class="c1">#--- m/s - gravity</span>
+<span class="n">MWair</span> <span class="o">=</span> <span class="mf">28.94</span>                             <span class="c1">#--- g/mol</span>
+<span class="n">xp_const</span> <span class="o">=</span> <span class="p">(</span><span class="n">NAv</span><span class="o">*</span> <span class="mi">10</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">MWair</span><span class="o">*</span><span class="n">g</span><span class="p">)</span><span class="o">*</span><span class="mf">1e-09</span>      <span class="c1">#--- scaling factor for turning vmr into pcol</span>
+                                          <span class="c1">#--- (note 1*e-09 because in ppb)</span>
 </pre></div>
 </div>
 </section>
@@ -159,84 +159,84 @@ xp_const = (NAv* 10)/(MWair*g)*1e-09      #--- scaling factor for turning vmr in
 <h2>Create 3d Pressure array.<a class="headerlink" href="#create-3d-pressure-array" title="Permalink to this headline">¶</a></h2>
 <p>Calculates pressures at each hybrid level using the formula: p(k) =
 a(k)<em>p0 + b(k)</em>ps.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Load values to create true model pressure array
-psurf = nc_load[&#39;PS&#39;].isel(time=0)
-hyai = nc_load[&#39;hyai&#39;]
-hybi = nc_load[&#39;hybi&#39;]
-p0 = nc_load[&#39;P0&#39;]
-lev = var_sel.coords[&#39;lev&#39;]
-num_lev = lev.shape[0]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load values to create true model pressure array</span>
+<span class="n">psurf</span> <span class="o">=</span> <span class="n">nc_load</span><span class="p">[</span><span class="s1">&#39;PS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">hyai</span> <span class="o">=</span> <span class="n">nc_load</span><span class="p">[</span><span class="s1">&#39;hyai&#39;</span><span class="p">]</span>
+<span class="n">hybi</span> <span class="o">=</span> <span class="n">nc_load</span><span class="p">[</span><span class="s1">&#39;hybi&#39;</span><span class="p">]</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="n">nc_load</span><span class="p">[</span><span class="s1">&#39;P0&#39;</span><span class="p">]</span>
+<span class="n">lev</span> <span class="o">=</span> <span class="n">var_sel</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;lev&#39;</span><span class="p">]</span>
+<span class="n">num_lev</span> <span class="o">=</span> <span class="n">lev</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-# Initialize pressure edge arrays
-mod_press_low = xr.zeros_like(var_sel)
-mod_press_top = xr.zeros_like(var_sel)
+<span class="c1"># Initialize pressure edge arrays</span>
+<span class="n">mod_press_low</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">var_sel</span><span class="p">)</span>
+<span class="n">mod_press_top</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">var_sel</span><span class="p">)</span>
 
-# Calculate pressure edge arrays
-# CAM-chem layer indices start at the top and end at the bottom
-for i in range(num_lev):
-    mod_press_top[i,:,:] = hyai[i]*p0 + hybi[i]*psurf
-    mod_press_low[i,:,:] = hyai[i+1]*p0 + hybi[i+1]*psurf
+<span class="c1"># Calculate pressure edge arrays</span>
+<span class="c1"># CAM-chem layer indices start at the top and end at the bottom</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_lev</span><span class="p">):</span>
+    <span class="n">mod_press_top</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">hyai</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">p0</span> <span class="o">+</span> <span class="n">hybi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">psurf</span>
+    <span class="n">mod_press_low</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">hyai</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">p0</span> <span class="o">+</span> <span class="n">hybi</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">psurf</span>
 
-# Delta P in hPa
-mod_deltap = (mod_press_low - mod_press_top)/100
-#print(mod_press_low[:,0,0])
-#print(mod_press_top[:,0,0])
-#print(mod_deltap[:,0,0])
+<span class="c1"># Delta P in hPa</span>
+<span class="n">mod_deltap</span> <span class="o">=</span> <span class="p">(</span><span class="n">mod_press_low</span> <span class="o">-</span> <span class="n">mod_press_top</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span>
+<span class="c1">#print(mod_press_low[:,0,0])</span>
+<span class="c1">#print(mod_press_top[:,0,0])</span>
+<span class="c1">#print(mod_deltap[:,0,0])</span>
 </pre></div>
 </div>
 </section>
 <section id="calculate-columns">
 <h2>Calculate columns.<a class="headerlink" href="#calculate-columns" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>var_tcol = xr.dot(mod_deltap, xp_const*var_sel, dims=[&quot;lev&quot;])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">var_tcol</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">mod_deltap</span><span class="p">,</span> <span class="n">xp_const</span><span class="o">*</span><span class="n">var_sel</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lev&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </section>
 <section id="add-cyclic-point-to-avoid-white-stripe-at-lon-0">
 <h2>Add cyclic point to avoid white stripe at lon=0.<a class="headerlink" href="#add-cyclic-point-to-avoid-white-stripe-at-lon-0" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>var_tcol_cyc, lon_cyc = add_cyclic_point(var_tcol, coord=lon)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">var_tcol_cyc</span><span class="p">,</span> <span class="n">lon_cyc</span> <span class="o">=</span> <span class="n">add_cyclic_point</span><span class="p">(</span><span class="n">var_tcol</span><span class="p">,</span> <span class="n">coord</span><span class="o">=</span><span class="n">lon</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="plot-the-value-over-the-globe">
 <h2>Plot the value over the globe.<a class="headerlink" href="#plot-the-value-over-the-globe" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(20,8))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 
-#Define projection
-ax = plt.axes(projection=ccrs.PlateCarree())
+<span class="c1">#Define projection</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
 
-#define contour levels
-clev = np.arange(0.5, 3.2, 0.1)
+<span class="c1">#define contour levels</span>
+<span class="n">clev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
 
-#plot the data
-plt.contourf(lon_cyc,lat,var_tcol_cyc/1e18,clev,cmap=&#39;Spectral_r&#39;,extend=&#39;both&#39;)
+<span class="c1">#plot the data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">lon_cyc</span><span class="p">,</span><span class="n">lat</span><span class="p">,</span><span class="n">var_tcol_cyc</span><span class="o">/</span><span class="mf">1e18</span><span class="p">,</span><span class="n">clev</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Spectral_r&#39;</span><span class="p">,</span><span class="n">extend</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
 
-# add coastlines
-ax.add_feature(cfeature.COASTLINE)
+<span class="c1"># add coastlines</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">COASTLINE</span><span class="p">)</span>
 
-#add lat lon grids
-gl = ax.gridlines(draw_labels=True, color=&#39;grey&#39;, alpha=0.8, linestyle=&#39;--&#39;)
-gl.xlabels_top = False
-gl.ylabels_right = False
+<span class="c1">#add lat lon grids</span>
+<span class="n">gl</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span><span class="n">draw_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">gl</span><span class="o">.</span><span class="n">xlabels_top</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">gl</span><span class="o">.</span><span class="n">ylabels_right</span> <span class="o">=</span> <span class="kc">False</span>
 
-# Titles
-# Main
-plt.title(&quot;Global map of CAM-chem column CO, January 2018&quot;,fontsize=18)
+<span class="c1"># Titles</span>
+<span class="c1"># Main</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Global map of CAM-chem column CO, January 2018&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 
-# y-axis
-ax.text(-0.04, 0.5, &#39;Latitude&#39;, va=&#39;bottom&#39;, ha=&#39;center&#39;,
-        rotation=&#39;vertical&#39;, rotation_mode=&#39;anchor&#39;,
-        transform=ax.transAxes)
-# x-axis
-ax.text(0.5, -0.08, &#39;Longitude&#39;, va=&#39;bottom&#39;, ha=&#39;center&#39;,
-        rotation=&#39;horizontal&#39;, rotation_mode=&#39;anchor&#39;,
-        transform=ax.transAxes)
-# legend
-ax.text(1.15, 0.5, &#39;CO (x 10$^{18}$ molec/cm$^{2}$)&#39;, va=&#39;bottom&#39;, ha=&#39;center&#39;,
-        rotation=&#39;vertical&#39;, rotation_mode=&#39;anchor&#39;,
-        transform=ax.transAxes)
+<span class="c1"># y-axis</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;Latitude&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+        <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">,</span> <span class="n">rotation_mode</span><span class="o">=</span><span class="s1">&#39;anchor&#39;</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+<span class="c1"># x-axis</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.08</span><span class="p">,</span> <span class="s1">&#39;Longitude&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+        <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span> <span class="n">rotation_mode</span><span class="o">=</span><span class="s1">&#39;anchor&#39;</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+<span class="c1"># legend</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.15</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;CO (x 10$^</span><span class="si">{18}</span><span class="s1">$ molec/cm$^</span><span class="si">{2}</span><span class="s1">$)&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+        <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">,</span> <span class="n">rotation_mode</span><span class="o">=</span><span class="s1">&#39;anchor&#39;</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
 
-plt.colorbar()
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 <img alt="../../_images/plot_map_basic_co_column_17_0.png" src="../../_images/plot_map_basic_co_column_17_0.png" />

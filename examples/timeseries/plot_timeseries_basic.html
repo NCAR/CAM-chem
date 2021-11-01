@@ -76,62 +76,62 @@
         
   <section id="timeseries-basic-plot">
 <h1>Timeseries - basic plot<a class="headerlink" href="#timeseries-basic-plot" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># By line: RRB 2020-07-28
-# Script aims to:
-# - Load multiple netCDF files
-# - Extract one variable: CO
-# - Choose a specific location from model grid
-# - Plot timeseries
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># By line: RRB 2020-07-28</span>
+<span class="c1"># Script aims to:</span>
+<span class="c1"># - Load multiple netCDF files</span>
+<span class="c1"># - Extract one variable: CO</span>
+<span class="c1"># - Choose a specific location from model grid</span>
+<span class="c1"># - Plot timeseries</span>
 </pre></div>
 </div>
 <section id="load-python-packages">
 <h2>Load python packages<a class="headerlink" href="#load-python-packages" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd
-from pandas.tseries.offsets import DateOffset
-import xarray as xr
-import matplotlib.pyplot as plt
-import numpy as np
-from scipy.interpolate import griddata
-import datetime
-from pathlib import Path                   # System agnostic paths
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">pandas.tseries.offsets</span> <span class="kn">import</span> <span class="n">DateOffset</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">griddata</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>                   <span class="c1"># System agnostic paths</span>
 </pre></div>
 </div>
 </section>
 <section id="create-reusable-functions">
 <h2>Create reusable functions<a class="headerlink" href="#create-reusable-functions" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Find nearest index
-def find_index(array,x):
-    idx = np.argmin(np.abs(array-x))
-    return idx
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find nearest index</span>
+<span class="k">def</span> <span class="nf">find_index</span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">array</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">idx</span>
 </pre></div>
 </div>
 </section>
 <section id="load-model-data">
 <h2>Load model Data:<a class="headerlink" href="#load-model-data" title="Permalink to this headline">¶</a></h2>
 <p>Define the directories and file of interest for your results.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>result_dir = Path(&quot;../../data/&quot;)
-files_to_open = &quot;CAM_chem_merra2_FCSD_1deg_QFED_monthly_*.nc&quot;
-#the netcdf files will be held in an xarray dataset named &#39;nc_load&#39; and can be referenced later in the notebook
-nc_load = xr.open_mfdataset(str(result_dir/files_to_open),combine=&#39;by_coords&#39;,concat_dim=&#39;time&#39;)
-#to see what the netCDF file contains, just call the variable you read it into
-#nc_load
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../../data/&quot;</span><span class="p">)</span>
+<span class="n">files_to_open</span> <span class="o">=</span> <span class="s2">&quot;CAM_chem_merra2_FCSD_1deg_QFED_monthly_*.nc&quot;</span>
+<span class="c1">#the netcdf files will be held in an xarray dataset named &#39;nc_load&#39; and can be referenced later in the notebook</span>
+<span class="n">nc_load</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">result_dir</span><span class="o">/</span><span class="n">files_to_open</span><span class="p">),</span><span class="n">combine</span><span class="o">=</span><span class="s1">&#39;by_coords&#39;</span><span class="p">,</span><span class="n">concat_dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="c1">#to see what the netCDF file contains, just call the variable you read it into</span>
+<span class="c1">#nc_load</span>
 </pre></div>
 </div>
 </section>
 <section id="extract-the-variable-at-the-time-and-level-and-location-of-choice">
 <h2>Extract the variable at the time and level and location of choice<a class="headerlink" href="#extract-the-variable-at-the-time-and-level-and-location-of-choice" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#extract variable
-var_sel = nc_load[&#39;CO&#39;]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#extract variable</span>
+<span class="n">var_sel</span> <span class="o">=</span> <span class="n">nc_load</span><span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">]</span>
 
-#extract grid variables
-lat = nc_load[&#39;lat&#39;]
-lon = nc_load[&#39;lon&#39;]
-time = nc_load[&#39;time&#39;]
+<span class="c1">#extract grid variables</span>
+<span class="n">lat</span> <span class="o">=</span> <span class="n">nc_load</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span>
+<span class="n">lon</span> <span class="o">=</span> <span class="n">nc_load</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">nc_load</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
 
-# CAM-chem writes the month average at midnight - i.e. the start of the next month.
-# Reconfigure the time variable
-time2 = pd.to_datetime(time.values,format=&#39;%Y-%m-%dT%H:%M:%S&#39;)+DateOffset(months=-1,days=+14)
-print(&quot;file time: &quot;, time[0].values, &quot;---&gt; converted time: &quot;, time2[0])
+<span class="c1"># CAM-chem writes the month average at midnight - i.e. the start of the next month.</span>
+<span class="c1"># Reconfigure the time variable</span>
+<span class="n">time2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S&#39;</span><span class="p">)</span><span class="o">+</span><span class="n">DateOffset</span><span class="p">(</span><span class="n">months</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">days</span><span class="o">=+</span><span class="mi">14</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;file time: &quot;</span><span class="p">,</span> <span class="n">time</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s2">&quot;---&gt; converted time: &quot;</span><span class="p">,</span> <span class="n">time2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">file</span> <span class="n">time</span><span class="p">:</span>  <span class="mi">2018</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">01</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mf">00.000000000</span> <span class="o">---&gt;</span> <span class="n">converted</span> <span class="n">time</span><span class="p">:</span>  <span class="mi">2018</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">15</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
@@ -140,18 +140,18 @@ print(&quot;file time: &quot;, time[0].values, &quot;---&gt; converted time: &qu
 </section>
 <section id="select-and-extract-the-location">
 <h2>Select and extract the location.<a class="headerlink" href="#select-and-extract-the-location" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>name_select = &quot;Boulder&quot;
-lat_select = 40.0150
-lon_select = 360-105.2705 # model longitude is from 0 to 360
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name_select</span> <span class="o">=</span> <span class="s2">&quot;Boulder&quot;</span>
+<span class="n">lat_select</span> <span class="o">=</span> <span class="mf">40.0150</span>
+<span class="n">lon_select</span> <span class="o">=</span> <span class="mi">360</span><span class="o">-</span><span class="mf">105.2705</span> <span class="c1"># model longitude is from 0 to 360</span>
 
-lat_i = find_index(lat,lat_select)
-lon_i = find_index(lon,lon_select)
+<span class="n">lat_i</span> <span class="o">=</span> <span class="n">find_index</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span><span class="n">lat_select</span><span class="p">)</span>
+<span class="n">lon_i</span> <span class="o">=</span> <span class="n">find_index</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span><span class="n">lon_select</span><span class="p">)</span>
 
-print(name_select, &quot; latitude: &quot;, lat_select, &quot;---&gt; nearest: &quot;, lat[lat_i].values)
-print(name_select, &quot; longitude: &quot;, lon_select, &quot;---&gt; nearest: &quot;, lon[lon_i].values)
+<span class="nb">print</span><span class="p">(</span><span class="n">name_select</span><span class="p">,</span> <span class="s2">&quot; latitude: &quot;</span><span class="p">,</span> <span class="n">lat_select</span><span class="p">,</span> <span class="s2">&quot;---&gt; nearest: &quot;</span><span class="p">,</span> <span class="n">lat</span><span class="p">[</span><span class="n">lat_i</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">name_select</span><span class="p">,</span> <span class="s2">&quot; longitude: &quot;</span><span class="p">,</span> <span class="n">lon_select</span><span class="p">,</span> <span class="s2">&quot;---&gt; nearest: &quot;</span><span class="p">,</span> <span class="n">lon</span><span class="p">[</span><span class="n">lon_i</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 
-# extract location surface value and convert to ppb
-var_srf = var_sel.isel(lev=55, lat=lat_i,lon=lon_i)*1e09
+<span class="c1"># extract location surface value and convert to ppb</span>
+<span class="n">var_srf</span> <span class="o">=</span> <span class="n">var_sel</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">lev</span><span class="o">=</span><span class="mi">55</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="n">lat_i</span><span class="p">,</span><span class="n">lon</span><span class="o">=</span><span class="n">lon_i</span><span class="p">)</span><span class="o">*</span><span class="mf">1e09</span>
 </pre></div>
 </div>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">Boulder</span>  <span class="n">latitude</span><span class="p">:</span>  <span class="mf">40.015</span> <span class="o">---&gt;</span> <span class="n">nearest</span><span class="p">:</span>  <span class="mf">40.0523560209424</span>
@@ -161,16 +161,16 @@ var_srf = var_sel.isel(lev=55, lat=lat_i,lon=lon_i)*1e09
 </section>
 <section id="plot-the-value-versus-time">
 <h2>Plot the value versus time.<a class="headerlink" href="#plot-the-value-versus-time" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(20,8))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 
-plt.plot(time2, var_srf, label=&#39;CAM-chem CO&#39;)
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time2</span><span class="p">,</span> <span class="n">var_srf</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;CAM-chem CO&#39;</span><span class="p">)</span>
 
-plt.title(&#39;CO at &#39; + name_select)
-plt.xlabel(&#39;time&#39;)
-plt.ylabel(&#39;CO (ppb)&#39;)
-plt.legend()
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;CO at &#39;</span> <span class="o">+</span> <span class="n">name_select</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;CO (ppb)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 <img alt="../../_images/plot_timeseries_basic_13_0.png" src="../../_images/plot_timeseries_basic_13_0.png" />

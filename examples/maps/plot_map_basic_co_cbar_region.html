@@ -86,55 +86,55 @@
         
   <section id="example-map-plotting">
 <h1>Example Map Plotting<a class="headerlink" href="#example-map-plotting" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># By line: RRB 2020-07-20
-# Script aims to:
-# - Load a netCDF file
-# - Extract one variable: CO
-# - Create contour plot of variable as world map with coastlines
-# - Zoom to a specific region: North America
-# - Customize contours and colorbar
-# - Add axes labels
-# - Add grid lines
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># By line: RRB 2020-07-20</span>
+<span class="c1"># Script aims to:</span>
+<span class="c1"># - Load a netCDF file</span>
+<span class="c1"># - Extract one variable: CO</span>
+<span class="c1"># - Create contour plot of variable as world map with coastlines</span>
+<span class="c1"># - Zoom to a specific region: North America</span>
+<span class="c1"># - Customize contours and colorbar</span>
+<span class="c1"># - Add axes labels</span>
+<span class="c1"># - Add grid lines</span>
 </pre></div>
 </div>
 <section id="at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use">
 <h2>At the start of a Jupyter notebook you need to import all modules that you will use.<a class="headerlink" href="#at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
-import cartopy.crs as ccrs                 # For plotting maps
-import cartopy.feature as cfeature         # For plotting maps
-from pathlib import Path                   # System agnostic paths
-import xarray as xr                        # For loading the data arrays
-import numpy as np                         # For array creation and calculations
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>                 <span class="c1"># For plotting maps</span>
+<span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="k">as</span> <span class="nn">cfeature</span>         <span class="c1"># For plotting maps</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>                   <span class="c1"># System agnostic paths</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>                        <span class="c1"># For loading the data arrays</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>                         <span class="c1"># For array creation and calculations</span>
 </pre></div>
 </div>
 </section>
 <section id="define-the-directories-and-file-of-interest-for-your-results">
 <h2>Define the directories and file of interest for your results.<a class="headerlink" href="#define-the-directories-and-file-of-interest-for-your-results" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>result_dir = Path(&quot;../../data/&quot;)
-file = &quot;CAM_chem_merra2_FCSD_1deg_QFED_monthoutput_CO_201801.nc&quot;
-file_to_open = result_dir / file
-#the netcdf file is now held in an xarray dataset named &#39;nc_load&#39; and can be referenced later in the notebook
-nc_load = xr.open_dataset(file_to_open)
-#to see what the netCDF file contains, uncomment below
-#nc_load
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../../data/&quot;</span><span class="p">)</span>
+<span class="n">file</span> <span class="o">=</span> <span class="s2">&quot;CAM_chem_merra2_FCSD_1deg_QFED_monthoutput_CO_201801.nc&quot;</span>
+<span class="n">file_to_open</span> <span class="o">=</span> <span class="n">result_dir</span> <span class="o">/</span> <span class="n">file</span>
+<span class="c1">#the netcdf file is now held in an xarray dataset named &#39;nc_load&#39; and can be referenced later in the notebook</span>
+<span class="n">nc_load</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">file_to_open</span><span class="p">)</span>
+<span class="c1">#to see what the netCDF file contains, uncomment below</span>
+<span class="c1">#nc_load</span>
 </pre></div>
 </div>
 </section>
 <section id="extract-the-variable-of-choice-at-the-time-and-level-of-choice">
 <h2>Extract the variable of choice at the time and level of choice<a class="headerlink" href="#extract-the-variable-of-choice-at-the-time-and-level-of-choice" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#extract variable
-var_sel = nc_load[&#39;CO&#39;]
-#print(var_sel)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#extract variable</span>
+<span class="n">var_sel</span> <span class="o">=</span> <span class="n">nc_load</span><span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">]</span>
+<span class="c1">#print(var_sel)</span>
 
-#select the surface level at a specific time and convert to ppbv from vmr
-#select the surface level for an average over three times and convert to ppbv from vmr
-var_srf = var_sel.isel(time=0, lev=55)
-var_srf = var_srf*1e09 # 10-9 to ppb
-print(var_srf.shape)
+<span class="c1">#select the surface level at a specific time and convert to ppbv from vmr</span>
+<span class="c1">#select the surface level for an average over three times and convert to ppbv from vmr</span>
+<span class="n">var_srf</span> <span class="o">=</span> <span class="n">var_sel</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">lev</span><span class="o">=</span><span class="mi">55</span><span class="p">)</span>
+<span class="n">var_srf</span> <span class="o">=</span> <span class="n">var_srf</span><span class="o">*</span><span class="mf">1e09</span> <span class="c1"># 10-9 to ppb</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">var_srf</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
-#extract grid variables
-lat = var_sel.coords[&#39;lat&#39;]
-lon = var_sel.coords[&#39;lon&#39;]
+<span class="c1">#extract grid variables</span>
+<span class="n">lat</span> <span class="o">=</span> <span class="n">var_sel</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span>
+<span class="n">lon</span> <span class="o">=</span> <span class="n">var_sel</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">192</span><span class="p">,</span> <span class="mi">288</span><span class="p">)</span>
@@ -143,51 +143,51 @@ lon = var_sel.coords[&#39;lon&#39;]
 </section>
 <section id="plot-the-value-over-a-specific-region">
 <h2>Plot the value over a specific region<a class="headerlink" href="#plot-the-value-over-a-specific-region" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(20,8))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 
-#Define projection
-ax = plt.axes(projection=ccrs.PlateCarree())
+<span class="c1">#Define projection</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
 
-# Zoom to a region
-#longitude limits in degrees
-ax.set_xlim(-170,-40)
-#latitude limits in degrees
-ax.set_ylim(5,75)
+<span class="c1"># Zoom to a region</span>
+<span class="c1">#longitude limits in degrees</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">170</span><span class="p">,</span><span class="o">-</span><span class="mi">40</span><span class="p">)</span>
+<span class="c1">#latitude limits in degrees</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">75</span><span class="p">)</span>
 
-#define contour levels
-clev = np.arange(40, 400, 5)
+<span class="c1">#define contour levels</span>
+<span class="n">clev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 
-#plot the data
-plt.contourf(lon,lat,var_srf,clev,cmap=&#39;Spectral_r&#39;,extend=&#39;both&#39;)
+<span class="c1">#plot the data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span><span class="n">lat</span><span class="p">,</span><span class="n">var_srf</span><span class="p">,</span><span class="n">clev</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Spectral_r&#39;</span><span class="p">,</span><span class="n">extend</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
 
-# add coastlines
-ax.add_feature(cfeature.COASTLINE)
-ax.add_feature(cfeature.BORDERS)
+<span class="c1"># add coastlines</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">COASTLINE</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">BORDERS</span><span class="p">)</span>
 
-#add lat lon grids
-gl = ax.gridlines(draw_labels=True, color=&#39;grey&#39;, alpha=0.8, linestyle=&#39;--&#39;)
-gl.xlabels_top = False
-gl.ylabels_right = False
+<span class="c1">#add lat lon grids</span>
+<span class="n">gl</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span><span class="n">draw_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">gl</span><span class="o">.</span><span class="n">xlabels_top</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">gl</span><span class="o">.</span><span class="n">ylabels_right</span> <span class="o">=</span> <span class="kc">False</span>
 
-# Titles
-# Main
-plt.title(&quot;CAM-chem CO, January 2018&quot;,fontsize=18)
+<span class="c1"># Titles</span>
+<span class="c1"># Main</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;CAM-chem CO, January 2018&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 
-# y-axis
-ax.text(-0.04, 0.5, &#39;Latitude&#39;, va=&#39;bottom&#39;, ha=&#39;center&#39;,
-        rotation=&#39;vertical&#39;, rotation_mode=&#39;anchor&#39;,
-        transform=ax.transAxes)
-# x-axis
-ax.text(0.5, -0.08, &#39;Longitude&#39;, va=&#39;bottom&#39;, ha=&#39;center&#39;,
-        rotation=&#39;horizontal&#39;, rotation_mode=&#39;anchor&#39;,
-        transform=ax.transAxes)
-# legend
-ax.text(1.15, 0.5, &#39;CO (ppb)&#39;, va=&#39;bottom&#39;, ha=&#39;center&#39;,
-        rotation=&#39;vertical&#39;, rotation_mode=&#39;anchor&#39;,
-        transform=ax.transAxes)
+<span class="c1"># y-axis</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;Latitude&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+        <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">,</span> <span class="n">rotation_mode</span><span class="o">=</span><span class="s1">&#39;anchor&#39;</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+<span class="c1"># x-axis</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.08</span><span class="p">,</span> <span class="s1">&#39;Longitude&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+        <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span> <span class="n">rotation_mode</span><span class="o">=</span><span class="s1">&#39;anchor&#39;</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+<span class="c1"># legend</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.15</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;CO (ppb)&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+        <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">,</span> <span class="n">rotation_mode</span><span class="o">=</span><span class="s1">&#39;anchor&#39;</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
 
-plt.colorbar()
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 <img alt="../../_images/plot_map_basic_co_cbar_region_9_0.png" src="../../_images/plot_map_basic_co_cbar_region_9_0.png" />

@@ -74,80 +74,80 @@
 <h1>Code to create a widget for a quicklook<a class="headerlink" href="#code-to-create-a-widget-for-a-quicklook" title="Permalink to this headline">¶</a></h1>
 <p># Create a widget for a quicklook at model output
 Provides options to look at output along various altitude slices of lat/lon plots, zonal averages or longitude vs altitude slices.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Dan Marsh, 2020-08-12
-# Widget to help navigate through some varables in your output files.
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dan Marsh, 2020-08-12</span>
+<span class="c1"># Widget to help navigate through some varables in your output files.</span>
 </pre></div>
 </div>
 <section id="load-python-packages">
 <h2>Load python packages<a class="headerlink" href="#load-python-packages" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
-import numpy as np
-import xarray as xr
-from ipywidgets import interactive
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interactive</span>
 </pre></div>
 </div>
 </section>
 <section id="load-file">
 <h2>Load file<a class="headerlink" href="#load-file" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>archive_dir = &#39;/glade/work/buchholz/CAM_chem_output/&#39;
-ds = xr.open_dataset(archive_dir+&#39;CAM_chem_merra2_FCSD_1deg_QFED_monthly_2018.nc&#39;)
-ntime = ds[&#39;time&#39;].size
-nlon = ds[&#39;lon&#39;].size
-nlev = ds[&#39;lev&#39;].size
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">archive_dir</span> <span class="o">=</span> <span class="s1">&#39;/glade/work/buchholz/CAM_chem_output/&#39;</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">archive_dir</span><span class="o">+</span><span class="s1">&#39;CAM_chem_merra2_FCSD_1deg_QFED_monthly_2018.nc&#39;</span><span class="p">)</span>
+<span class="n">ntime</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">size</span>
+<span class="n">nlon</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">size</span>
+<span class="n">nlev</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;lev&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">size</span>
 </pre></div>
 </div>
 </section>
 <section id="create-reusable-functions">
 <h2>Create reusable functions<a class="headerlink" href="#create-reusable-functions" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def plt_field(field, time_index, level, lon_index, plot_type, logtop):
-    plt.figure(figsize=(12,8))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plt_field</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">time_index</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">lon_index</span><span class="p">,</span> <span class="n">plot_type</span><span class="p">,</span> <span class="n">logtop</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 
-    var = ds[field]
+    <span class="n">var</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="n">field</span><span class="p">]</span>
 
-    if (var.dims == (&#39;time&#39;,&#39;lev&#39;, &#39;lat&#39;, &#39;lon&#39;)):
+    <span class="k">if</span> <span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">dims</span> <span class="o">==</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;lev&#39;</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">)):</span>
 
-        var1 = var.isel(time=time_index)
+        <span class="n">var1</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time_index</span><span class="p">)</span>
 
-        if (plot_type == &#39;lon-lat&#39;):
-            var1[level,:,:].plot.imshow()
-        elif (plot_type == &#39;zonal mean&#39;):
-            a = var1.mean(dim=&#39;lon&#39;)
-            a.where(ds.coords[&quot;lev&quot;] &gt; 10**logtop).plot.pcolormesh()
-            ax = plt.gca()
-            ax.set_ylim([1000,10**logtop])
-            ax.set_yscale(&#39;log&#39;)
-            ax.set_ylabel(&#39;Pressure (hPa)&#39;)
-        elif (plot_type == &#39;fixed lon&#39;):
-            a = var1[:,:,lon_index]
-            a.where(ds.coords[&quot;lev&quot;] &gt; 10**logtop).plot.pcolormesh()
-            ax = plt.gca()
-            ax.set_ylim([1000,10**logtop])
-            ax.set_yscale(&#39;log&#39;)
-            ax.set_ylabel(&#39;Pressure (hPa)&#39;)
-    elif (var.dims == (&#39;time&#39;, &#39;lat&#39;, &#39;lon&#39;)):
-        var[time_index,:,:].plot.imshow()
-    else:
-        plt.scatter((0,360),(-90,90))
-        plt.text(180, 0, &#39;select a 2-D or 3-D field&#39;, horizontalalignment=&#39;center&#39;)
+        <span class="k">if</span> <span class="p">(</span><span class="n">plot_type</span> <span class="o">==</span> <span class="s1">&#39;lon-lat&#39;</span><span class="p">):</span>
+            <span class="n">var1</span><span class="p">[</span><span class="n">level</span><span class="p">,:,:]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">imshow</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">plot_type</span> <span class="o">==</span> <span class="s1">&#39;zonal mean&#39;</span><span class="p">):</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">var1</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;lon&#39;</span><span class="p">)</span>
+            <span class="n">a</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;lev&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="o">**</span><span class="n">logtop</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">()</span>
+            <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">1000</span><span class="p">,</span><span class="mi">10</span><span class="o">**</span><span class="n">logtop</span><span class="p">])</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Pressure (hPa)&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">plot_type</span> <span class="o">==</span> <span class="s1">&#39;fixed lon&#39;</span><span class="p">):</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">var1</span><span class="p">[:,:,</span><span class="n">lon_index</span><span class="p">]</span>
+            <span class="n">a</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;lev&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="o">**</span><span class="n">logtop</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">()</span>
+            <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">1000</span><span class="p">,</span><span class="mi">10</span><span class="o">**</span><span class="n">logtop</span><span class="p">])</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Pressure (hPa)&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">dims</span> <span class="o">==</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">)):</span>
+        <span class="n">var</span><span class="p">[</span><span class="n">time_index</span><span class="p">,:,:]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">imshow</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">360</span><span class="p">),(</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;select a 2-D or 3-D field&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
 
-    plt.show()
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-    return
+    <span class="k">return</span>
 </pre></div>
 </div>
 </section>
 <section id="call-the-widget">
 <h2>Call the widget<a class="headerlink" href="#call-the-widget" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>w = interactive(plt_field, field=ds.data_vars.keys(),
-          time_index = (0,ntime-1,1),
-          level=(0,nlev-1,1),
-          lon_index = (0,nlon-1,1),
-          plot_type=[&#39;lon-lat&#39;, &#39;zonal mean&#39;, &#39;fixed lon&#39;],
-          logtop=(0,2,0.25))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">interactive</span><span class="p">(</span><span class="n">plt_field</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">data_vars</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span>
+          <span class="n">time_index</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">ntime</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+          <span class="n">level</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">nlev</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+          <span class="n">lon_index</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">nlon</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+          <span class="n">plot_type</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;lon-lat&#39;</span><span class="p">,</span> <span class="s1">&#39;zonal mean&#39;</span><span class="p">,</span> <span class="s1">&#39;fixed lon&#39;</span><span class="p">],</span>
+          <span class="n">logtop</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.25</span><span class="p">))</span>
 
-output = w.children[-1]
-output.layout.height = &#39;500px&#39;
-display(w)
+<span class="n">output</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">output</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="s1">&#39;500px&#39;</span>
+<span class="n">display</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/widget_interactive_screenshot.png" src="../_images/widget_interactive_screenshot.png" />
