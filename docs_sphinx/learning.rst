@@ -23,6 +23,10 @@ Potentially helpful learning resources
      - | `video <https://youtu.be/BsV3ek7qsiM>`_
      - | `blog <https://ncar.github.io/esds/posts/2021/pandas-tutorial/>`_
      - | `link <https://github.com/mgrover1/ncar_pandas_tutorial>`_
+   * - | Matplotlib
+     - | `video <https://youtu.be/EiPRIdHQEmE>`_
+     - | `FAQ <https://ncar.github.io/esds/posts/2021/matplotlib-faq/>`_
+     - | `link <https://github.com/anissa111/matplotlib-tutorial>`_
    * - | Cartopy
      - | `video <https://youtu.be/ivmd3RluMiw>`_
      - | `blog <https://ncar.github.io/esds/posts/2021/cartopy-tutorial/>`_
