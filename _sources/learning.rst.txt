@@ -37,7 +37,7 @@ Potentially helpful learning resources
      - | `link <https://github.com/xarray-contrib/xarray-tutorial>`_
        
 
-`Unidata python workshop <https://unidata.github.io/python-training/workshop/workshop-intro/>`_ - Training on the scientific Python ecosystem for atmospheric science and meteorology.
+`Unidata python workshop <https://unidata.github.io/python-training/workshop/workshop-intro/>`_ - Written documentation on the scientific Python ecosystem for atmospheric science and meteorology.
 
 `Unidata gallery examples <https://unidata.github.io/python-training/gallery/gallery-home/>`_ - Atmospheric science and meteorology example plots.
 
