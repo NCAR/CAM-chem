@@ -44,7 +44,7 @@ Here, you will find a growing collection of Python code for atmospheric chemistr
 .. _functions: examples/functions.html
 .. |functions| replace:: **functions** 
 .. _io: examples/io.html
-.. |io| replace:: **io tips** 
+.. |io| replace:: **i/o and processing** 
 .. _maps: examples/maps.html
 .. |maps| replace:: **maps** 
 .. _profiles: examples/profiles.html
