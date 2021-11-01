@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 
-I/O tips and tricks
+I/O and processing
 ====================
 
 
