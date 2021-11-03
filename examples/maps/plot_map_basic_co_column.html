@@ -84,9 +84,262 @@
       <!-- Page Content -->
       <main role="main" class="content" style="min-height:700px;">
         
-  <section id="example-map-plotting">
-<h1>Example Map Plotting<a class="headerlink" href="#example-map-plotting" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># By line: RRB 2020-07-20</span>
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<section id="Example-Map-Plotting">
+<h1>Example Map Plotting<a class="headerlink" href="#Example-Map-Plotting" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># By line: RRB 2020-07-20</span>
 <span class="c1"># Script aims to:</span>
 <span class="c1"># - Load a netCDF file</span>
 <span class="c1"># - Extract one variable: CO</span>
@@ -98,9 +351,15 @@
 <span class="c1"># - Add grid lines</span>
 </pre></div>
 </div>
-<section id="at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use">
-<h2>At the start of a Jupyter notebook you need to import all modules that you will use.<a class="headerlink" href="#at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</div>
+<section id="At-the-start-of-a-Jupyter-notebook-you-need-to-import-all-modules-that-you-will-use.">
+<h2>At the start of a Jupyter notebook you need to import all modules that you will use.<a class="headerlink" href="#At-the-start-of-a-Jupyter-notebook-you-need-to-import-all-modules-that-you-will-use." title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[86]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>                 <span class="c1"># For plotting maps</span>
 <span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="k">as</span> <span class="nn">cfeature</span>         <span class="c1"># For plotting maps</span>
 <span class="kn">from</span> <span class="nn">cartopy.util</span> <span class="kn">import</span> <span class="n">add_cyclic_point</span>  <span class="c1"># For plotting maps</span>
@@ -109,10 +368,16 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>                         <span class="c1"># For array creation and calculations</span>
 </pre></div>
 </div>
+</div>
 </section>
-<section id="define-the-directories-and-file-of-interest-for-your-results">
-<h2>Define the directories and file of interest for your results.<a class="headerlink" href="#define-the-directories-and-file-of-interest-for-your-results" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../../data&quot;</span><span class="p">)</span>
+<section id="Define-the-directories-and-file-of-interest-for-your-results.">
+<h2>Define the directories and file of interest for your results.<a class="headerlink" href="#Define-the-directories-and-file-of-interest-for-your-results." title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[87]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">result_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../../data&quot;</span><span class="p">)</span>
 <span class="n">file</span> <span class="o">=</span> <span class="s2">&quot;CAM_chem_merra2_FCSD_1deg_QFED_monthoutput_CO_201801.nc&quot;</span>
 <span class="n">file_to_open</span> <span class="o">=</span> <span class="n">result_dir</span> <span class="o">/</span> <span class="n">file</span>
 <span class="c1">#the netcdf file is now held in an xarray dataset named &#39;nc_load&#39; and can be referenced later in the notebook</span>
@@ -121,10 +386,16 @@
 <span class="c1">#nc_load</span>
 </pre></div>
 </div>
+</div>
 </section>
-<section id="extract-the-variable-of-choice-at-the-time-and-level-of-choice">
-<h2>Extract the variable of choice at the time and level of choice.<a class="headerlink" href="#extract-the-variable-of-choice-at-the-time-and-level-of-choice" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#extract variable</span>
+<section id="Extract-the-variable-of-choice-at-the-time-and-level-of-choice.">
+<h2>Extract the variable of choice at the time and level of choice.<a class="headerlink" href="#Extract-the-variable-of-choice-at-the-time-and-level-of-choice." title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[88]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#extract variable</span>
 <span class="n">var_sel</span> <span class="o">=</span> <span class="n">nc_load</span><span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="c1">#print(var_sel)</span>
 
@@ -138,13 +409,24 @@
 <span class="n">lon</span> <span class="o">=</span> <span class="n">var_sel</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">56</span><span class="p">,</span> <span class="mi">192</span><span class="p">,</span> <span class="mi">288</span><span class="p">)</span>
-</pre></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(56, 192, 288)
+</pre></div></div>
 </div>
 </section>
-<section id="define-constants-for-converting-to-column-amounts">
-<h2>Define constants for converting to column amounts.<a class="headerlink" href="#define-constants-for-converting-to-column-amounts" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#-------------------------------</span>
+<section id="Define-constants-for-converting-to-column-amounts.">
+<h2>Define constants for converting to column amounts.<a class="headerlink" href="#Define-constants-for-converting-to-column-amounts." title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[89]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#-------------------------------</span>
 <span class="c1">#CONSTANTS and conversion factor</span>
 <span class="c1">#-------------------------------</span>
 <span class="n">NAv</span> <span class="o">=</span> <span class="mf">6.0221415e+23</span>                       <span class="c1">#--- Avogadro&#39;s number</span>
@@ -154,12 +436,17 @@
                                           <span class="c1">#--- (note 1*e-09 because in ppb)</span>
 </pre></div>
 </div>
+</div>
 </section>
-<section id="create-3d-pressure-array">
-<h2>Create 3d Pressure array.<a class="headerlink" href="#create-3d-pressure-array" title="Permalink to this headline">¶</a></h2>
-<p>Calculates pressures at each hybrid level using the formula: p(k) =
-a(k)<em>p0 + b(k)</em>ps.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load values to create true model pressure array</span>
+<section id="Create-3d-Pressure-array.">
+<h2>Create 3d Pressure array.<a class="headerlink" href="#Create-3d-Pressure-array." title="Permalink to this headline">¶</a></h2>
+<p>Calculates pressures at each hybrid level using the formula: p(k) = a(k)<em>p0 + b(k)</em>ps.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[90]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Load values to create true model pressure array</span>
 <span class="n">psurf</span> <span class="o">=</span> <span class="n">nc_load</span><span class="p">[</span><span class="s1">&#39;PS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">hyai</span> <span class="o">=</span> <span class="n">nc_load</span><span class="p">[</span><span class="s1">&#39;hyai&#39;</span><span class="p">]</span>
 <span class="n">hybi</span> <span class="o">=</span> <span class="n">nc_load</span><span class="p">[</span><span class="s1">&#39;hybi&#39;</span><span class="p">]</span>
@@ -184,28 +471,48 @@ a(k)<em>p0 + b(k)</em>ps.</p>
 <span class="c1">#print(mod_deltap[:,0,0])</span>
 </pre></div>
 </div>
-</section>
-<section id="calculate-columns">
-<h2>Calculate columns.<a class="headerlink" href="#calculate-columns" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">var_tcol</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">mod_deltap</span><span class="p">,</span> <span class="n">xp_const</span><span class="o">*</span><span class="n">var_sel</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lev&quot;</span><span class="p">])</span>
-</pre></div>
 </div>
 </section>
-<section id="add-cyclic-point-to-avoid-white-stripe-at-lon-0">
-<h2>Add cyclic point to avoid white stripe at lon=0.<a class="headerlink" href="#add-cyclic-point-to-avoid-white-stripe-at-lon-0" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">var_tcol_cyc</span><span class="p">,</span> <span class="n">lon_cyc</span> <span class="o">=</span> <span class="n">add_cyclic_point</span><span class="p">(</span><span class="n">var_tcol</span><span class="p">,</span> <span class="n">coord</span><span class="o">=</span><span class="n">lon</span><span class="p">)</span>
+<section id="Calculate-columns.">
+<h2>Calculate columns.<a class="headerlink" href="#Calculate-columns." title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[91]:
 </pre></div>
 </div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">var_tcol</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">mod_deltap</span><span class="p">,</span> <span class="n">xp_const</span><span class="o">*</span><span class="n">var_sel</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lev&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
 </section>
-<section id="plot-the-value-over-the-globe">
-<h2>Plot the value over the globe.<a class="headerlink" href="#plot-the-value-over-the-globe" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<section id="Add-cyclic-point-to-avoid-white-stripe-at-lon=0.">
+<h2>Add cyclic point to avoid white stripe at lon=0.<a class="headerlink" href="#Add-cyclic-point-to-avoid-white-stripe-at-lon=0." title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[92]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">var_tcol_cyc</span><span class="p">,</span> <span class="n">lon_cyc</span> <span class="o">=</span> <span class="n">add_cyclic_point</span><span class="p">(</span><span class="n">var_tcol</span><span class="p">,</span> <span class="n">coord</span><span class="o">=</span><span class="n">lon</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Plot-the-value-over-the-globe.">
+<h2>Plot the value over the globe.<a class="headerlink" href="#Plot-the-value-over-the-globe." title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[93]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 
 <span class="c1">#Define projection</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
 
 <span class="c1">#define contour levels</span>
 <span class="n">clev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+
+
 
 <span class="c1">#plot the data</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">lon_cyc</span><span class="p">,</span><span class="n">lat</span><span class="p">,</span><span class="n">var_tcol_cyc</span><span class="o">/</span><span class="mf">1e18</span><span class="p">,</span><span class="n">clev</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Spectral_r&#39;</span><span class="p">,</span><span class="n">extend</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
@@ -239,7 +546,23 @@ a(k)<em>p0 + b(k)</em>ps.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../../_images/plot_map_basic_co_column_17_0.png" src="../../_images/plot_map_basic_co_column_17_0.png" />
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/examples_maps_plot_map_basic_co_column_17_01.png" src="../../_images/examples_maps_plot_map_basic_co_column_17_01.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
 </section>
 </section>
 
