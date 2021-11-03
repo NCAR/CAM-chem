@@ -7,26 +7,26 @@ Maps
 
 This section describes some ways to plot model output on maps.
 
-.. |map_img_1| image:: maps/plot_map_basic_files/plot_map_basic_5_0.png
+.. |map_img_1| image:: images/examples_maps_plot_map_basic_6_0.png
    :width: 200px
-.. |map_img_2| image:: maps/plot_projection_conus_files/plot_projection_conus_1_1.png
+.. |map_img_2| image:: images/examples_maps_plot_projection_conus_1_1.png
    :width: 200px
-.. |map_img_3| image:: maps/plot_map_basic_co_files/plot_map_basic_co_9_0.png
+.. |map_img_3| image:: images/examples_maps_plot_map_basic_co_9_0.png
    :width: 200px
-.. |map_img_4| image:: maps/plot_map_basic_co_cbar_files/plot_map_basic_co_cbar_9_0.png
+.. |map_img_4| image:: images/examples_maps_plot_map_basic_co_cbar_9_0.png
    :width: 200px
-.. |map_img_5| image:: maps/plot_map_basic_co_cbar_cyclic_files/plot_map_basic_co_cbar_cyclic_11_0.png
+.. |map_img_5| image:: images/examples_maps_plot_map_basic_co_cbar_cyclic_11_0.png
    :width: 200px
-.. |map_img_6| image:: maps/plot_map_basic_co_cbar_region_files/plot_map_basic_co_cbar_region_9_0.png
+.. |map_img_6| image:: images/examples_maps_plot_map_basic_co_cbar_region_9_0.png
    :width: 200px
-.. |map_img_7| image:: maps/plot_map_basic_co_cbar_region_points_files/plot_map_basic_co_cbar_region_points_11_0.png
+.. |map_img_7| image:: images/examples_maps_plot_map_basic_co_cbar_region_points_11_0.png
    :width: 200px
-.. |map_img_9| image:: maps/plot_map_basic_co_column_files/plot_map_basic_co_column_17_0.png
+.. |map_img_9| image:: images/examples_maps_plot_map_basic_co_column_17_0.png
    :width: 200px
-.. |map_img_10| image:: maps/plot_map_basic_co_satellite_files/plot_map_basic_co_satellite_11_0.png
+.. |map_img_10| image:: images/examples_maps_plot_map_basic_co_satellite_11_0.png
    :width: 200px
 
-  
+
 .. list-table::
    :widths: 20 20 20 20
    :header-rows: 0
@@ -46,7 +46,7 @@ This section describes some ways to plot model output on maps.
      - | `add location points <maps/plot_map_basic_co_cbar_region_points.html>`_
        | |map_img_7|
      - | add observation values at points
-       |
+       | 
    * - | `convert to column values <maps/plot_map_basic_co_column.html>`_
        | |map_img_9|
      - | `gridded satellite data <maps/plot_map_basic_co_satellite.html>`_

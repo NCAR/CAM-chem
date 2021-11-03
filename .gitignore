@@ -1,6 +1,10 @@
 # jupyter notebook related
 .ipynb_checkpoints
 
+# hiding files
+docs_sphinx/examples/maps/hide
+docs_sphinx/examples/timeseries/hide
+
 #GitHub pages specific
 docs_sphinx/_build
 data
