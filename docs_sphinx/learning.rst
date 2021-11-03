@@ -5,6 +5,8 @@ Potentially helpful learning resources
 
 `NCAR basic overview of Python <https://ncar-hackathons.github.io/python-general/intro>`_ - General introduction to Python such as data structures, input/output, loops and functions.
 
+`Project Pythia <https://foundations.projectpythia.org/landing-page.html>`_ - Foundational python skills. A public, web-accessible training resource to help educate earth scientists.
+
 `NCAR CISL/Xdev python tutorials <https://ncar.github.io/esds/blog/tag/python-tutorial-series/>`_ - Training on the scientific Python ecosystem for atmospheric science and meteorology.
 
 .. list-table::
