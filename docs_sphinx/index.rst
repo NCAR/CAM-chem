@@ -84,7 +84,7 @@ Here, you will find a growing collection of Python code for atmospheric chemistr
 
    **Helpful resources:**
 
-   - `Log into NCAR JupyterHub <https://jupyterhub.ucar.edu/>`_
+   - `Log into NCAR JupyterHub <https://jupyterhub.hpc.ucar.edu/>`_
    - `Alternate: start jupyter notebook on glade via command line <cheyenne_jupyter.html>`_
    - `Learning resources <learning.html>`_
    - `matplotlib colormaps <https://matplotlib.org/3.1.1/gallery/color/colormap_reference.html>`_
