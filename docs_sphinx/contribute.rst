@@ -28,7 +28,7 @@ Add this to the top of your code, filling in the appropriate areas:
 Here is a template on a good structure to set up a Jupyter Notebook:
 https://github.com/NCAR/analysis_project_template/blob/main/notebooks/Notebook_Template.ipynb
 
-Then supply the .ipynb or python files and accompanying input data used to the ACOM/python team by letting us know you would like to contribute through this form: [submit code](https://forms.gle/Fa1pG7e3rMBiydZP9).
+Then supply the .ipynb or python files and accompanying input data used to the ACOM/python team by letting us know you would like to contribute through this form: `submit code <https://forms.gle/Fa1pG7e3rMBiydZP9>`_
 
 
 
