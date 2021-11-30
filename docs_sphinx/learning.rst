@@ -41,6 +41,15 @@ Potentially helpful learning resources
 
 `Unidata python introduction <https://unidata.github.io/python-training/python/intro-to-python/>`_ - Written documentation on the scientific Python ecosystem for atmospheric science and meteorology, including general overview, workshop materials and a gallery of example plots.
 
+.. list-table::
+   :widths: 20 20
+   :header-rows: 1
+  
+   * - | Tutorial
+     - | link
+   * - | xarray crash-course
+     - | `notes <https://unidata.github.io/python-training/workshop/XArray/xarray-introduction/>`_
+
 `NCAR PyNGL and PyNIO <https://www.pyngl.ucar.edu/>`_ - Continuation on from the NCAR Command language pivot to Python.
 
 
