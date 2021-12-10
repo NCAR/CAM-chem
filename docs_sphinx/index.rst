@@ -89,7 +89,7 @@ Here, you will find a growing collection of Python code for atmospheric chemistr
    - `Learning resources <learning.html>`_
    - `matplotlib colormaps <https://matplotlib.org/3.1.1/gallery/color/colormap_reference.html>`_
    - `date formats <https://strftime.org/>`_
-   - `cartopy projections <  https://scitools.org.uk/cartopy/docs/v0.15/crs/projections.html`_
+   - `cartopy projections <https://scitools.org.uk/cartopy/docs/v0.15/crs/projections.html`_
 
    **Other Python Examples:**
 
