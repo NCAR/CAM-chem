@@ -61,7 +61,7 @@ Potentially helpful learning resources
 
 `Online book explaining packages <https://jakevdp.github.io/PythonDataScienceHandbook/index.html>`_ - Python Data Science Handbook explaining NumPy, Pandas, Matplotlib and Machine Learning, by Jake VanderPlas.
 
-`Book for Beginners, focusing on Earth Observations <https://www.wiley.com/en-us/Earth+Observation+using+Python%3A+A+Practical+Programming+Guide-p-9781119606888>`_ - Earth Observation using Python Book by Rebekah B. Esmaili.
+`Book for Beginners, focusing on Earth Observations <https://www.wiley.com/en-us/Earth+Observation+using+Python%3A+A+Practical+Programming+Guide-p-9781119606888>`_ - Earth Observation using Python by Rebekah B. Esmaili.
 
 `Collection of examples <https://benalexkeen.com/blog/>`_ - Examples from a data scientist, Ben Keen, about various computation applications.
 
