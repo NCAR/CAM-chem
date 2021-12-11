@@ -7,7 +7,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="vivaldi_a",
-    version="0.2.6",
+    version="0.2.7",
     description="Visualization Validation and Diagnostics for Atmospheric chemistry",
     long_description=long_description,
     long_description_content_type="text/markdown",
