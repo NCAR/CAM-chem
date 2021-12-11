@@ -8,25 +8,35 @@ MODIFICATION HISTORY:
     Duseong Jo, 19, JAN, 2021: VERSION 1.00
     - Initial version
     Duseong Jo, 20, JAN, 2021: VERSION 1.10
-    - Added a unit option
+    - Add a unit option
     Duseong Jo, 22, JAN, 2021: VERSION 1.11
     - Possible minor bug fix
     Duseong Jo, 25, JAN, 2021: VERSION 1.20
-    - set edgecolor none for polycollection method
+    - Set edgecolor none for polycollection method
     Duseong Jo, 05, FEB, 2021: VERSION 1.21
-    - minor bug fix for lon/lat input values check
+    - Minor bug fix for lon/lat input values check
     Duseong Jo, 06, FEB, 2021: VERSION 1.22
-    - minor bug fix for custom colorlabels
+    - Minor bug fix for custom colorlabels
     Duseong Jo, 09, FEB, 2021: VERSION 1.30
-    - Added a log scale option
+    - Add a log scale option
     Duseong Jo, 12, FEB, 2021: VERSION 1.40
-    - Added a symlog functionality for minus values in log plot
+    - Add a symlog functionality for minus values in log plot
     Duseong Jo, 13, FEB, 2021: VERSION 1.50
-    - Added a diff option for difference plot
+    - Add a diff option for difference plot
     Duseong Jo, 24, JEB, 2021: VERSION 1.60
-    - minor bug fix for log plot with maximum values less than 0.1
+    - Minor bug fix for log plot with maximum values less than 0.1
     Duseong Jo, 31, MAY, 2021: VERSION 1.61
-    - minor bug fix when colorbar is False
+    - Minor bug fix when colorbar is False
+    Duseong Jo, 07, OCT, 2021: VERSION 1.70
+    - Now can deal with regional output files
+    Duseong Jo, 27, OCT, 2021: VERSION 1.71
+    - Get colorticks even if colorbar=False
+    Duseong Jo, 02, NOV, 2021: VERSION 1.72
+    - Minor bug fix for a log scale color labels
+    Duseong Jo, 09, DEC, 2021: VERSION 1.80
+    - New capability for shifting center longitude in the plot
+    Duseong Jo, 10, DEC, 2021: VERSION 1.85
+    - Add more options to deal with lon/lat lines
 '''
 
 ### Module import ###
@@ -37,6 +47,7 @@ import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 import matplotlib.cm as cm
 from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
+from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
 from matplotlib.collections import PolyCollection
 import matplotlib
 from matplotlib import ticker
@@ -59,6 +70,7 @@ class Plot_2D(object):
            ax: Parent axes from which space for the plot will be drawn
            cmap: colormap for plot
            projection: map projection by cartopy.crs
+           center_180: if True, center of the plot will be 180 instead of 0 degree
            grid_line: plot grid lines?
            grid_line_lw: linewidth for grid line
            coast: draw coastlines
@@ -67,9 +79,12 @@ class Plot_2D(object):
            resolution: resolution of coast/country/state lines (10m, 50m, or 110m)
            feature_line_lw: linewidth for coast/country/state lines
            feature_color: color for coast/country/state lines
-           lonlat_line: draw longitue & latitude lines?
+           lonlat_info: show longitude & latitude lines/labels?
+           lonlat_line: show/hide longitude & latitude lines?
            lon_interval: longitude lines interval
            lat_interval: latitude lines interval
+           lon_labels: for custom longitude labels [list]
+           lat_labels: for custom latitude labels [list]
            font_family: font family being used for the plot
            label_size: label size for the plot (longitude & latitude)
            colorbar: add colorbar?
@@ -102,14 +117,15 @@ class Plot_2D(object):
     '''
     
     def __init__(self, var, lons=None, lats=None, lon_range=[-180,180], lat_range=[-90,90],
-                 scrip_file="", ax=None, cmap=None, projection=ccrs.PlateCarree(), 
+                 scrip_file="", ax=None, cmap=None, projection=ccrs.PlateCarree(), center_180=False, 
                  grid_line=False, grid_line_lw=1, coast=True, country=True, state=False, 
                  resolution="10m", feature_line_lw=0.5, feature_color="black",
-                 lonlat_line=True, lon_interval=None, lat_interval=None,
+                 lonlat_info=True, lonlat_line=True, lon_interval=None, lat_interval=None,
+                 lon_labels=None, lat_labels=None,
                  font_family="STIXGeneral", label_size=15, colorbar=True, 
                  log_scale=False, log_scale_min=None, diff=False, orientation="horizontal", 
                  shrink=0.8, pad=0.12, fraction=0.1, extend='both',
-                 colorticks=None, colorlabels=None, pretty_tick=False, nticks=None, 
+                 colorticks=None, colorlabels=None, pretty_tick=True, nticks=None, 
                  cmax=None, cmin=None, title="", title_size=20, title_bold=False,
                  unit="", unit_size=15, unit_bold=False, unit_italic=True, unit_offset=[0.0,0.0],
                  verbose=False):
@@ -160,6 +176,11 @@ class Plot_2D(object):
             raise ValueError( 'Check lon_range!' + '\n' + \
                               'Current Values:', lon_range)
         else:
+            if (lon_range==[-180,180]) & (lat_range==[-90,90]):
+                self.regional = False
+            else:
+                self.regional = True
+            
             self.lon_range = lon_range
         
         # lat_range dimension check
@@ -168,20 +189,40 @@ class Plot_2D(object):
                               'Current Values:', lat_range)
         else:
             self.lat_range = lat_range
+
+        # To shift map by 180 degree in x-axis
+        if center_180:
+            if projection==ccrs.PlateCarree():
+                projection = ccrs.PlateCarree(central_longitude=180)
+            else:
+                if projection.proj4_params['lon_0'] != 180:
+                    raise ValueError( 'central_longitude must be set to 180 if center_180 is True' )
             
+            if self.lon_range[1] < self.lon_range[0]:
+                self.lon_range[0] -= 180
+                self.lon_range[1] += 180
+
+                    
         # Read scrip file in case of SE model output
         if self.model_type == 'SE':
-            if scrip_file == "":
-                raise ValueError( '"scrip_file" must be specified for SE model output' )
-            if type(scrip_file) != str:
-                raise ValueError( '"scrip_file" must be provided as "string"' )
-            if verbose:
-                print( "Read SCRIP file:", scrip_file )
-            ds_scrip = xr.open_dataset( scrip_file )
+            if type(scrip_file) == xr.core.dataset.Dataset:
+                ds_scrip = scrip_file
+                if verbose:
+                    print( "use xarray dataset for scrip file" )
+            else:
+                if scrip_file == "":
+                    raise ValueError( '"scrip_file" must be specified for SE model output' )
+                if type(scrip_file) != str:
+                    raise ValueError( '"scrip_file" must be provided as "string"' )
+                if verbose:
+                    print( "Read SCRIP file:", scrip_file )
+                ds_scrip = xr.open_dataset( scrip_file )
+                
             self.corner_lon = np.copy( ds_scrip.grid_corner_lon.values )
             self.corner_lat = np.copy( ds_scrip.grid_corner_lat.values )
             self.center_lon = np.copy( ds_scrip.grid_center_lon.values )
             self.center_lat = np.copy( ds_scrip.grid_center_lat.values )
+
             
         # Color map check
         if cmap == None:
@@ -209,11 +250,13 @@ class Plot_2D(object):
                 self.nticks = 5
         else:
             self.nticks = nticks
+            
         
         # Pass input keywords
         self.scrip_file = scrip_file
         self.font_family = font_family
         self.projection = projection
+        self.center_180 = center_180
         self.verbose = verbose
         self.grid_line = grid_line
         self.grid_line_lw = grid_line_lw
@@ -224,9 +267,12 @@ class Plot_2D(object):
         self.resolution = resolution
         self.feature_line_lw = feature_line_lw
         self.feature_color = feature_color
+        self.lonlat_info = lonlat_info
         self.lonlat_line = lonlat_line
         self.lon_interval = lon_interval
         self.lat_interval = lat_interval
+        self.lon_labels = lon_labels
+        self.lat_labels = lat_labels
         self.colorbar = colorbar
         self.log_scale = log_scale
         self.log_scale_min = log_scale_min
@@ -259,17 +305,19 @@ class Plot_2D(object):
         # shift longitude values by 180 degree
         if self.model_type == 'FV': # 2D FV model output
             if ( (np.min(self.lon_range) < 0) & (np.max(self.lon) > 180) ):
-                self.lon[self.lon > 180.] -= 360.
-                if verbose:
-                    print( "FV model: Shift longitude values by 180 degree" )
+                if not self.center_180:
+                    self.lon[self.lon > 180.] -= 360.
+                    if verbose:
+                        print( "FV model: Shift longitude values by 180 degree" )
         else: # 1D SE model output
             if ( (np.min(self.lon_range) < 0) & (np.max(self.corner_lon) > 180) ):
-                self.corner_lon[self.corner_lon > 180.] -= 360.
-                if verbose:
-                    print( "SE model: Shift longitude values by 180 degree" )
+                if not self.center_180:
+                    self.corner_lon[self.corner_lon > 180.] -= 360.
+                    if verbose:
+                        print( "SE model: Shift longitude values by 180 degree" )
 
         # automatically set longitude and latitude intervals        
-        if self.lonlat_line:
+        if self.lonlat_info:
             if self.lon_interval == None:
                 lon_length = lon_range[1] - lon_range[0]
                 self.lon_interval = np.around( lon_length / 6. )
@@ -283,12 +331,15 @@ class Plot_2D(object):
 
         # set vertices for SE model output
         if self.model_type == 'SE':
+            
             self.lons_corners = np.copy( self.corner_lon.reshape( self.corner_lon.shape[0],
                                                                   self.corner_lon.shape[1],1) )
             self.lats_corners = np.copy( self.corner_lat.reshape( self.corner_lat.shape[0],
                                                                   self.corner_lat.shape[1],1) )
-            self.lons_corners[ self.lons_corners > 180. ] -= 360
-            self.center_lon[ self.center_lon > 180. ] -= 360
+
+            if not self.center_180:
+                self.lons_corners[ self.lons_corners > 180. ] -= 360
+                self.center_lon[ self.center_lon > 180. ] -= 360
             
             self.lons_corners_add = []
             self.lats_corners_add = []
@@ -297,38 +348,101 @@ class Plot_2D(object):
             for i, cenlon in enumerate( self.center_lon ):
                 lon_maxmin = np.max( self.lons_corners[i,:,:] ) - \
                              np.min( self.lons_corners[i,:,:] )
-                if ( lon_maxmin > 180 ):
-                    if np.mean( self.lons_corners[i,:,:] ) <= 0:  
-                        inds2 = np.where( self.lons_corners[i,:,:] < 0)[0]
-                        tmp_lons_corners = np.copy( self.lons_corners[i,:] )
-                        tmp_lons_corners[inds2] = 180.
-                        self.lons_corners_add.append( tmp_lons_corners )
-                        self.lats_corners_add.append( self.lats_corners[i,:] )
+                if self.center_180:
+                    if ( lon_maxmin > 180 ):
+                        if np.mean( self.lons_corners[i,:,:] ) <= 180:  
+                            inds2 = np.where( self.lons_corners[i,:,:] < 180)[0]
+                            tmp_lons_corners = np.copy( self.lons_corners[i,:] )
+                            tmp_lons_corners[inds2] = 360.
+                            self.lons_corners_add.append( tmp_lons_corners )
+                            self.lats_corners_add.append( self.lats_corners[i,:] )
 
-                        inds = np.where( self.lons_corners[i,:,:] > 0 )[0]
-                        self.lons_corners[i,inds] = -180.
-                        
-                        self.var_add.append( self.var[i] )
-            
-                    elif np.mean( self.lons_corners[i,:,:] ) > 0:
-                        inds2 = np.where( self.lons_corners[i,:,:] > 0)[0]
-                        tmp_lons_corners = np.copy( self.lons_corners[i,:] )
-                        tmp_lons_corners[inds2] = -180.
-                        self.lons_corners_add.append( tmp_lons_corners )
-                        self.lats_corners_add.append( self.lats_corners[i,:] )                     
-                        
-                        inds = np.where( self.lons_corners[i,:,:] < 0 )[0]
-                        self.lons_corners[i,inds] = 180.
-            
-                        self.var_add.append( self.var[i] )
-            
-            self.lons_corners = np.concatenate( (self.lons_corners, 
-                                                 np.array(self.lons_corners_add)), axis=0 )
-            self.lats_corners = np.concatenate( (self.lats_corners, 
-                                                 np.array(self.lats_corners_add)), axis=0 )
+                            inds = np.where( self.lons_corners[i,:,:] > 180 )[0]
+                            self.lons_corners[i,inds] = 0.
+
+                            self.var_add.append( self.var[i] )
+
+                        elif np.mean( self.lons_corners[i,:,:] ) > 180:
+                            inds2 = np.where( self.lons_corners[i,:,:] > 180)[0]
+                            tmp_lons_corners = np.copy( self.lons_corners[i,:] )
+                            tmp_lons_corners[inds2] = 0
+                            self.lons_corners_add.append( tmp_lons_corners )
+                            self.lats_corners_add.append( self.lats_corners[i,:] )                     
+
+                            inds = np.where( self.lons_corners[i,:,:] > 180 )[0]
+                            self.lons_corners[i,inds] = 360.
+
+                            self.var_add.append( self.var[i] )
+                            
+                else:
+                    if ( lon_maxmin > 180 ):
+                        if np.mean( self.lons_corners[i,:,:] ) <= 0:  
+                            inds2 = np.where( self.lons_corners[i,:,:] < 0)[0]
+                            tmp_lons_corners = np.copy( self.lons_corners[i,:] )
+                            tmp_lons_corners[inds2] = 180.
+                            self.lons_corners_add.append( tmp_lons_corners )
+                            self.lats_corners_add.append( self.lats_corners[i,:] )
+
+                            inds = np.where( self.lons_corners[i,:,:] > 0 )[0]
+                            self.lons_corners[i,inds] = -180.
+
+                            self.var_add.append( self.var[i] )
+
+                        elif np.mean( self.lons_corners[i,:,:] ) > 0:
+                            inds2 = np.where( self.lons_corners[i,:,:] > 0)[0]
+                            tmp_lons_corners = np.copy( self.lons_corners[i,:] )
+                            tmp_lons_corners[inds2] = -180.
+                            self.lons_corners_add.append( tmp_lons_corners )
+                            self.lats_corners_add.append( self.lats_corners[i,:] )                     
+
+                            inds = np.where( self.lons_corners[i,:,:] < 0 )[0]
+                            self.lons_corners[i,inds] = 180.
+
+                            self.var_add.append( self.var[i] )
+                            
+                            
+            self.lons_corners_add = np.array(self.lons_corners_add)        
+            self.lats_corners_add = np.array(self.lats_corners_add)
+                            
+            if self.center_180:
+                self.lons_corners[ self.lons_corners > 180. ] -= 360
+                self.lons_corners_add[ self.lons_corners_add > 180. ] -= 360
+                self.center_lon[ self.center_lon > 180. ] -= 360
+                
+                for lc1 in np.arange(len(self.lons_corners[:,0,0])):
+                    for lc2 in np.arange(len(self.lons_corners[0,:,0])):
+                        for lc3 in np.arange(len(self.lons_corners[0,0,:])):
+                            if self.lons_corners[lc1,lc2,lc3] >= 0:
+                                self.lons_corners[lc1,lc2,lc3] -= 180
+                            elif self.lons_corners[lc1,lc2,lc3] < 0:
+                                self.lons_corners[lc1,lc2,lc3] += 180
+                                
+                for lc1 in np.arange(len(self.lons_corners_add[:,0,0])):
+                    for lc2 in np.arange(len(self.lons_corners_add[0,:,0])):
+                        for lc3 in np.arange(len(self.lons_corners_add[0,0,:])):
+                            if self.lons_corners_add[lc1,lc2,lc3] >= 0:
+                                self.lons_corners_add[lc1,lc2,lc3] -= 180
+                            elif self.lons_corners_add[lc1,lc2,lc3] < 0:
+                                self.lons_corners_add[lc1,lc2,lc3] += 180
+                
+                for lc1 in np.arange(len(self.center_lon)):
+                    if self.center_lon[lc1] >= 0:
+                        self.center_lon[lc1] -= 180
+                    elif self.center_lon[lc1] < 0:
+                        self.center_lon[lc1] += 180
+                
+                
+
+            if self.lons_corners_add != []:
+                self.lons_corners = np.concatenate( (self.lons_corners, 
+                                                     self.lons_corners_add), axis=0 )
+                self.lats_corners = np.concatenate( (self.lats_corners, 
+                                                     self.lats_corners_add), axis=0 )
+                
             self.var = np.concatenate( (self.var, np.array(self.var_add)), axis=0 )
-            
             self.verts = np.concatenate( ( self.lons_corners, self.lats_corners ), axis=2)
+            
+                
             
             
         # set plot color properties (FV model output)
@@ -365,275 +479,275 @@ class Plot_2D(object):
             else:
                 self.kwd_pretty_tick['min_set'] = self.cmin
         
-        if self.colorbar:
-            # Automatically set tick values
-            if self.pretty_tick:
-                if np.shape(self.colorticks) == ():
-                    if self.log_scale:
-                        if self.cmin == None:
-                            self.cmin_od = \
-                                np.floor(np.log10(np.abs(np.min( \
-                                    self.var_slice[self.var_slice != 0]))))
-                            self.cmin_sign = np.sign(np.min(self.var_slice[self.var_slice != 0])) 
-                        else:
-                            self.cmin_od = np.floor(np.log10(np.abs(self.cmin))) 
-                            self.cmin_sign = np.sign(self.cmin)
-                        if self.cmax == None:
-                            self.cmax_od = \
-                                np.floor(np.log10(np.abs(np.max( \
-                                    self.var_slice[self.var_slice != 0]))))
-                            self.cmax_sign = np.sign( np.max( \
-                                    self.var_slice[self.var_slice != 0]) )
-                        else:
-                            self.cmax_od = np.floor(np.log10(np.abs(self.cmax)))
-                            self.cmax_sign = np.sign(self.cmax)
+        #if self.colorbar:
+        # Automatically set tick values
+        if self.pretty_tick:
+            if np.shape(self.colorticks) == ():
+                if self.log_scale:
+                    if self.cmin == None:
+                        self.cmin_od = \
+                            np.floor(np.log10(np.abs(np.min( \
+                                self.var_slice[self.var_slice != 0]))))
+                        self.cmin_sign = np.sign(np.min(self.var_slice[self.var_slice != 0])) 
+                    else:
+                        self.cmin_od = np.floor(np.log10(np.abs(self.cmin))) 
+                        self.cmin_sign = np.sign(self.cmin)
+                    if self.cmax == None:
+                        self.cmax_od = \
+                            np.floor(np.log10(np.abs(np.max( \
+                                self.var_slice[self.var_slice != 0]))))
+                        self.cmax_sign = np.sign( np.max( \
+                                self.var_slice[self.var_slice != 0]) )
+                    else:
+                        self.cmax_od = np.floor(np.log10(np.abs(self.cmax)))
+                        self.cmax_sign = np.sign(self.cmax)
 
-                        self.sign_sum = self.cmin_sign + self.cmax_sign
-                        if self.sign_sum in [1,2]:
-                            if self.cmax_od > 3:
-                                nticks_init = self.cmax_od + 1
+                    self.sign_sum = self.cmin_sign + self.cmax_sign
+                    if self.sign_sum in [1,2]:
+                        if self.cmax_od > 3:
+                            nticks_init = self.cmax_od + 1
+                        else:
+                            nticks_init = self.cmax_od - self.cmin_od + 1
+
+                        if nticks_init > 6:
+                            Nticks_list = [5,6,7,4]
+                            check_loop = True
+                            for nticks in Nticks_list:
+                                if self.cmax_od > 3:
+                                    tmparray = np.linspace(0, self.cmax_od, 
+                                                           np.int(nticks))
+                                else:
+                                    tmparray = np.linspace(self.cmin_od, self.cmax_od, 
+                                                           np.int(nticks))
+                                checksum = np.sum( np.abs(tmparray - tmparray.astype('i')) )
+                                if np.abs(checksum) < 1e-7:
+                                    check_loop = False
+                                    break
+
+                            if check_loop:
+                                interval = np.ceil( self.cmax_od / 3 ).astype('I')
+                                tick_start = self.cmax_od
+                                colorticks_h = []
+                                nticks = 0
+                                while (tick_start > 0):
+                                    colorticks_h.append( tick_start )
+                                    tick_start -= interval
+                                self.colorticks = np.array( [0] + \
+                                                           list(10**(np.flip(colorticks_h))) )
+                                nticks = len(self.colorticks)
                             else:
-                                nticks_init = self.cmax_od - self.cmin_od + 1
-                            
+                                if (self.cmax_od > 3):
+                                    linticks = np.linspace( 0, self.cmax_od, num=np.int(nticks) )
+                                    self.colorticks = np.array( [0] + \
+                                                             list(10**(linticks[1:])) )
+                                else:
+                                    self.colorticks = np.logspace( self.cmin_od, self.cmax_od, 
+                                                                   num=np.int(nticks) )                                        
+                        else:
+                            nticks = nticks_init
+                            linticks = np.linspace( self.cmin_od, self.cmax_od, 
+                                                    np.int(nticks) )                               
+                            zero_ind = np.where( linticks == 0 )
+                            self.colorticks = 10**( linticks )
+                            self.colorticks[zero_ind] = 0
+
+
+                        if self.cmin_od < 0:
+                            self.linthresh = 10**(self.cmin_od)
+                        else:
+                            self.linthresh = 1e1
+                        self.linscale = 1.5
+
+                    elif self.sign_sum == 0:
+                        if (self.cmin_od > 0) or (self.cmax_od > 0):
+                            if diff:
+                                self.max_od = np.max( [self.cmin_od, self.cmax_od] )
+                                self.cmax_od = self.max_od
+                                self.cmin_od = self.max_od
+                            nticks_init = self.cmax_od - self.cmin_od * self.cmin_sign + 1
+
                             if nticks_init > 6:
-                                Nticks_list = [5,6,7,4]
+                                if diff:
+                                    Nticks_list = [4,5,3,6,2]
+                                else:
+                                    Nticks_list = [9,8,7,6,5,10,11,12,13,4,3,2]
                                 check_loop = True
                                 for nticks in Nticks_list:
-                                    if self.cmax_od > 3:
-                                        tmparray = np.linspace(0, self.cmax_od, 
-                                                               np.int(nticks))
+                                    if diff:
+                                        tmparray = np.linspace( 0,self.cmax_od )
                                     else:
-                                        tmparray = np.linspace(self.cmin_od, self.cmax_od, 
-                                                               np.int(nticks))
-                                    checksum = np.sum( np.abs(tmparray - tmparray.astype('i')) )
+                                        tmparray = np.linspace(self.cmin_od * self.cmin_sign, 
+                                                               self.cmax_od, np.int(nticks))
+
+                                    checksum = np.sum( np.abs(tmparray-tmparray.astype('i')) )
                                     if np.abs(checksum) < 1e-7:
                                         check_loop = False
                                         break
 
-                                if check_loop:
-                                    interval = np.ceil( self.cmax_od / 3 ).astype('I')
-                                    tick_start = self.cmax_od
-                                    colorticks_h = []
-                                    nticks = 0
-                                    while (tick_start > 0):
-                                        colorticks_h.append( tick_start )
-                                        tick_start -= interval
-                                    self.colorticks = np.array( [0] + \
-                                                               list(10**(np.flip(colorticks_h))) )
-                                    nticks = len(self.colorticks)
-                                else:
-                                    if (self.cmax_od > 3):
-                                        linticks = np.linspace( 0, self.cmax_od, num=np.int(nticks) )
-                                        self.colorticks = np.array( [0] + \
-                                                                 list(10**(linticks[1:])) )
-                                    else:
-                                        self.colorticks = np.logspace( self.cmin_od, self.cmax_od, 
-                                                                       num=np.int(nticks) )                                        
-                            else:
-                                nticks = nticks_init
-                                linticks = np.linspace( self.cmin_od, self.cmax_od, 
-                                                        np.int(nticks) )                               
-                                zero_ind = np.where( linticks == 0 )
-                                self.colorticks = 10**( linticks )
-                                self.colorticks[zero_ind] = 0
-                               
-
-                            if self.cmin_od < 0:
-                                self.linthresh = 10**(self.cmin_od)
-                            else:
-                                self.linthresh = 1e1
-                            self.linscale = 1.5
-                        
-                        elif self.sign_sum == 0:
-                            if (self.cmin_od > 0) or (self.cmax_od > 0):
                                 if diff:
-                                    self.max_od = np.max( [self.cmin_od, self.cmax_od] )
-                                    self.cmax_od = self.max_od
-                                    self.cmin_od = self.max_od
-                                nticks_init = self.cmax_od - self.cmin_od * self.cmin_sign + 1
-                                
-                                if nticks_init > 6:
-                                    if diff:
-                                        Nticks_list = [4,5,3,6,2]
+                                    if check_loop:
+                                        interval = np.ceil( self.cmax_od / 3 ).astype('I')
+                                        tick_start = self.cmax_od
+                                        colorticks_h = []
+                                        nticks = 0
+                                        while (tick_start > 0):
+                                            colorticks_h.append( tick_start )
+                                            tick_start -= interval
+                                            nticks += 1
+                                        self.colorticks = list(-10**(np.array(colorticks_h))) + \
+                                                       [0] + list( 10**(np.flip(colorticks_h) ) )
+                                        nticks = len(self.colorticks)
                                     else:
-                                        Nticks_list = [9,8,7,6,5,10,11,12,13,4,3,2]
-                                    check_loop = True
-                                    for nticks in Nticks_list:
-                                        if diff:
-                                            tmparray = np.linspace( 0,self.cmax_od )
-                                        else:
-                                            tmparray = np.linspace(self.cmin_od * self.cmin_sign, 
-                                                                   self.cmax_od, np.int(nticks))
-                                        
-                                        checksum = np.sum( np.abs(tmparray-tmparray.astype('i')) )
-                                        if np.abs(checksum) < 1e-7:
-                                            check_loop = False
-                                            break
-                                            
-                                    if diff:
-                                        if check_loop:
-                                            interval = np.ceil( self.cmax_od / 3 ).astype('I')
-                                            tick_start = self.cmax_od
-                                            colorticks_h = []
-                                            nticks = 0
-                                            while (tick_start > 0):
-                                                colorticks_h.append( tick_start )
-                                                tick_start -= interval
-                                                nticks += 1
-                                            self.colorticks = list(-10**(np.array(colorticks_h))) + \
-                                                           [0] + list( 10**(np.flip(colorticks_h) ) )
-                                            nticks = len(self.colorticks)
-                                        else:
-                                            linticks_hl = np.linspace( -self.cmin_od, 0, nticks )
-                                            linticks_hr = np.linspace( 0, self.cmax_od, nticks )[1:]
-                                            self.colorticks = 10**( linticks_hl ) * -1 + \
-                                                              10**( linticks_hr ) 
-                                            self.colorticks[nticks] = 0
-                                            nticks = nticks * 2 - 1
-                                    else:
-                                        linticks = tmparray
-                                        zero_ind = np.where( linticks == 0 )
-                                        self.colorticks = 10**( np.abs(linticks) ) * np.sign(linticks)
-                                        self.colorticks[zero_ind] = 0                                            
-                                            
+                                        linticks_hl = np.linspace( -self.cmin_od, 0, nticks )
+                                        linticks_hr = np.linspace( 0, self.cmax_od, nticks )[1:]
+                                        self.colorticks = 10**( linticks_hl ) * -1 + \
+                                                          10**( linticks_hr ) 
+                                        self.colorticks[nticks] = 0
+                                        nticks = nticks * 2 - 1
                                 else:
-                                    nticks = nticks_init
-                                    linticks = np.linspace( self.cmin_od * self.cmin_sign, 
-                                                        self.cmax_od, np.int(nticks) )
+                                    linticks = tmparray
                                     zero_ind = np.where( linticks == 0 )
-                                    self.colorticks = 10**( linticks ) * np.sign(linticks)
-                                    self.colorticks[zero_ind] = 0
-                                
-                                self.linthresh = 1e1
-                                self.linscale = 1.5
-                                
-                            else:
-                                if diff:
-                                    self.cmax_od, self.cmin_od = \
-                                        np.max( [self.cmin_od, self.cmax_od] ), \
-                                        np.max( [self.cmin_od, self.cmax_od] )
-                                
-                                if self.log_scale_min == None:
-                                    self.min_order = np.min( [self.cmin_od, self.cmax_od] )
-                                    if self.min_order > 4:
-                                        self.cmin_p = 10                           
-                                    elif self.min_order > 0:
-                                        self.cmin_p = 1
-                                    elif self.min_order <= 0:
-                                        self.cmin_p = 10**(self.min_order) * 1e-4
-                                else:
-                                    self.cmin_p = self.log_scale_min
-                                
-                                self.colorticks = np.array( [ -10**(self.cmin_od),
-                                              -np.sqrt( 10**(self.cmin_od) * self.cmin_p ),
-                                                              -self.cmin_p,
-                                                              0, 
-                                                              self.cmin_p,
-                                               np.sqrt( 10**(self.cmax_od) * self.cmin_p ),
-                                                              10**( self.cmax_od ) ] )
-                                nticks = 7
-                                self.linthresh = self.cmin_p
-                                self.linscale = 1.5
-                                
-                        elif self.sign_sum in [-2, -1]:
-                            nticks_init = self.cmax_od - self.cmin_od + 1
-                            if nticks_init > 6:
-                                Nticks_list = [9,8,7,6,5,10,11,12,13,4]
-                                for nticks in Nticks_list:
-                                    tmparray = np.linspace(self.cmin_od, self.cmax_od, 
-                                                           np.int(nticks))
-                                    checksum = np.sum( np.abs(tmparray - tmparray.astype('i')) )
-                                    if np.abs(checksum) < 1e-7:
-                                        break
+                                    self.colorticks = 10**( np.abs(linticks) ) * np.sign(linticks)
+                                    self.colorticks[zero_ind] = 0                                            
+
                             else:
                                 nticks = nticks_init
-                            self.colorticks = np.logspace( -self.cmin_od, -self.cmax_od, 
-                                                           num=np.int(nticks) )
-                            self.linthresh = -self.cmax
-                            self.linscale = -self.cmax
+                                linticks = np.linspace( self.cmin_od * self.cmin_sign, 
+                                                    self.cmax_od, np.int(nticks) )
+                                zero_ind = np.where( linticks == 0 )
+                                self.colorticks = 10**( linticks ) * np.sign(linticks)
+                                self.colorticks[zero_ind] = 0
 
-                        self.nticks = nticks
-                    else:
-                        self.cbprop = get_cbar_prop( [self.var_slice], Ntick_set=self.nticks,
-                                                    **self.kwd_pretty_tick )
-                        self.colorticks = self.cbprop.colorticks
-                        self.colorlabels = self.cbprop.colorlabels
-                    self.cmin = self.colorticks[0]
-                    self.cmax = self.colorticks[-1]
-            else:
-                if np.shape(self.colorticks) == ():
-                    if self.log_scale:
-                        self.cmin = np.min(self.var_slice[self.var_slice != 0])
-                        self.cmax = np.max(self.var_slice[self.var_slice != 0])
-                        
-                        self.cmin_od = np.floor( np.log10( np.abs(self.cmin) ) )
-                        self.cmax_od = np.floor( np.log10( np.abs(self.cmax) ) )
-                        self.cmin_sign = np.sign( self.cmin )
-                        self.cmax_sign = np.sign( self.cmax )
-                        self.min_order = np.min( [self.cmin_od, self.cmax_od] )
-                        if self.min_order > 4:
-                            self.cmin_p = 10                           
-                        elif self.min_order > 0:
-                            self.cmin_p = 1
-                        elif self.min_order <= 0:
-                            self.cmin_p = 10**(self.min_order) * 1e-4
-                        
-                        self.colorticks = np.array( [ self.cmin,
-                                                     -np.sqrt( -self.cmin * self.cmin_p ),
-                                                     -self.cmin_p,
-                                                      0,
-                                                      self.cmin_p,
-                                                      np.sqrt( self.cmax * self.cmin_p ),
-                                                      self.cmax ] )
-                        self.linthresh = self.cmin_p
-                        self.linscale = 1.5
-                        
-                    else:                        
-                        self.colorticks = np.linspace( self.cmin, self.cmax, self.nticks )
+                            self.linthresh = 1e1
+                            self.linscale = 1.5
+
+                        else:
+                            if diff:
+                                self.cmax_od, self.cmin_od = \
+                                    np.max( [self.cmin_od, self.cmax_od] ), \
+                                    np.max( [self.cmin_od, self.cmax_od] )
+
+                            if self.log_scale_min == None:
+                                self.min_order = np.min( [self.cmin_od, self.cmax_od] )
+                                if self.min_order > 4:
+                                    self.cmin_p = 10                           
+                                elif self.min_order > 0:
+                                    self.cmin_p = 1
+                                elif self.min_order <= 0:
+                                    self.cmin_p = 10**(self.min_order) * 1e-4
+                            else:
+                                self.cmin_p = self.log_scale_min
+
+                            self.colorticks = np.array( [ -10**(self.cmin_od),
+                                          -np.sqrt( 10**(self.cmin_od) * self.cmin_p ),
+                                                          -self.cmin_p,
+                                                          0, 
+                                                          self.cmin_p,
+                                           np.sqrt( 10**(self.cmax_od) * self.cmin_p ),
+                                                          10**( self.cmax_od ) ] )
+                            nticks = 7
+                            self.linthresh = self.cmin_p
+                            self.linscale = 1.5
+
+                    elif self.sign_sum in [-2, -1]:
+                        nticks_init = self.cmax_od - self.cmin_od + 1
+                        if nticks_init > 6:
+                            Nticks_list = [9,8,7,6,5,10,11,12,13,4]
+                            for nticks in Nticks_list:
+                                tmparray = np.linspace(self.cmin_od, self.cmax_od, 
+                                                       np.int(nticks))
+                                checksum = np.sum( np.abs(tmparray - tmparray.astype('i')) )
+                                if np.abs(checksum) < 1e-7:
+                                    break
+                        else:
+                            nticks = nticks_init
+                        self.colorticks = np.logspace( -self.cmin_od, -self.cmax_od, 
+                                                       num=np.int(nticks) )
+                        self.linthresh = -self.cmax
+                        self.linscale = -self.cmax
+
+                    self.nticks = nticks
                 else:
-                    self.linthresh = np.min( np.abs( self.colorticks[self.colorticks != 0] ) )
-                    self.linscale = 1.5
-                    
-                if np.shape(self.colorlabels) == ():
-                    if not self.log_scale:
-                        self.colorlabels = np.copy( self.colorticks )
+                    self.cbprop = get_cbar_prop( [self.var_slice], Ntick_set=self.nticks,
+                                                **self.kwd_pretty_tick )
+                    self.colorticks = self.cbprop.colorticks
+                    self.colorlabels = self.cbprop.colorlabels
                 self.cmin = self.colorticks[0]
                 self.cmax = self.colorticks[-1]
+        else:
+            if np.shape(self.colorticks) == ():
+                if self.log_scale:
+                    self.cmin = np.min(self.var_slice[self.var_slice != 0])
+                    self.cmax = np.max(self.var_slice[self.var_slice != 0])
+
+                    self.cmin_od = np.floor( np.log10( np.abs(self.cmin) ) )
+                    self.cmax_od = np.floor( np.log10( np.abs(self.cmax) ) )
+                    self.cmin_sign = np.sign( self.cmin )
+                    self.cmax_sign = np.sign( self.cmax )
+                    self.min_order = np.min( [self.cmin_od, self.cmax_od] )
+                    if self.min_order > 4:
+                        self.cmin_p = 10                           
+                    elif self.min_order > 0:
+                        self.cmin_p = 1
+                    elif self.min_order <= 0:
+                        self.cmin_p = 10**(self.min_order) * 1e-4
+
+                    self.colorticks = np.array( [ self.cmin,
+                                                 -np.sqrt( -self.cmin * self.cmin_p ),
+                                                 -self.cmin_p,
+                                                  0,
+                                                  self.cmin_p,
+                                                  np.sqrt( self.cmax * self.cmin_p ),
+                                                  self.cmax ] )
+                    self.linthresh = self.cmin_p
+                    self.linscale = 1.5
+
+                else:                        
+                    self.colorticks = np.linspace( self.cmin, self.cmax, self.nticks )
+            else:
+                self.linthresh = np.min( np.abs( self.colorticks[self.colorticks != 0] ) )
+                self.linscale = 1.5
+
+            if np.shape(self.colorlabels) == ():
+                if not self.log_scale:
+                    self.colorlabels = np.copy( self.colorticks )
+            self.cmin = self.colorticks[0]
+            self.cmax = self.colorticks[-1]
             
 
-            # Adjust colorticks in case of maximum value > 1e3
-            # make colorlabels for log_scale plot
-            if self.log_scale:
-                if (self.sign_sum in [1,2]) & (np.max(self.colorticks) > 1e3):
-                    ind_above_1 = np.where( self.colorticks > 1 )
-                    self.colorticks = [0] + list(self.colorticks[ind_above_1])
-                    self.nticks = len(self.colorticks)
-                elif (self.sign_sum in [-1,-2]) & (np.min(self.colorticks) < 1e-3):
-                    ind_below_m1 = np.where( self.colorticks < -1 )
-                    self.colorticks = list( self.colorticks[ind_below_m1] ) + [0]
-                    self.nticks = len(self.colorticks)
-                    
-                self.colorlabels = []
-                for ct in self.colorticks:
-                    if ct == 0:
-                        lbtmp = '0'
+        # Adjust colorticks in case of maximum value > 1e3
+        # make colorlabels for log_scale plot
+        if self.log_scale:
+            if (self.sign_sum in [1,2]) & (np.max(self.colorticks) > 1e3):
+                ind_above_1 = np.where( self.colorticks > 1 )
+                self.colorticks = [0] + list(self.colorticks[ind_above_1])
+                self.nticks = len(self.colorticks)
+            elif (self.sign_sum in [-1,-2]) & (np.min(self.colorticks) < 1e-3):
+                ind_below_m1 = np.where( self.colorticks < -1 )
+                self.colorticks = list( self.colorticks[ind_below_m1] ) + [0]
+                self.nticks = len(self.colorticks)
+
+            self.colorlabels = []
+            for ct in self.colorticks:
+                if ct == 0:
+                    lbtmp = '0'
+                else:
+                    if ct < 0:
+                        tmpind = 5
+                        sign = "-"
+                    elif ct > 0:
+                        tmpind = 4
+                        sign = ""
+
+                    if format( np.abs(ct), '.4e' )[tmpind-2:tmpind] == '00':
+                        lbtmp = format( ct, '.2e' )[tmpind:]
+                        lbtmp = sign + '$\\mathdefault{' + lbtmp.replace('e','10^{')[:-2] + \
+                                 str(int(lbtmp[-2:])) + '}}$'
                     else:
-                        if ct < 0:
-                            tmpind = 5
-                            sign = "-"
-                        elif ct > 0:
-                            tmpind = 4
-                            sign = ""
-                        
-                        if format( np.abs(ct), '.4e' )[tmpind-2:tmpind] == '00':
-                            lbtmp = format( ct, '.2e' )[tmpind:]
-                            lbtmp = sign + '$\\mathdefault{' + lbtmp.replace('e','10^{')[:-2] + \
-                                     str(int(lbtmp[-2:])) + '}}$'
-                        else:
-                            lbtmp = format( ct, '.4e' )[:tmpind] + format( ct, '.2e' )[tmpind:]
-                            lbtmp = '$\\mathdefault{' + lbtmp.replace('e','\\times10^{')[:-2] + \
-                                     str(int(lbtmp[-2:])) + '}}$'
-                    self.colorlabels.append( lbtmp.replace( '+', '' ) )
+                        lbtmp = format( ct, '.4e' )[:tmpind] + format( ct, '.2e' )[tmpind:]
+                        lbtmp = '$\\mathdefault{' + lbtmp.replace('e','\\times10^{')[:-2] + \
+                                 str(int(lbtmp[-2:])) + '}}$'
+                self.colorlabels.append( lbtmp.replace( '+', '' ) )
 
         # Dictionary declaration for keywords in external function call
         self.kwd_pcolormesh = {}
@@ -706,6 +820,10 @@ class Plot_2D(object):
         
         # === FV model output (2D with longitude and latitude values) ===
         if self.model_type == 'FV':
+            if self.center_180:
+                self.lon += 180
+                self.lon[ self.lon > 180. ] -= 360
+
             self.im = self.ax.pcolormesh(self.lon, self.lat, self.var, 
                                          cmap=self.cmap, transform=self.projection, 
                                          vmin=self.cmin, vmax=self.cmax,
@@ -730,11 +848,26 @@ class Plot_2D(object):
         if self.state:
             self.ax.add_feature(cfeature.STATES.with_scale(self.resolution), 
                                 lw=self.feature_line_lw, edgecolor=self.feature_color )
-        if self.lonlat_line:
-            self.lonticklabel = np.arange(self.lon_range[0],self.lon_range[1]+0.1,
-                                          self.lon_interval)
-            self.latticklabel = np.arange(self.lat_range[0],self.lat_range[1]+0.1,
-                                          self.lat_interval)
+        if self.lonlat_info:
+            if self.lon_labels==None:
+                self.lonticklabel = np.arange(self.lon_range[0],self.lon_range[1]+0.1,
+                                              self.lon_interval)
+            else:
+                if self.lon_labels[0] > self.lon_labels[-1]:
+                    self.lonticklabel = np.copy( self.lon_labels )
+                    if self.center_180:
+                        self.lonticklabel += 180
+                        self.lonticklabel[ self.lonticklabel > 180. ] -= 360    
+
+                else:
+                    self.lonticklabel = self.lon_labels
+            
+            if self.lat_labels==None:
+                self.latticklabel = np.arange(self.lat_range[0],self.lat_range[1]+0.1,
+                                              self.lat_interval)
+            else:
+                self.latticklabel = self.lat_labels
+
 
             self.ax.set_xticks(self.lonticklabel,crs=self.ax.projection)
             self.ax.set_yticks(self.latticklabel,crs=self.ax.projection)
@@ -745,7 +878,31 @@ class Plot_2D(object):
             self.lat_formatter = LatitudeFormatter()
             self.ax.xaxis.set_major_formatter(self.lon_formatter)
             self.ax.yaxis.set_major_formatter(self.lat_formatter)
-            self.ax.grid( lw=1.0, color='black', alpha=0.5, linestyle=':')
+
+            
+            if self.regional:
+                # if self.center_180:
+                #     self.lonticklabel += 180
+                #     self.lonticklabel[ self.lonticklabel > 180. ] -= 360    
+                # self.gl2 = self.ax.gridlines( lw=1.0, color='black', alpha=0.5, linestyle=':' )
+
+                # if self.center_180:
+                #     self.lonticklabel += 180
+                #     self.lonticklabel[ self.lonticklabel > 180. ] -= 360    
+                #self.gl = self.ax.gridlines( lw=1.0, color='black', alpha=0.5, linestyle=':' )
+                #self.gl.xlocator = ticker.FixedLocator( self.lonticklabel )                
+                
+                if self.lonlat_line:
+                    for lontick in self.lonticklabel:
+                        self.ax.plot( [lontick, lontick], self.ax.get_ylim(), 
+                                      lw=1.0, linestyle=':', color='black', alpha=0.5 )
+                    for lattick in self.latticklabel:
+                        self.ax.plot( self.ax.get_xlim(), [lattick, lattick],
+                                      lw=1.0, linestyle=':', color='black', alpha=0.5 )
+            
+            else:
+                if self.lonlat_line:
+                    self.ax.grid( lw=1.0, color='black', alpha=0.5, linestyle=':')
   
         # === Set colorbar properties ===
         if self.colorbar:
