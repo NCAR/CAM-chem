@@ -76,3 +76,5 @@ Potentially helpful learning resources
 `The Python Graph Gallery <https://www.python-graph-gallery.com/>`_ - Examples of many different types of graphs.
 
 `Install conda <https://conda.io/projects/conda/en/latest/user-guide/install/index.html>`_ - Use conda as a python environment manager.
+
+`PyGIS <https://pygis.io/docs/a_intro.html>`_ - Geospatial Programming & Remote Sensing.

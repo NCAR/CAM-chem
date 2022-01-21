@@ -294,7 +294,7 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
@@ -338,8 +338,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># By line: RRB 2020-07-20</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># By line: RRB 2020-07-20</span>
 <span class="c1"># Script aims to:</span>
 <span class="c1"># - Load a netCDF file</span>
 <span class="c1"># - Extract one variable: CO</span>
@@ -358,8 +357,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[86]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>                 <span class="c1"># For plotting maps</span>
 <span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="k">as</span> <span class="nn">cfeature</span>         <span class="c1"># For plotting maps</span>
 <span class="kn">from</span> <span class="nn">cartopy.util</span> <span class="kn">import</span> <span class="n">add_cyclic_point</span>  <span class="c1"># For plotting maps</span>
@@ -376,8 +374,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[87]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">result_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../../data&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../../data&quot;</span><span class="p">)</span>
 <span class="n">file</span> <span class="o">=</span> <span class="s2">&quot;CAM_chem_merra2_FCSD_1deg_QFED_monthoutput_CO_201801.nc&quot;</span>
 <span class="n">file_to_open</span> <span class="o">=</span> <span class="n">result_dir</span> <span class="o">/</span> <span class="n">file</span>
 <span class="c1">#the netcdf file is now held in an xarray dataset named &#39;nc_load&#39; and can be referenced later in the notebook</span>
@@ -394,8 +391,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[88]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1">#extract variable</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#extract variable</span>
 <span class="n">var_sel</span> <span class="o">=</span> <span class="n">nc_load</span><span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="c1">#print(var_sel)</span>
 
@@ -425,8 +421,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[89]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1">#-------------------------------</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#-------------------------------</span>
 <span class="c1">#CONSTANTS and conversion factor</span>
 <span class="c1">#-------------------------------</span>
 <span class="n">NAv</span> <span class="o">=</span> <span class="mf">6.0221415e+23</span>                       <span class="c1">#--- Avogadro&#39;s number</span>
@@ -445,8 +440,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[90]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Load values to create true model pressure array</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load values to create true model pressure array</span>
 <span class="n">psurf</span> <span class="o">=</span> <span class="n">nc_load</span><span class="p">[</span><span class="s1">&#39;PS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">hyai</span> <span class="o">=</span> <span class="n">nc_load</span><span class="p">[</span><span class="s1">&#39;hyai&#39;</span><span class="p">]</span>
 <span class="n">hybi</span> <span class="o">=</span> <span class="n">nc_load</span><span class="p">[</span><span class="s1">&#39;hybi&#39;</span><span class="p">]</span>
@@ -479,8 +473,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[91]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">var_tcol</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">mod_deltap</span><span class="p">,</span> <span class="n">xp_const</span><span class="o">*</span><span class="n">var_sel</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lev&quot;</span><span class="p">])</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">var_tcol</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">mod_deltap</span><span class="p">,</span> <span class="n">xp_const</span><span class="o">*</span><span class="n">var_sel</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lev&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -491,8 +484,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[92]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">var_tcol_cyc</span><span class="p">,</span> <span class="n">lon_cyc</span> <span class="o">=</span> <span class="n">add_cyclic_point</span><span class="p">(</span><span class="n">var_tcol</span><span class="p">,</span> <span class="n">coord</span><span class="o">=</span><span class="n">lon</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">var_tcol_cyc</span><span class="p">,</span> <span class="n">lon_cyc</span> <span class="o">=</span> <span class="n">add_cyclic_point</span><span class="p">(</span><span class="n">var_tcol</span><span class="p">,</span> <span class="n">coord</span><span class="o">=</span><span class="n">lon</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -503,8 +495,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[93]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 
 <span class="c1">#Define projection</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
@@ -558,8 +549,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>

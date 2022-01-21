@@ -284,7 +284,7 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
@@ -328,8 +328,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># By line: RRB 2020-07-28</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># By line: RRB 2020-07-28</span>
 <span class="c1"># Script aims to:</span>
 <span class="c1"># - Load multiple netCDF files</span>
 <span class="c1"># - Extract one variable: CO</span>
@@ -344,8 +343,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">pandas.tseries.offsets</span> <span class="kn">import</span> <span class="n">DateOffset</span>
 <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -363,8 +361,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Find nearest index</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find nearest index</span>
 <span class="k">def</span> <span class="nf">find_index</span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
     <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">array</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">idx</span>
@@ -379,8 +376,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">result_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../../data/&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../../data/&quot;</span><span class="p">)</span>
 <span class="n">files_to_open</span> <span class="o">=</span> <span class="s2">&quot;CAM_chem_merra2_FCSD_1deg_QFED_monthly_*.nc&quot;</span>
 <span class="c1">#the netcdf files will be held in an xarray dataset named &#39;nc_load&#39; and can be referenced later in the notebook</span>
 <span class="n">nc_load</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">result_dir</span><span class="o">/</span><span class="n">files_to_open</span><span class="p">),</span><span class="n">combine</span><span class="o">=</span><span class="s1">&#39;by_coords&#39;</span><span class="p">,</span><span class="n">concat_dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
@@ -396,8 +392,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1">#extract variable</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#extract variable</span>
 <span class="n">var_sel</span> <span class="o">=</span> <span class="n">nc_load</span><span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">]</span>
 
 <span class="c1">#extract grid variables</span>
@@ -427,8 +422,7 @@ file time:  2018-02-01T00:00:00.000000000 ---&gt; converted time:  2018-01-15 00
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">name_select</span> <span class="o">=</span> <span class="s2">&quot;Boulder&quot;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name_select</span> <span class="o">=</span> <span class="s2">&quot;Boulder&quot;</span>
 <span class="n">lat_select</span> <span class="o">=</span> <span class="mf">40.0150</span>
 <span class="n">lon_select</span> <span class="o">=</span> <span class="mi">360</span><span class="o">-</span><span class="mf">105.2705</span> <span class="c1"># model longitude is from 0 to 360</span>
 
@@ -459,8 +453,7 @@ Boulder  longitude:  254.7295 ---&gt; nearest:  255.0
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time2</span><span class="p">,</span> <span class="n">var_srf</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;CAM-chem CO&#39;</span><span class="p">)</span>
 
@@ -484,8 +477,7 @@ Boulder  longitude:  254.7295 ---&gt; nearest:  255.0
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
