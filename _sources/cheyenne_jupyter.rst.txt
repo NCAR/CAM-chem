@@ -6,8 +6,8 @@ Go to the folder that you have jupyter notebooks (\*.ipynb) and start and intera
     execcasper
 
 Once the job has launched, in the same window load the following modules:
-    module load ncarenv
-    module load python
+   | module load ncarenv
+   | module load python
 
 Enter the default Python interface using:
     ncar_pylib
