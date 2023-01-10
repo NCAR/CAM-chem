@@ -85,7 +85,7 @@
       <main role="main" class="content" style="min-height:700px;">
         
   <section id="plot-a-regional-map-from-finite-volume-fv-grid-field-plot-2d-application">
-<h1>Plot a regional map from finite volume (FV) grid field (Plot_2D application)<a class="headerlink" href="#plot-a-regional-map-from-finite-volume-fv-grid-field-plot-2d-application" title="Permalink to this headline">¶</a></h1>
+<h1>Plot a regional map from finite volume (FV) grid field (Plot_2D application)<a class="headerlink" href="#plot-a-regional-map-from-finite-volume-fv-grid-field-plot-2d-application" title="Permalink to this heading">¶</a></h1>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># By line: DSJ 10-MAR-2021</span>
 <span class="c1"># Script aims to:</span>
 <span class="c1"># - Plot a regional map with state lines</span>
@@ -93,7 +93,7 @@
 </pre></div>
 </div>
 <section id="at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use">
-<h2>At the start of a Jupyter notebook you need to import all modules that you will use<a class="headerlink" href="#at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use" title="Permalink to this headline">¶</a></h2>
+<h2>At the start of a Jupyter notebook you need to import all modules that you will use<a class="headerlink" href="#at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make sure you have downloaded &quot;Plot_2D.py&quot; script from Github</span>
 <span class="kn">from</span> <span class="nn">Plot_2D</span> <span class="kn">import</span> <span class="n">Plot_2D</span>
 <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span> <span class="c1"># To read NetCDF file</span>
@@ -101,14 +101,14 @@
 </div>
 </section>
 <section id="read-the-sample-file">
-<h2>Read the sample file<a class="headerlink" href="#read-the-sample-file" title="Permalink to this headline">¶</a></h2>
+<h2>Read the sample file<a class="headerlink" href="#read-the-sample-file" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make sure you have downloaded &quot;sample.nc&quot; file from Github</span>
 <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span> <span class="s1">&#39;sample.nc&#39;</span> <span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="call-plot-2d-script-to-plot-surface-co-over-conus-region">
-<h2>Call Plot_2D script to plot surface CO over CONUS region<a class="headerlink" href="#call-plot-2d-script-to-plot-surface-co-over-conus-region" title="Permalink to this headline">¶</a></h2>
+<h2>Call Plot_2D script to plot surface CO over CONUS region<a class="headerlink" href="#call-plot-2d-script-to-plot-surface-co-over-conus-region" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Plot_2D</span><span class="p">(</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,:,:]</span><span class="o">*</span><span class="mf">1e9</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;ppbv&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;CO mixing ratio (SFC)&#39;</span><span class="p">,</span>
          <span class="n">lon_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">130</span><span class="p">,</span><span class="o">-</span><span class="mi">70</span><span class="p">],</span> <span class="n">lat_range</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span><span class="mi">55</span><span class="p">])</span>
 </pre></div>
@@ -119,7 +119,7 @@
 <img alt="../../_images/Plot_2D_example_2_regional_map_7_1.png" src="../../_images/Plot_2D_example_2_regional_map_7_1.png" />
 </section>
 <section id="add-state-bounday-lines">
-<h2>Add state bounday lines<a class="headerlink" href="#add-state-bounday-lines" title="Permalink to this headline">¶</a></h2>
+<h2>Add state bounday lines<a class="headerlink" href="#add-state-bounday-lines" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Plot_2D</span><span class="p">(</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,:,:]</span><span class="o">*</span><span class="mf">1e9</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;ppbv&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;CO mixing ratio (SFC)&#39;</span><span class="p">,</span>
          <span class="n">lon_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">130</span><span class="p">,</span><span class="o">-</span><span class="mi">70</span><span class="p">],</span> <span class="n">lat_range</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span><span class="mi">55</span><span class="p">],</span> <span class="n">state</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
@@ -130,9 +130,9 @@
 <img alt="../../_images/Plot_2D_example_2_regional_map_9_1.png" src="../../_images/Plot_2D_example_2_regional_map_9_1.png" />
 </section>
 <section id="add-grid-lines">
-<h2>Add grid lines<a class="headerlink" href="#add-grid-lines" title="Permalink to this headline">¶</a></h2>
+<h2>Add grid lines<a class="headerlink" href="#add-grid-lines" title="Permalink to this heading">¶</a></h2>
 <section id="sample-file-has-a-horizontal-resolution-of-0-9-x-1-25">
-<h3>Sample file has a horizontal resolution of 0.9 x 1.25<a class="headerlink" href="#sample-file-has-a-horizontal-resolution-of-0-9-x-1-25" title="Permalink to this headline">¶</a></h3>
+<h3>Sample file has a horizontal resolution of 0.9 x 1.25<a class="headerlink" href="#sample-file-has-a-horizontal-resolution-of-0-9-x-1-25" title="Permalink to this heading">¶</a></h3>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Plot_2D</span><span class="p">(</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,:,:]</span><span class="o">*</span><span class="mf">1e9</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;ppbv&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;CO mixing ratio (SFC)&#39;</span><span class="p">,</span>
          <span class="n">lon_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">130</span><span class="p">,</span><span class="o">-</span><span class="mi">70</span><span class="p">],</span> <span class="n">lat_range</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span><span class="mi">55</span><span class="p">],</span> <span class="n">state</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">grid_line</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">grid_line_lw</span><span class="o">=</span><span class="mf">0.5</span> <span class="p">)</span>
 </pre></div>

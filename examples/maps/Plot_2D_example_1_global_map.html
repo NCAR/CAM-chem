@@ -85,7 +85,7 @@
       <main role="main" class="content" style="min-height:700px;">
         
   <section id="plot-a-global-map-from-finite-volume-fv-grid-field-plot-2d-application">
-<h1>Plot a global map from finite volume (FV) grid field (Plot_2D application)<a class="headerlink" href="#plot-a-global-map-from-finite-volume-fv-grid-field-plot-2d-application" title="Permalink to this headline">¶</a></h1>
+<h1>Plot a global map from finite volume (FV) grid field (Plot_2D application)<a class="headerlink" href="#plot-a-global-map-from-finite-volume-fv-grid-field-plot-2d-application" title="Permalink to this heading">¶</a></h1>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># By line: DSJ 10-MAR-2021</span>
 <span class="c1"># Script aims to:</span>
 <span class="c1"># - Plot a world map with coastlines, lon/lat lines, and colorbar</span>
@@ -96,7 +96,7 @@
 </pre></div>
 </div>
 <section id="at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use">
-<h2>At the start of a Jupyter notebook you need to import all modules that you will use<a class="headerlink" href="#at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use" title="Permalink to this headline">¶</a></h2>
+<h2>At the start of a Jupyter notebook you need to import all modules that you will use<a class="headerlink" href="#at-the-start-of-a-jupyter-notebook-you-need-to-import-all-modules-that-you-will-use" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make sure you have downloaded &quot;Plot_2D.py&quot; script from Github</span>
 <span class="kn">from</span> <span class="nn">Plot_2D</span> <span class="kn">import</span> <span class="n">Plot_2D</span>
 <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span> <span class="c1"># To read NetCDF file</span>
@@ -105,14 +105,14 @@
 </div>
 </section>
 <section id="read-the-sample-file">
-<h2>Read the sample file<a class="headerlink" href="#read-the-sample-file" title="Permalink to this headline">¶</a></h2>
+<h2>Read the sample file<a class="headerlink" href="#read-the-sample-file" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make sure you have downloaded &quot;sample.nc&quot; file from Github</span>
 <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span> <span class="s1">&#39;sample.nc&#39;</span> <span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="call-plot-2d-script-to-plot-surface-co">
-<h2>Call Plot_2D script to plot surface CO<a class="headerlink" href="#call-plot-2d-script-to-plot-surface-co" title="Permalink to this headline">¶</a></h2>
+<h2>Call Plot_2D script to plot surface CO<a class="headerlink" href="#call-plot-2d-script-to-plot-surface-co" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Plot_2D</span><span class="p">(</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,:,:]</span><span class="o">*</span><span class="mf">1e9</span> <span class="p">)</span> <span class="c1"># multiply by 1e9 to make it to ppbv</span>
 </pre></div>
 </div>
@@ -122,7 +122,7 @@
 <img alt="../../_images/Plot_2D_example_1_global_map_7_1.png" src="../../_images/Plot_2D_example_1_global_map_7_1.png" />
 </section>
 <section id="you-can-specify-colormap-for-more-information-you-can-check-colormaps-from-here-https-matplotlib-org-stable-tutorials-colors-colormaps-html">
-<h2>You can specify colormap. For more information, you can check colormaps from here: <a class="reference external" href="https://matplotlib.org/stable/tutorials/colors/colormaps.html">https://matplotlib.org/stable/tutorials/colors/colormaps.html</a><a class="headerlink" href="#you-can-specify-colormap-for-more-information-you-can-check-colormaps-from-here-https-matplotlib-org-stable-tutorials-colors-colormaps-html" title="Permalink to this headline">¶</a></h2>
+<h2>You can specify colormap. For more information, you can check colormaps from here: <a class="reference external" href="https://matplotlib.org/stable/tutorials/colors/colormaps.html">https://matplotlib.org/stable/tutorials/colors/colormaps.html</a><a class="headerlink" href="#you-can-specify-colormap-for-more-information-you-can-check-colormaps-from-here-https-matplotlib-org-stable-tutorials-colors-colormaps-html" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Plot_2D</span><span class="p">(</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,:,:]</span><span class="o">*</span><span class="mf">1e9</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">hot_r</span> <span class="p">)</span>
 </pre></div>
 </div>
@@ -132,7 +132,7 @@
 <img alt="../../_images/Plot_2D_example_1_global_map_9_1.png" src="../../_images/Plot_2D_example_1_global_map_9_1.png" />
 </section>
 <section id="lets-add-an-unit-to-the-plot-by-using-unit-keyword">
-<h2>Let’s add an unit to the plot by using unit keyword<a class="headerlink" href="#lets-add-an-unit-to-the-plot-by-using-unit-keyword" title="Permalink to this headline">¶</a></h2>
+<h2>Let’s add an unit to the plot by using unit keyword<a class="headerlink" href="#lets-add-an-unit-to-the-plot-by-using-unit-keyword" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Plot_2D</span><span class="p">(</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,:,:]</span><span class="o">*</span><span class="mf">1e9</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">hot_r</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;ppbv&#39;</span> <span class="p">)</span>
 </pre></div>
 </div>
@@ -142,7 +142,7 @@
 <img alt="../../_images/Plot_2D_example_1_global_map_11_1.png" src="../../_images/Plot_2D_example_1_global_map_11_1.png" />
 </section>
 <section id="you-can-also-add-a-title-to-the-plot">
-<h2>You can also add a title to the plot<a class="headerlink" href="#you-can-also-add-a-title-to-the-plot" title="Permalink to this headline">¶</a></h2>
+<h2>You can also add a title to the plot<a class="headerlink" href="#you-can-also-add-a-title-to-the-plot" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Plot_2D</span><span class="p">(</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,:,:]</span><span class="o">*</span><span class="mf">1e9</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">hot_r</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;ppbv&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;CO mixing ratio (SFC)&#39;</span> <span class="p">)</span>
 </pre></div>
 </div>
@@ -152,7 +152,7 @@
 <img alt="../../_images/Plot_2D_example_1_global_map_13_1.png" src="../../_images/Plot_2D_example_1_global_map_13_1.png" />
 </section>
 <section id="set-maximum-and-minimum-values-manually-with-cmin-and-cmax-keywords">
-<h2>Set maximum and minimum values manually with cmin and cmax keywords<a class="headerlink" href="#set-maximum-and-minimum-values-manually-with-cmin-and-cmax-keywords" title="Permalink to this headline">¶</a></h2>
+<h2>Set maximum and minimum values manually with cmin and cmax keywords<a class="headerlink" href="#set-maximum-and-minimum-values-manually-with-cmin-and-cmax-keywords" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Plot_2D</span><span class="p">(</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,:,:]</span><span class="o">*</span><span class="mf">1e9</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">hot_r</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;ppbv&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;CO mixing ratio (SFC)&#39;</span><span class="p">,</span>
          <span class="n">cmax</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">cmin</span><span class="o">=</span><span class="mi">100</span> <span class="p">)</span>
 </pre></div>
