@@ -52,6 +52,9 @@ Potentially helpful learning resources
 
 `NCAR PyNGL and PyNIO <https://www.pyngl.ucar.edu/>`_ - Continuation on from the NCAR Command language pivot to Python.
 
+`ESDS <https://ncar.github.io/esds/>`_ - NCAR Earth System Data Science (ESDS).
+
+`ESDS notes <https://docs.google.com/document/d/1gr0OXPyakc-Pt00a8M-50QdZaPw8mDx_d2BiU0ifhy4>`_ - NCAR Earth System Data Science (ESDS) Resources Guide.
 
 **EXTERNAL TO NCAR:**
 
