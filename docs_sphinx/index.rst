@@ -31,7 +31,7 @@
     MUSICA sample <https://acomstaff.acom.ucar.edu/CESM/sample_se.nc>
 
 ============================================================
-Welcome to the Python resources for CAM-chem
+Welcome to the Python resources for chemistry modeling
 ============================================================
 A collection of Python examples
 --------------------------------
