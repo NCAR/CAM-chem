@@ -4,8 +4,9 @@ A place to store processing code related to atmospheric chemistry modeling at NC
 
 | Folder | Use |
 |-------------------|-------------------|
+| CodeSets   | Sets of code in a mixture of languages, used for particular purposes: Currently includes: IPT |
 | NCL    | Collection of scripts and processing written in NCAR COMmand Language (NCL). Note this language is no longer maintained and users are encouraged to move towards Python.|
-| Python | Collection of scripts and Jupyter Notebooks written in Python. Some of these are used as examples on [https://ncar.github.io/MUSICA-Tools/](https://ncar.github.io/MUSICA-Tools/)|
+| Python | Collection of scripts and Jupyter Notebooks examples written in Python. Some of these are used as examples on [https://ncar.github.io/MUSICA-Tools/](https://ncar.github.io/MUSICA-Tools/)|
 | docs | Old files of GitHub hosted website. |
 | docs_sphinx | Github hosted website i.e. creates the content for: [https://ncar.github.io/MUSICA-Tools/](https://ncar.github.io/MUSICA-Tools/)|
 | package  | Code storage location for the vivaldi-a package. |
