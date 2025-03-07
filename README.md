@@ -1,6 +1,6 @@
 # MUSICA Tools
 
-A place to store processing code related to atmospheric chemistry modeling at NCSF NCAR.
+A place to store processing code related to atmospheric chemistry modeling at NSF NCAR.
 
 | Folder | Use |
 |-------------------|-------------------|
